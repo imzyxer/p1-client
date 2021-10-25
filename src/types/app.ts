@@ -1,0 +1,25 @@
+export enum EProgress {
+  INIT = -1,
+  LOADING = 0,
+  LOADED = 1,
+}
+
+export enum ERef {
+  GROUPS = 'groups',
+}
+
+export enum EMode {
+  ADD,
+  EDIT,
+}
+
+export type Nullable<T> = T | null;
+
+export type TId = string;
+export type TPassword = string;
+
+export type TResult = {
+  message: string;
+  error?: string;
+  result?: string;
+};
