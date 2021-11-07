@@ -19,14 +19,18 @@ class EntryViewStore {
     this.progress = EProgress.LOADING;
     this.init = true;
 
-    fetchById(entryId).then(
-      action('fetchByIdResult', response => {
-        if (response.isSuccessful) {
+    fetchById(entryId)
+      .then(
+        action('fetchByIdSuccess', response => {
           this.entry = response.result;
-        }
-        this.progress = EProgress.LOADED;
-      })
-    );
+          this.progress = EProgress.LOADED;
+        })
+      )
+      .catch(
+        action('fetchByIdFailure', () => {
+          this.progress = EProgress.LOADED;
+        })
+      );
   };
 
   @action

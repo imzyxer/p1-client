@@ -36,17 +36,19 @@ class EntryAddStore {
   @action
   public doCreate = (values: IEntryForFormik, success: () => void, failure: () => void) => {
     const data = EntryEntity.prepareForCreate(values);
-    doCreate(data).then(
-      action('doCreateResult', response => {
-        if (response.isSuccessful) {
+    doCreate(data)
+      .then(
+        action('doCreateSuccess', () => {
           success();
           this.root.appStore.refreshEntryList();
           this.close();
-        } else {
+        })
+      )
+      .catch(
+        action('doCreateFailure', () => {
           failure();
-        }
-      })
-    );
+        })
+      );
   };
 
   get initialValues(): IEntryForFormik {

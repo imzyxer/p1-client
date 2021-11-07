@@ -2,9 +2,9 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosRequestHeaders } from 'a
 import axiosRetry from 'axios-retry';
 import IAbstractAuthenticator from './AbstractAuthenticator';
 
-abstract class AbstractClient {
+abstract class AbstractClient<A extends IAbstractAuthenticator> {
   private readonly httpClient: AxiosInstance;
-  protected readonly authenticator: IAbstractAuthenticator;
+  protected readonly authenticator: A;
   protected abstract getCommonHeaders(): Promise<AxiosRequestHeaders>;
   protected abstract getAuthHeaders(): Promise<AxiosRequestHeaders>;
 
@@ -15,7 +15,7 @@ abstract class AbstractClient {
     }, new FormData());
   };
 
-  protected constructor(baseURL: string, authenticator: IAbstractAuthenticator) {
+  protected constructor(baseURL: string, authenticator: A) {
     this.authenticator = authenticator;
     this.httpClient = this.createHttpClient(baseURL);
   }

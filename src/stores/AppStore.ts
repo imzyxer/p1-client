@@ -1,8 +1,8 @@
 import { makeObservable, observable, action, computed } from 'mobx';
-import AppAuthenticator from 'services/AppAuthenticator';
 import { signIn, signOut, fetchUser } from 'services/api/User';
 import { ERole, IUser } from 'types/user';
 import { IRootStore } from 'types/store';
+import PrimaryClient from 'services/PrimaryClient';
 
 const DEFAULT_USER = {
   role: ERole.GUEST,
@@ -23,8 +23,10 @@ class AppStore {
 
   @action
   public initiate = () => {
+    const client = PrimaryClient.getClient();
+    const authenticator = client().getAuthenticator();
     if (this.init) return;
-    if (AppAuthenticator.checkTokenAvailability()) {
+    if (authenticator.checkTokenAvailability()) {
       fetchUser().then(
         action('fetchUserResult', response => {
           this.setUserData(response.result);
@@ -32,7 +34,7 @@ class AppStore {
         })
       );
     } else {
-      AppAuthenticator.revokeCredentials();
+      authenticator.revokeCredentials();
       this.init = true;
     }
   };
@@ -55,11 +57,13 @@ class AppStore {
   @action
   public signIn = (params: { login: string; password: string }, success: () => void, failure: (response: any) => void) => {
     const { login, password } = params;
+    const client = PrimaryClient.getClient();
+    const authenticator = client().getAuthenticator();
     signIn(login, password)
       .then(
         action('doSignInSuccess', response => {
           this.setUserData(response.result);
-          AppAuthenticator.setCredentials(response.result.accessToken, password);
+          authenticator.setCredentials(response.result.accessToken, password);
           success();
         })
       )
@@ -72,9 +76,11 @@ class AppStore {
 
   @action
   public signOut = (success: () => void) => {
+    const client = PrimaryClient.getClient();
+    const authenticator = client().getAuthenticator();
     signOut().then(
       action('doSignOutResult', () => {
-        AppAuthenticator.revokeCredentials();
+        authenticator.revokeCredentials();
         this.setUserData(DEFAULT_USER);
         success();
       })

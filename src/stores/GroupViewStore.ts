@@ -17,14 +17,18 @@ class GroupViewStore {
   }
 
   protected fetchData = (groupId: string) => {
-    fetchByGroup(groupId).then(
-      action('fetchByGroupResult', response => {
-        if (response.isSuccessful) {
+    fetchByGroup(groupId)
+      .then(
+        action('fetchByGroupSuccess', response => {
           this.entries = response.result;
-        }
-        this.progress = EProgress.LOADED;
-      })
-    );
+          this.progress = EProgress.LOADED;
+        })
+      )
+      .catch(
+        action('fetchByGroupFailure', () => {
+          this.progress = EProgress.LOADED;
+        })
+      );
   };
 
   @action

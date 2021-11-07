@@ -23,14 +23,18 @@ class EntryEditStore {
     this.progress = EProgress.LOADING;
     this.init = true;
 
-    fetchById(entryId).then(
-      action('fetchByIdResult', response => {
-        if (response.isSuccessful) {
+    fetchById(entryId)
+      .then(
+        action('fetchByIdSuccess', response => {
           this.entry = response.result;
-        }
-        this.progress = EProgress.LOADED;
-      })
-    );
+          this.progress = EProgress.LOADED;
+        })
+      )
+      .catch(
+        action('fetchByIdFailure', () => {
+          this.progress = EProgress.LOADED;
+        })
+      );
   };
 
   @action
@@ -43,44 +47,38 @@ class EntryEditStore {
   @action
   public doUpdate = (values: IEntryForFormik, success: () => void, failure: () => void): void => {
     const data = EntryEntity.prepareForUpdate(values);
-    doUpdate(data).then(
-      action('doUpdateResult', response => {
-        if (response.isSuccessful) {
+    doUpdate(data)
+      .then(
+        action('doUpdateSuccess', () => {
           success();
           this.root.appStore.refreshEntryList();
           this.close();
-        } else {
-          failure();
-        }
-      })
-    );
+        })
+      )
+      .catch(action('doUpdateFailure', () => failure()));
   };
 
   @action
   public doRemove = (success: () => void, failure: () => void): void => {
     if (this.currentEntryId === null) return;
 
-    doRemove(this.currentEntryId).then(
-      action('doRemoveEntryResult', response => {
-        if (response.isSuccessful) {
+    doRemove(this.currentEntryId)
+      .then(
+        action('doRemoveEntrySuccess', () => {
           success();
           this.root.appStore.refreshEntryList();
           this.close();
-        } else {
-          failure();
-        }
-      })
-    );
+        })
+      )
+      .catch(action('doRemoveEntryFailure', () => failure()));
   };
 
   @action
   doStarred = (entryId: TId, success: () => void): void => {
     doStarred(entryId).then(
-      action('doStarredEntryResult', response => {
-        if (response.isSuccessful) {
-          success();
-          this.root.appStore.refreshEntryList();
-        }
+      action('doStarredEntryResult', () => {
+        success();
+        this.root.appStore.refreshEntryList();
       })
     );
   };

@@ -14,12 +14,13 @@ import _omit from 'lodash/omit';
 import _isEmpty from 'lodash/isEmpty';
 import moment from 'moment';
 import { TId } from 'types/app';
-import AppAuthenticator from 'services/AppAuthenticator';
 import Cipher from 'utils/Cipher';
+import PrimaryClient from 'services/PrimaryClient';
 
 class EntryEntity {
   private getCrypt = () => {
-    const password = AppAuthenticator.getPassword();
+    const client = PrimaryClient.getClient();
+    const password = client().getAuthenticator().getPassword();
     return new Cipher(password);
   };
 

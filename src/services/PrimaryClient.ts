@@ -3,7 +3,7 @@ import { AxiosError, AxiosResponse } from 'axios';
 import ResponseDto, { InvalidConnectionDto } from 'services/ResponseDto';
 import { TPrimaryAuthenticator } from 'services/PrimaryAuthenticator';
 
-class PrimaryClient extends AbstractClient {
+class PrimaryClient extends AbstractClient<TPrimaryAuthenticator> {
   private static client?: PrimaryClient;
 
   public static getClient() {
