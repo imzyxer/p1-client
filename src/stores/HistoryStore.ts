@@ -13,14 +13,18 @@ class HistoryStore {
   }
 
   protected fetchHistory = () => {
-    fetchHistory().then(
-      action('fetchHistoryResult', response => {
-        if (response.isSuccessful) {
+    fetchHistory()
+      .then(
+        action('fetchHistorySuccess', response => {
           this.history = response.result;
-        }
-        this.progress = EProgress.LOADED;
-      })
-    );
+          this.progress = EProgress.LOADED;
+        })
+      )
+      .catch(
+        action('fetchHistoryFailure', () => {
+          this.progress = EProgress.LOADED;
+        })
+      );
   };
 
   @action

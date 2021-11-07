@@ -39,31 +39,27 @@ class GroupsManageStore {
   @action
   public doCreate = (values: IGroupForFormik, success: () => void, failure: () => void) => {
     const data = GroupEntity.prepareForCreate(values);
-    doCreate(data).then(
-      action('doCreateGroupResult', response => {
-        if (response.isSuccessful) {
+    doCreate(data)
+      .then(
+        action('doCreateGroupSuccess', () => {
           this.root.refsStore.fetchGroups(true);
           success();
-        } else {
-          failure();
-        }
-      })
-    );
+        })
+      )
+      .catch(action('doCreateGroupFailure', () => failure()));
   };
 
   @action
   public doUpdate = (values: IGroupForFormik, success: () => void, failure: () => void) => {
     const data = GroupEntity.prepareForUpdate(values);
-    doUpdate(data).then(
-      action('doUpdateGroupResult', response => {
-        if (response.isSuccessful) {
+    doUpdate(data)
+      .then(
+        action('doUpdateGroupSuccess', () => {
           this.root.refsStore.fetchGroups(true);
           success();
-        } else {
-          failure();
-        }
-      })
-    );
+        })
+      )
+      .catch(action('doCreateGroupFailure', () => failure()));
   };
 
   @action
@@ -106,16 +102,14 @@ class GroupsManageStore {
 
   @action
   public doRemove = (groupId: TId, success: () => void, failure: () => void) => {
-    doRemove(groupId).then(
-      action('doRemoveGroupResult', response => {
-        if (response.isSuccessful) {
+    doRemove(groupId)
+      .then(
+        action('doRemoveGroupSuccess', () => {
           success();
           this.root.refsStore.fetchGroups(true);
-        } else {
-          failure();
-        }
-      })
-    );
+        })
+      )
+      .catch(action('doRemoveGroupFailure', () => failure()));
   };
 }
 

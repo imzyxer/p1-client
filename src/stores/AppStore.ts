@@ -55,17 +55,19 @@ class AppStore {
   @action
   public signIn = (params: { login: string; password: string }, success: () => void, failure: (response: any) => void) => {
     const { login, password } = params;
-    signIn(login, password).then(
-      action('doSignInResult', response => {
-        if (response.isInvalid) {
-          failure(response);
-        } else {
+    signIn(login, password)
+      .then(
+        action('doSignInSuccess', response => {
           this.setUserData(response.result);
           AppAuthenticator.setCredentials(response.result.accessToken, password);
           success();
-        }
-      })
-    );
+        })
+      )
+      .catch(
+        action('doSignInFailure', response => {
+          failure(response);
+        })
+      );
   };
 
   @action

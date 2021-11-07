@@ -7,10 +7,12 @@ class PrimaryClient extends AbstractClient {
   private static client?: PrimaryClient;
 
   public static getClient() {
-    if (!this.client) {
-      throw new Error('The client instance has not been created yet. Use the static method createClientInstance to create it.');
-    }
-    return this.client;
+    return () => {
+      if (!this.client) {
+        throw new Error('The client instance has not been created yet. Use the static method createClientInstance to create it.');
+      }
+      return this.client;
+    };
   }
 
   public static createClientInstance(baseURL: string, authenticator: TPrimaryAuthenticator) {
@@ -50,13 +52,13 @@ class PrimaryClient extends AbstractClient {
     });
   }
 
-  public handleSuccess = (response: AxiosResponse) => Promise.resolve(new ResponseDto(response.data));
+  public handleSuccess = <T extends any>(response: AxiosResponse<T>): Promise<ResponseDto<T>> => Promise.resolve(new ResponseDto<T>(response.data));
 
-  public handleError = (error: AxiosError) => {
+  public handleError = <T extends any>(error: AxiosError<T>) => {
     if (error.response) {
       // Request made and server responded
       // Client received an error response (5xx, 4xx)
-      return Promise.reject(new ResponseDto(error.response.data));
+      return Promise.reject(new ResponseDto<T>(error.response.data));
     }
     if (error.request) {
       // The request was made but no response was received

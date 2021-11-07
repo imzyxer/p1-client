@@ -1,11 +1,13 @@
-import ApiClient from 'services/ApiClient';
 import { IGroup, IGroupForCreate, IGroupForUpdate } from 'types/group';
 import { TId, TResult } from 'types/app';
+import PrimaryClient from 'services/PrimaryClient';
 
-export const fetchGroups = () => ApiClient.get<IGroup[]>('/groups');
+const api = PrimaryClient.getClient();
 
-export const doCreate = (group: IGroupForCreate) => ApiClient.post('/groups', { group });
+export const fetchGroups = () => api().get<IGroup[]>('/groups');
 
-export const doUpdate = (data: IGroupForUpdate) => ApiClient.put<TResult>(`/groups/${data.id}`, data);
+export const doCreate = (group: IGroupForCreate) => api().post('/groups', { group });
 
-export const doRemove = (groupId: TId) => ApiClient.delete<TResult>(`/groups/${groupId}`);
+export const doUpdate = (data: IGroupForUpdate) => api().put<TResult>(`/groups/${data.id}`, data);
+
+export const doRemove = (groupId: TId) => api().delete<TResult>(`/groups/${groupId}`);

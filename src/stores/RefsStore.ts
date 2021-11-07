@@ -26,15 +26,18 @@ class RefsStore {
 
     this.progress[ERef.GROUPS] = EProgress.LOADING;
 
-    fetchGroups().then(
-      action('fetchGroupsResult', response => {
-        if (response.isSuccessful) {
+    fetchGroups()
+      .then(
+        action('fetchGroupsSuccess', response => {
           this.groups = response.result;
-        }
-
-        this.progress[ERef.GROUPS] = EProgress.LOADED;
-      })
-    );
+          this.progress[ERef.GROUPS] = EProgress.LOADED;
+        })
+      )
+      .catch(
+        action('fetchGroupsSuccess', () => {
+          this.progress[ERef.GROUPS] = EProgress.LOADED;
+        })
+      );
   };
 
   public getProgress(ref: ERef): EProgress {
