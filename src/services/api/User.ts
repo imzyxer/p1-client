@@ -5,9 +5,10 @@ import PrimaryClient from 'services/PrimaryClient';
 
 const api = PrimaryClient.getClient();
 export const signIn = (login: string, password: string) => {
-  const data = new FormData();
-  data.append('login', login);
-  data.append('signature', md5(password));
+  const data = PrimaryClient.toFormData({
+    login,
+    signature: md5(password),
+  });
   const client = api();
   return client.rawPost<IUser & { accessToken: string }>('/user/sign-in', data).then(client.handleSuccess).catch(client.handleError);
 };
