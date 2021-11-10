@@ -41,10 +41,10 @@ const EntriesTable: FC<IEntryTable> = ({ columns, entries }) => {
   const openModal = (entryId: TId) => entryViewStore.open(entryId);
   const openEditModal = (entryId: TId) => entryEditStore.open(entryId);
   const doStarred = (entryId: TId) => {
-    confirmStore.confirm({ description: 'Do you want starred/unstarred this entry?' }).then(
+    confirmStore.confirm({ description: 'Do you want starred/unstarred this thing?' }).then(
       () => {
         entryEditStore.doStarred(entryId, () => {
-          enqueueSnackbar('Entry starred successfully', { variant: 'success' });
+          enqueueSnackbar('Thing starred successfully', { variant: 'success' });
         });
       },
       () => {}
