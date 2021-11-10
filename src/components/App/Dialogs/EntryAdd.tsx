@@ -26,7 +26,7 @@ const EntryAdd: FC = () => {
     store.doCreate(
       values,
       () => {
-        enqueueSnackbar('Entry added successfully', {
+        enqueueSnackbar('Thing added successfully', {
           variant: 'success',
         });
       },
@@ -48,7 +48,7 @@ const EntryAdd: FC = () => {
           <Form>
             <DialogTitle onClose={handleClose}>
               <EntryTypeIcon type={store.type} />
-              <span>&nbsp;Add Entry</span>
+              <span>&nbsp;Add Thing</span>
             </DialogTitle>
             <FormLoader />
             <DialogContent dividers>

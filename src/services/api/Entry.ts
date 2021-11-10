@@ -23,7 +23,7 @@ export const fetchById = (entryId: TId) => api().get<IEntryRaw>(`/atoms/${entryI
 
 export const doUpdate = (data: IEntryForUpdate) => api().put<TResult>(`/atoms/${data.id}`, EntryEntity.encrypt(data));
 
-export const doCreate = (data: IEntryForCreate) => api().post<TResult>('/atoms', EntryEntity.encrypt(data));
+export const doCreate = (data: IEntryForCreate) => api().post<TResult>('/atoms', PrimaryClient.toFormData(EntryEntity.encrypt(data)));
 
 export const doRemove = (entryId: TId) => api().delete<TResult>(`/atoms/${entryId}`);
 

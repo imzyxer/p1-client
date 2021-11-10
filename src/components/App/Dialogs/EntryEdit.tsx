@@ -30,7 +30,7 @@ const EntryEdit: FC = () => {
     store.doUpdate(
       values,
       () => {
-        enqueueSnackbar('Entry updated successfully', { variant: 'success' });
+        enqueueSnackbar('Thing updated successfully', { variant: 'success' });
         store.close();
       },
       () => {
@@ -45,10 +45,10 @@ const EntryEdit: FC = () => {
 
   const { initialValues, isModalOpened: open } = store;
   const onDelete = () => {
-    confirmStore.confirm({ description: 'Do you want to delete this entry?' }).then(
+    confirmStore.confirm({ description: 'Do you want to delete this thing?' }).then(
       () => {
         store.doRemove(
-          () => enqueueSnackbar('Entry deleted successfully', { variant: 'success' }),
+          () => enqueueSnackbar('Thing deleted successfully', { variant: 'success' }),
           () => enqueueSnackbar('Oops! Something wrong', { variant: 'warning' })
         );
       },

@@ -32,20 +32,20 @@ const MenuItemAddEntry: FC = () => {
         <ListItemIcon>
           <AddCircleIcon />
         </ListItemIcon>
-        <ListItemText primary="Add Entry" />
+        <ListItemText primary="Add Thing" />
       </ListItem>
       <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
         <MenuItem onClick={handleClick(EEntryType.PASSWORD)}>
           <ListItemIcon>
             <VpnKeyIcon fontSize="small" />
           </ListItemIcon>
-          <ListItemText primary="Add password" />
+          <ListItemText primary="Add Password" />
         </MenuItem>
         <MenuItem onClick={handleClick(EEntryType.CARD)}>
           <ListItemIcon>
             <PaymentIcon fontSize="small" />
           </ListItemIcon>
-          <ListItemText primary="Add card" />
+          <ListItemText primary="Add Card" />
         </MenuItem>
       </Menu>
     </>
