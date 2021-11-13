@@ -5,6 +5,6 @@ export interface IHistory {
   ip: string;
   date: string;
   os: string;
-  browser: string;
+  ua: string;
   location: string;
 }

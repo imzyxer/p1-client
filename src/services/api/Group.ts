@@ -6,7 +6,7 @@ const api = PrimaryClient.getClient();
 
 export const fetchGroups = () => api().get<IGroup[]>('/groups');
 
-export const doCreate = (group: IGroupForCreate) => api().post('/groups', { group });
+export const doCreate = (group: IGroupForCreate) => api().post('/groups', PrimaryClient.toFormData(group));
 
 export const doUpdate = (data: IGroupForUpdate) => api().put<TResult>(`/groups/${data.id}`, data);
 

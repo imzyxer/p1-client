@@ -10,6 +10,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import TableBody from '@material-ui/core/TableBody';
+import Chip from '@material-ui/core/Chip';
 import useHistoryStore from 'stores/hooks/useHistoryStore';
 import PageContainer from 'components/layout/PageContainer';
 
@@ -34,12 +35,17 @@ const History: FC = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {historyStore.historyForList.map(item => (
+                  {historyStore.historyForList.map((item, index) => (
                     <TableRow hover key={item.id}>
-                      <TableCell>{item.date}</TableCell>
+                      <TableCell>
+                        {item.date}
+                        &nbsp;
+                        {index === 0 && <Chip size="small" label="Current" color="secondary" variant="outlined" />}
+                        {index === 1 && <Chip size="small" label="Previous" color="primary" variant="outlined" />}
+                      </TableCell>
                       <TableCell>{item.ip}</TableCell>
                       <TableCell>{item.os}</TableCell>
-                      <TableCell>{item.browser}</TableCell>
+                      <TableCell>{item.ua}</TableCell>
                       <TableCell>{item.location}</TableCell>
                     </TableRow>
                   ))}
