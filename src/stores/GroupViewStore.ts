@@ -1,14 +1,14 @@
 import { action, computed, makeObservable, observable } from 'mobx';
 import { EProgress, Nullable } from 'types/app';
-import { fetchByGroup } from 'services/api/Entry';
-import { IEntry } from 'types/entry';
+import { fetchByGroup } from 'services/api/Thing';
+import { IThing } from 'types/thing';
 import { IRootStore } from 'types/store';
-import EntryEntity from 'entities/EntryEntity';
+import ThingEntity from 'entities/ThingEntity';
 
 class GroupViewStore {
   @observable root: IRootStore;
   @observable currentGroupId: Nullable<string> = null;
-  @observable entries: IEntry[] = [];
+  @observable things: IThing[] = [];
   @observable progress: EProgress = EProgress.INIT;
 
   constructor(rootStore: IRootStore) {
@@ -20,7 +20,7 @@ class GroupViewStore {
     fetchByGroup(groupId)
       .then(
         action('fetchByGroupSuccess', response => {
-          this.entries = response.result;
+          this.things = response.result;
           this.progress = EProgress.LOADED;
         })
       )
@@ -35,7 +35,7 @@ class GroupViewStore {
   public initiate = (groupId: Nullable<string>) => {
     this.currentGroupId = groupId;
     this.progress = EProgress.INIT;
-    this.entries = [];
+    this.things = [];
 
     if (groupId !== null) {
       this.progress = EProgress.LOADING;
@@ -54,8 +54,8 @@ class GroupViewStore {
   }
 
   @computed
-  get entriesForList() {
-    return EntryEntity.prepareForList(this.entries);
+  get thingsForList() {
+    return ThingEntity.prepareForList(this.things);
   }
 }
 

@@ -5,7 +5,7 @@ import { EMode } from 'types/app';
 import GroupEntity from 'entities/GroupEntity';
 import { IGroupForFormik } from 'types/group';
 import { FormikHelpers } from 'formik';
-import { IEntryForFormik } from 'types/entry';
+import { IThingForFormik } from 'types/thing';
 import { useRootStore } from 'stores/hooks/useRootStore';
 import { useSnackbar } from 'notistack';
 
@@ -13,7 +13,7 @@ const GroupAdd: FC = () => {
   const { enqueueSnackbar } = useSnackbar();
   const { groupsManageStore } = useRootStore();
   const initialValues = GroupEntity.defaultForFormik();
-  const onSubmit = (values: IGroupForFormik, { setSubmitting }: FormikHelpers<IEntryForFormik>) => {
+  const onSubmit = (values: IGroupForFormik, { setSubmitting }: FormikHelpers<IThingForFormik>) => {
     groupsManageStore.doCreate(
       values,
       () => {

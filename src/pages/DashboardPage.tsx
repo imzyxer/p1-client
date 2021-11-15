@@ -17,7 +17,7 @@ const DashboardPage: FC = () => {
     dashboardStore.initiate();
 
     const disposer = reaction(
-      () => appStore.entryHasBeenChanged,
+      () => appStore.thingHasBeenChanged,
       changeNumber => {
         if (changeNumber > 0) dashboardStore.refresh();
       }

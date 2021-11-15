@@ -14,7 +14,7 @@ class AppStore {
   @observable user: IUser = DEFAULT_USER;
   @observable init = false;
   @observable isOpenMenu = false;
-  @observable entryHasBeenChanged = 0;
+  @observable thingHasBeenChanged = 0;
 
   constructor(rootSore: IRootStore) {
     this.root = rootSore;
@@ -107,8 +107,8 @@ class AppStore {
   }
 
   @action
-  public refreshEntryList() {
-    this.entryHasBeenChanged += 1;
+  public refreshThingList() {
+    this.thingHasBeenChanged += 1;
   }
 }
 

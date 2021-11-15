@@ -6,7 +6,7 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import ManageGroupIcon from '@material-ui/icons/CreateNewFolder';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
-import MenuItemAddEntry from 'components/Envelope/Menu/MenuItemAddEntry';
+import MenuItemAddThing from 'components/Envelope/Menu/MenuItemAddThing';
 import { Link, useParams } from 'react-router-dom';
 import * as urns from 'utils/getUrn';
 import { PAGE_DASHBOARD } from 'constants/pages';
@@ -26,7 +26,7 @@ const Index: FC = () => {
           </ListItemIcon>
           <ListItemText primary="Dashboard" />
         </ListItem>
-        <MenuItemAddEntry />
+        <MenuItemAddThing />
         <ListItem button onClick={() => groupsManageStore.open()}>
           <ListItemIcon>
             <ManageGroupIcon />

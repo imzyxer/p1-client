@@ -6,8 +6,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import useEntryViewStore from 'stores/hooks/useEntryViewStore';
-import EntryTypeIcon from 'components/common/EntryTypeIcon';
+import useThingViewStore from 'stores/hooks/useThingViewStore';
+import ThingTypeIcon from 'components/common/ThingTypeIcon';
 import { EProgress } from 'types/app';
 
 import Typography from '@material-ui/core/Typography';
@@ -15,31 +15,31 @@ import GlobalLoader from 'components/common/GlobalLoader';
 
 import { useTheme } from '@material-ui/core/styles';
 import DialogTitle from 'components/layout/DialogTitle';
-import PieceForPassword from 'components/App/Dialogs/EntryView/PieceForPassword';
-import PieceForCard from 'components/App/Dialogs/EntryView/PieceForCard';
-import { EEntryType } from 'types/entry';
+import PieceForPassword from 'components/App/Dialogs/ThingView/PieceForPassword';
+import PieceForCard from 'components/App/Dialogs/ThingView/PieceForCard';
+import { EThingType } from 'types/thing';
 import _isEmpty from 'lodash/isEmpty';
 
 const Index: FC = () => {
-  const store = useEntryViewStore();
+  const store = useThingViewStore();
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('xs'));
   const handleClose = () => store.close();
-  const open = store.isEntryCardOpened;
+  const open = store.isThingCardOpened;
 
   if (store.progress === EProgress.LOADING) return <GlobalLoader invisible={false} />;
-  if (store.entry === null) return <></>;
+  if (store.thing === null) return <></>;
 
   return (
     <Dialog fullWidth fullScreen={fullScreen} open={open} onClose={handleClose} aria-labelledby="responsive-dialog-title">
       <DialogTitle onClose={handleClose}>
-        <EntryTypeIcon type={store.data.type} />
+        <ThingTypeIcon type={store.data.type} />
         <span>&nbsp;{store.data.title}</span>
       </DialogTitle>
       <DialogContent dividers>
         <Grid container spacing={2}>
-          {store.data.type === EEntryType.PASSWORD && <PieceForPassword payload={store.passwordPayload} />}
-          {store.data.type === EEntryType.CARD && <PieceForCard payload={store.cardPayload} />}
+          {store.data.type === EThingType.PASSWORD && <PieceForPassword payload={store.passwordPayload} />}
+          {store.data.type === EThingType.CARD && <PieceForCard payload={store.cardPayload} />}
           {!_isEmpty(store.data.comment) && (
             <Grid item xs={12}>
               <Typography variant="h6" gutterBottom>

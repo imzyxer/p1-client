@@ -1,11 +1,11 @@
 import { action, computed, makeObservable, observable } from 'mobx';
-import { fetchLatest, fetchStarred } from 'services/api/Entry';
-import EntryEntity from 'entities/EntryEntity';
-import { IEntry } from 'types/entry';
+import { fetchLatest, fetchStarred } from 'services/api/Thing';
+import ThingEntity from 'entities/ThingEntity';
+import { IThing } from 'types/thing';
 
 class DashboardStore {
-  @observable latest: IEntry[] = [];
-  @observable starred: IEntry[] = [];
+  @observable latest: IThing[] = [];
+  @observable starred: IThing[] = [];
   @observable init = false;
 
   constructor() {
@@ -37,12 +37,12 @@ class DashboardStore {
 
   @computed
   get latestForList() {
-    return EntryEntity.prepareForList(this.latest);
+    return ThingEntity.prepareForList(this.latest);
   }
 
   @computed
   get starredForList() {
-    return EntryEntity.prepareForList(this.starred);
+    return ThingEntity.prepareForList(this.starred);
   }
 }
 

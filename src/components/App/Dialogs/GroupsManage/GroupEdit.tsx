@@ -6,7 +6,7 @@ import GroupEntity from 'entities/GroupEntity';
 import { computed } from 'mobx';
 import { useRootStore } from 'stores/hooks/useRootStore';
 import { IGroupForFormik } from 'types/group';
-import { IEntryForFormik } from 'types/entry';
+import { IThingForFormik } from 'types/thing';
 import { FormikHelpers } from 'formik';
 import { useSnackbar } from 'notistack';
 
@@ -16,7 +16,7 @@ const GroupEdit: FC = () => {
   const group = computed(() => refsStore.getGroup(groupId ?? '')).get();
   const { enqueueSnackbar } = useSnackbar();
   const initialValues = group !== null ? GroupEntity.prepareForFormik(group) : GroupEntity.defaultForFormik();
-  const onSubmit = (values: IGroupForFormik, { setSubmitting }: FormikHelpers<IEntryForFormik>) => {
+  const onSubmit = (values: IGroupForFormik, { setSubmitting }: FormikHelpers<IThingForFormik>) => {
     groupsManageStore.doUpdate(
       values,
       () => {

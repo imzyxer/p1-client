@@ -1,32 +1,32 @@
 import { Nullable, TId } from 'types/app';
 
-export enum EEntryType {
+export enum EThingType {
   PASSWORD = 'PASSWORD',
   CARD = 'CARD',
 }
 
-export type TEntryPayloadPassword = {
+export type TThingPayloadPassword = {
   login: string;
   password: string;
   link: string;
 };
 
-export type TEntryPayloadCard = {
+export type TThingPayloadCard = {
   number: string;
   holder: string;
   cvc: string;
   pin: string;
 };
 
-export type TEntryPayload = TEntryPayloadPassword | TEntryPayloadCard;
+export type TThingPayload = TThingPayloadPassword | TThingPayloadCard;
 
 export type TEncoded = string;
 
-export interface IEntryRaw {
+export interface IThingRaw {
   id: TId;
   title: string;
   groupId: string;
-  type: EEntryType;
+  type: EThingType;
   payload: TEncoded;
   comment: Nullable<TEncoded>;
   isStarred: boolean;
@@ -35,12 +35,12 @@ export interface IEntryRaw {
   requested: string;
 }
 
-export interface IEntry {
+export interface IThing {
   id: TId;
   title: string;
   groupId: string;
-  type: EEntryType;
-  payload: TEntryPayloadPassword | TEntryPayloadCard;
+  type: EThingType;
+  payload: TThingPayloadPassword | TThingPayloadCard;
   comment: Nullable<string>;
   isStarred: boolean;
   created: string;
@@ -48,31 +48,31 @@ export interface IEntry {
   requested: string;
 }
 
-export type TEntryForList = Omit<IEntry, 'payload' | 'comment'> & {
+export type TThingForList = Omit<IThing, 'payload' | 'comment'> & {
   subject: string;
 };
 
-export interface IEntryForFormik {
+export interface IThingForFormik {
   id: Nullable<TId>;
   title: string;
   groupId: string;
-  type: EEntryType;
-  payload: TEntryPayloadPassword | TEntryPayloadCard;
+  type: EThingType;
+  payload: TThingPayloadPassword | TThingPayloadCard;
   comment: string;
 }
 
-export interface IEntryForUpdate {
+export interface IThingForUpdate {
   id: TId;
   title: string;
   groupId: string;
   comment: Nullable<string>;
-  payload: TEntryPayloadPassword | TEntryPayloadCard;
+  payload: TThingPayloadPassword | TThingPayloadCard;
 }
 
-export interface IEntryForCreate {
+export interface IThingForCreate {
   title: string;
-  type: EEntryType;
+  type: EThingType;
   groupId: string;
   comment: Nullable<string>;
-  payload: TEntryPayloadPassword | TEntryPayloadCard;
+  payload: TThingPayloadPassword | TThingPayloadCard;
 }

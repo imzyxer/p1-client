@@ -1,13 +1,13 @@
 import { action, computed, makeObservable, observable } from 'mobx';
 import { EProgress } from 'types/app';
-import { EEntryType, IEntryForFormik } from 'types/entry';
-import EntryEntity from 'entities/EntryEntity';
-import { doCreate } from 'services/api/Entry';
+import { EThingType, IThingForFormik } from 'types/thing';
+import ThingEntity from 'entities/ThingEntity';
+import { doCreate } from 'services/api/Thing';
 import { IRootStore } from 'types/store';
 
-class EntryAddStore {
+class ThingAddStore {
   @observable root: IRootStore;
-  @observable type: EEntryType = EEntryType.PASSWORD;
+  @observable type: EThingType = EThingType.PASSWORD;
   @observable progress: EProgress = EProgress.INIT;
   @observable init = false;
 
@@ -17,7 +17,7 @@ class EntryAddStore {
   }
 
   @action
-  public open = (type: EEntryType) => {
+  public open = (type: EThingType) => {
     this.type = type;
     this.progress = EProgress.LOADED;
     this.init = true;
@@ -34,13 +34,13 @@ class EntryAddStore {
   }
 
   @action
-  public doCreate = (values: IEntryForFormik, success: () => void, failure: () => void) => {
-    const data = EntryEntity.prepareForCreate(values);
+  public doCreate = (values: IThingForFormik, success: () => void, failure: () => void) => {
+    const data = ThingEntity.prepareForCreate(values);
     doCreate(data)
       .then(
         action('doCreateSuccess', () => {
           success();
-          this.root.appStore.refreshEntryList();
+          this.root.appStore.refreshThingList();
           this.close();
         })
       )
@@ -51,10 +51,10 @@ class EntryAddStore {
       );
   };
 
-  get initialValues(): IEntryForFormik {
-    return EntryEntity.defaultForFormik(this.type);
+  get initialValues(): IThingForFormik {
+    return ThingEntity.defaultForFormik(this.type);
   }
 }
 
-export default EntryAddStore;
-export type TEntryAddStore = EntryAddStore;
+export default ThingAddStore;
+export type TThingAddStore = ThingAddStore;

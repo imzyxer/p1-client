@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { TEntryForList } from 'types/entry';
+import { TThingForList } from 'types/thing';
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
@@ -10,10 +10,10 @@ import StarredFalse from '@material-ui/icons/StarBorder';
 import StarredTrue from '@material-ui/icons/Star';
 import SettingsIcon from '@material-ui/icons/Settings';
 import TableContainer from '@material-ui/core/TableContainer';
-import useEntryViewStore from 'stores/hooks/useEntryViewStore';
-import EntryTypeIcon from 'components/common/EntryTypeIcon';
+import useThingViewStore from 'stores/hooks/useThingViewStore';
+import ThingTypeIcon from 'components/common/ThingTypeIcon';
 import { TId } from 'types/app';
-import useEntryEditStore from 'stores/hooks/useEntryEditStore';
+import useThingEditStore from 'stores/hooks/useThingEditStore';
 import Empty from 'components/common/Empty';
 import confirmStore from 'stores/ConfirmStore';
 import { useSnackbar } from 'notistack';
@@ -29,21 +29,21 @@ export enum EColumn {
   REQUESTED,
 }
 
-interface IEntryTable {
+interface IThingTable {
   columns: EColumn[];
-  entries: TEntryForList[];
+  things: TThingForList[];
 }
 
-const EntriesTable: FC<IEntryTable> = ({ columns, entries }) => {
+const ThingsTable: FC<IThingTable> = ({ columns, things }) => {
   const { enqueueSnackbar } = useSnackbar();
-  const entryViewStore = useEntryViewStore();
-  const entryEditStore = useEntryEditStore();
-  const openModal = (entryId: TId) => entryViewStore.open(entryId);
-  const openEditModal = (entryId: TId) => entryEditStore.open(entryId);
-  const doStarred = (entryId: TId) => {
+  const thingViewStore = useThingViewStore();
+  const thingEditStore = useThingEditStore();
+  const openModal = (thingId: TId) => thingViewStore.open(thingId);
+  const openEditModal = (thingId: TId) => thingEditStore.open(thingId);
+  const doStarred = (thingId: TId) => {
     confirmStore.confirm({ description: 'Do you want starred/unstarred this thing?' }).then(
       () => {
-        entryEditStore.doStarred(entryId, () => {
+        thingEditStore.doStarred(thingId, () => {
           enqueueSnackbar('Thing starred successfully', { variant: 'success' });
         });
       },
@@ -51,7 +51,7 @@ const EntriesTable: FC<IEntryTable> = ({ columns, entries }) => {
     );
   };
 
-  if (entries.length === 0) return <Empty />;
+  if (things.length === 0) return <Empty />;
 
   return (
     <TableContainer>
@@ -69,11 +69,11 @@ const EntriesTable: FC<IEntryTable> = ({ columns, entries }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {entries.map(entry => (
+          {things.map(thing => (
             <TableRow
-              key={entry.id}
+              key={thing.id}
               onClick={(e: React.MouseEvent) => {
-                openModal(entry.id);
+                openModal(thing.id);
                 e.stopPropagation();
               }}
               hover
@@ -81,22 +81,22 @@ const EntriesTable: FC<IEntryTable> = ({ columns, entries }) => {
               {columns.includes(EColumn.TYPE) && (
                 <TableCell align="center" padding="none">
                   <IconButton size="medium">
-                    <EntryTypeIcon type={entry.type} />
+                    <ThingTypeIcon type={thing.type} />
                   </IconButton>
                 </TableCell>
               )}
-              {columns.includes(EColumn.TITLE) && <TableCell size="small">{entry.title}</TableCell>}
-              {columns.includes(EColumn.SUBJECT) && <TableCell size="small">{entry.subject}</TableCell>}
+              {columns.includes(EColumn.TITLE) && <TableCell size="small">{thing.title}</TableCell>}
+              {columns.includes(EColumn.SUBJECT) && <TableCell size="small">{thing.subject}</TableCell>}
               {columns.includes(EColumn.STARRED) && (
                 <TableCell size="small" padding="none">
                   <IconButton
                     size="medium"
                     onClick={(e: React.MouseEvent) => {
-                      doStarred(entry.id);
+                      doStarred(thing.id);
                       e.stopPropagation();
                     }}
                   >
-                    {entry.isStarred ? <StarredTrue /> : <StarredFalse />}
+                    {thing.isStarred ? <StarredTrue /> : <StarredFalse />}
                   </IconButton>
                 </TableCell>
               )}
@@ -105,7 +105,7 @@ const EntriesTable: FC<IEntryTable> = ({ columns, entries }) => {
                   <IconButton
                     size="medium"
                     onClick={(e: React.MouseEvent) => {
-                      openEditModal(entry.id);
+                      openEditModal(thing.id);
                       e.stopPropagation();
                     }}
                   >
@@ -115,17 +115,17 @@ const EntriesTable: FC<IEntryTable> = ({ columns, entries }) => {
               )}
               {columns.includes(EColumn.CREATED) && (
                 <TableCell align="right" size="small">
-                  {entry.created}
+                  {thing.created}
                 </TableCell>
               )}
               {columns.includes(EColumn.UPDATED) && (
                 <TableCell align="right" size="small">
-                  {entry.updated}
+                  {thing.updated}
                 </TableCell>
               )}
               {columns.includes(EColumn.REQUESTED) && (
                 <TableCell align="right" size="small">
-                  {entry.requested}
+                  {thing.requested}
                 </TableCell>
               )}
             </TableRow>
@@ -136,4 +136,4 @@ const EntriesTable: FC<IEntryTable> = ({ columns, entries }) => {
   );
 };
 
-export default EntriesTable;
+export default ThingsTable;

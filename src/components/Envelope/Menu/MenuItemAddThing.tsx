@@ -7,11 +7,11 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import PaymentIcon from '@material-ui/icons/Payment';
-import useEntryAddStore from 'stores/hooks/useEntryAddStore';
-import { EEntryType } from 'types/entry';
+import useThingAddStore from 'stores/hooks/useThingAddStore';
+import { EThingType } from 'types/thing';
 
-const MenuItemAddEntry: FC = () => {
-  const entryAddStore = useEntryAddStore();
+const MenuItemAddThing: FC = () => {
+  const thingAddStore = useThingAddStore();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const handleOpen = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     setAnchorEl(event.currentTarget);
@@ -21,8 +21,8 @@ const MenuItemAddEntry: FC = () => {
     setAnchorEl(null);
   };
 
-  const handleClick = (type: EEntryType) => () => {
-    entryAddStore.open(type);
+  const handleClick = (type: EThingType) => () => {
+    thingAddStore.open(type);
     setAnchorEl(null);
   };
 
@@ -35,13 +35,13 @@ const MenuItemAddEntry: FC = () => {
         <ListItemText primary="Add Thing" />
       </ListItem>
       <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
-        <MenuItem onClick={handleClick(EEntryType.PASSWORD)}>
+        <MenuItem onClick={handleClick(EThingType.PASSWORD)}>
           <ListItemIcon>
             <VpnKeyIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText primary="Add Password" />
         </MenuItem>
-        <MenuItem onClick={handleClick(EEntryType.CARD)}>
+        <MenuItem onClick={handleClick(EThingType.CARD)}>
           <ListItemIcon>
             <PaymentIcon fontSize="small" />
           </ListItemIcon>
@@ -52,4 +52,4 @@ const MenuItemAddEntry: FC = () => {
   );
 };
 
-export default MenuItemAddEntry;
+export default MenuItemAddThing;

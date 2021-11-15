@@ -3,29 +3,29 @@ import { observer } from 'mobx-react';
 import Confirm from 'components/App/Dialogs/Confirm';
 import { useRootStore } from 'stores/hooks/useRootStore';
 
-const EntryViewModal = React.lazy(() => import('components/App/Dialogs/EntryView'));
-const EntryEditModal = React.lazy(() => import('components/App/Dialogs/EntryEdit'));
-const EntryAddModal = React.lazy(() => import('components/App/Dialogs/EntryAdd'));
+const ThingViewModal = React.lazy(() => import('components/App/Dialogs/ThingView'));
+const ThingEditModal = React.lazy(() => import('components/App/Dialogs/ThingEdit'));
+const ThingAddModal = React.lazy(() => import('components/App/Dialogs/ThingAdd'));
 const GroupsManage = React.lazy(() => import('components/App/Dialogs/GroupsManage'));
 const Index: FC = () => {
-  const { entryViewStore, entryEditStore, entryAddStore, groupsManageStore } = useRootStore();
+  const { thingViewStore, thingEditStore, thingAddStore, groupsManageStore } = useRootStore();
 
   return (
     <>
       <Confirm />
-      {entryViewStore.init && (
+      {thingViewStore.init && (
         <Suspense fallback={<></>}>
-          <EntryViewModal />
+          <ThingViewModal />
         </Suspense>
       )}
-      {entryEditStore.init && (
+      {thingEditStore.init && (
         <Suspense fallback={<></>}>
-          <EntryEditModal />
+          <ThingEditModal />
         </Suspense>
       )}
-      {entryAddStore.init && (
+      {thingAddStore.init && (
         <Suspense fallback={<></>}>
-          <EntryAddModal />
+          <ThingAddModal />
         </Suspense>
       )}
       {groupsManageStore.init && (

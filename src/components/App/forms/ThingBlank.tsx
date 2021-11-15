@@ -8,11 +8,11 @@ import FormControl from '@material-ui/core/FormControl';
 import { Field } from 'formik';
 import { Select, TextField } from 'formik-material-ui';
 import useRefsStore from 'stores/hooks/useRefsStore';
-import { EEntryType } from 'types/entry';
-import PieceForPassword from 'components/App/forms/EntryBlank/PieceForPassword';
-import PieceForCard from 'components/App/forms/EntryBlank/PieceForCard';
+import { EThingType } from 'types/thing';
+import PieceForPassword from 'components/App/forms/ThingBlank/PieceForPassword';
+import PieceForCard from 'components/App/forms/ThingBlank/PieceForCard';
 
-const EntryBlank: FC<{ type: EEntryType }> = ({ type }) => {
+const ThingBlank: FC<{ type: EThingType }> = ({ type }) => {
   const storeRefs = useRefsStore();
 
   return (
@@ -40,8 +40,8 @@ const EntryBlank: FC<{ type: EEntryType }> = ({ type }) => {
           </Field>
         </FormControl>
       </Grid>
-      {type === EEntryType.PASSWORD && <PieceForPassword />}
-      {type === EEntryType.CARD && <PieceForCard />}
+      {type === EThingType.PASSWORD && <PieceForPassword />}
+      {type === EThingType.CARD && <PieceForCard />}
       <Grid item xs={12}>
         <Field id="comment" component={TextField} name="comment" label="Comment" variant="outlined" fullWidth multiline rowsMax={4} />
       </Grid>
@@ -49,4 +49,4 @@ const EntryBlank: FC<{ type: EEntryType }> = ({ type }) => {
   );
 };
 
-export default observer(EntryBlank);
+export default observer(ThingBlank);

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { observer } from 'mobx-react';
-import useEntryEditStore from 'stores/hooks/useEntryEditStore';
-import EntryTypeIcon from 'components/common/EntryTypeIcon';
+import useThingEditStore from 'stores/hooks/useThingEditStore';
+import ThingTypeIcon from 'components/common/ThingTypeIcon';
 import { EProgress } from 'types/app';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -14,19 +14,19 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import GlobalLoader from 'components/common/GlobalLoader';
 import DialogTitle from 'components/layout/DialogTitle';
 import { Form, Formik, FormikHelpers } from 'formik';
-import { IEntryForFormik } from 'types/entry';
+import { IThingForFormik } from 'types/thing';
 import { useSnackbar } from 'notistack';
 import FormLoader from 'components/common/FormLoader';
 import confirmStore from 'stores/ConfirmStore';
-import EntryBlank from 'components/App/forms/EntryBlank';
+import ThingBlank from 'components/App/forms/ThingBlank';
 
-const EntryEdit: FC = () => {
-  const store = useEntryEditStore();
+const ThingEdit: FC = () => {
+  const store = useThingEditStore();
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('xs'));
   const { enqueueSnackbar } = useSnackbar();
   const handleClose = () => store.close();
-  const onSubmit = (values: IEntryForFormik, { setSubmitting }: FormikHelpers<IEntryForFormik>) => {
+  const onSubmit = (values: IThingForFormik, { setSubmitting }: FormikHelpers<IThingForFormik>) => {
     store.doUpdate(
       values,
       () => {
@@ -41,7 +41,7 @@ const EntryEdit: FC = () => {
   };
 
   if (store.progress === EProgress.LOADING) return <GlobalLoader invisible={false} />;
-  if (store.entry === null) return <></>;
+  if (store.thing === null) return <></>;
 
   const { initialValues, isModalOpened: open } = store;
   const onDelete = () => {
@@ -62,12 +62,12 @@ const EntryEdit: FC = () => {
         {({ values, dirty, isSubmitting }) => (
           <Form>
             <DialogTitle onClose={handleClose}>
-              <EntryTypeIcon type={store.data.type} />
+              <ThingTypeIcon type={store.data.type} />
               <span>&nbsp;{values.title}</span>
             </DialogTitle>
             <FormLoader />
             <DialogContent dividers>
-              <EntryBlank type={store.data.type} />
+              <ThingBlank type={store.data.type} />
             </DialogContent>
             <DialogActions>
               <IconButton aria-label="delete" onClick={onDelete}>
@@ -87,4 +87,4 @@ const EntryEdit: FC = () => {
   );
 };
 
-export default observer(EntryEdit);
+export default observer(ThingEdit);

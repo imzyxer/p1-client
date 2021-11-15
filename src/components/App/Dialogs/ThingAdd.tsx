@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { observer } from 'mobx-react';
-import EntryTypeIcon from 'components/common/EntryTypeIcon';
+import ThingTypeIcon from 'components/common/ThingTypeIcon';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -9,20 +9,20 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import DialogTitle from 'components/layout/DialogTitle';
 import { Form, Formik, FormikHelpers } from 'formik';
-import { IEntryForFormik } from 'types/entry';
+import { IThingForFormik } from 'types/thing';
 import { useSnackbar } from 'notistack';
 import FormLoader from 'components/common/FormLoader';
-import useEntryAddStore from 'stores/hooks/useEntryAddStore';
-import EntryBlank from 'components/App/forms/EntryBlank';
+import useThingAddStore from 'stores/hooks/useThingAddStore';
+import ThingBlank from 'components/App/forms/ThingBlank';
 
-const EntryAdd: FC = () => {
-  const store = useEntryAddStore();
+const ThingAdd: FC = () => {
+  const store = useThingAddStore();
   // const storeRefs = useRefsStore();
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('xs'));
   const { enqueueSnackbar } = useSnackbar();
   const handleClose = () => store.close();
-  const onSubmit = (values: IEntryForFormik, { setSubmitting }: FormikHelpers<IEntryForFormik>) => {
+  const onSubmit = (values: IThingForFormik, { setSubmitting }: FormikHelpers<IThingForFormik>) => {
     store.doCreate(
       values,
       () => {
@@ -47,12 +47,12 @@ const EntryAdd: FC = () => {
         {({ dirty, isSubmitting }) => (
           <Form>
             <DialogTitle onClose={handleClose}>
-              <EntryTypeIcon type={store.type} />
+              <ThingTypeIcon type={store.type} />
               <span>&nbsp;Add Thing</span>
             </DialogTitle>
             <FormLoader />
             <DialogContent dividers>
-              <EntryBlank type={store.type} />
+              <ThingBlank type={store.type} />
             </DialogContent>
             <DialogActions>
               <Button type="submit" color="primary" disabled={!dirty || isSubmitting}>
@@ -69,4 +69,4 @@ const EntryAdd: FC = () => {
   );
 };
 
-export default observer(EntryAdd);
+export default observer(ThingAdd);

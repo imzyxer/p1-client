@@ -18,13 +18,13 @@ const GroupViewPage: FC = () => {
   const groupId = params.groupId ?? null;
 
   useEffect(() => {
-    document.title = `Entries — ${APP_NAME}`;
+    document.title = `Things — ${APP_NAME}`;
     groupStore.initiate(groupId);
   }, [groupStore, groupId]);
 
   useEffect(() => {
     const disposer = reaction(
-      () => appStore.entryHasBeenChanged,
+      () => appStore.thingHasBeenChanged,
       changeNumber => {
         if (changeNumber > 0) groupStore.refresh();
       }
