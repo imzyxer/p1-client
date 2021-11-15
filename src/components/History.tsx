@@ -38,7 +38,7 @@ const History: FC = () => {
                   {historyStore.historyForList.map((item, index) => (
                     <TableRow hover key={item.id}>
                       <TableCell>
-                        {item.date}
+                        {item.datetime}
                         &nbsp;
                         {index === 0 && <Chip size="small" label="Current" color="secondary" variant="outlined" />}
                         {index === 1 && <Chip size="small" label="Previous" color="primary" variant="outlined" />}

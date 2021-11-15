@@ -5,7 +5,7 @@ class HistoryEntity {
   prepareForList = (history: IHistory[]): IHistory[] =>
     history.map(item => ({
       ...item,
-      date: this.extractDate(item.date),
+      datetime: this.extractDate(item.datetime),
     }));
 
   extractDate = (dateIso: string): string => moment(dateIso).format('MM/DD/YYYY kk:mm');
