@@ -3,15 +3,15 @@ import { EProgress } from 'types/app';
 import { EThingType, IThingForFormik } from 'types/thing';
 import ThingEntity from 'entities/ThingEntity';
 import { doCreate } from 'services/api/Thing';
-import { IRootStore } from 'types/store';
+import { TRootStore } from 'stores/RootStore';
 
 class ThingAddStore {
-  @observable root: IRootStore;
+  @observable root: TRootStore;
   @observable type: EThingType = EThingType.PASSWORD;
   @observable progress: EProgress = EProgress.INIT;
   @observable init = false;
 
-  constructor(rootStore: IRootStore) {
+  constructor(rootStore: TRootStore) {
     this.root = rootStore;
     makeObservable(this);
   }

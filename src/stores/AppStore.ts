@@ -1,22 +1,25 @@
 import { makeObservable, observable, action, computed } from 'mobx';
 import { signIn, signOut, fetchUser } from 'services/api/User';
-import { ERole, IUser } from 'types/user';
-import { IRootStore } from 'types/store';
+import { ERole, ETheme, IUser } from 'types/user';
 import PrimaryClient from 'services/PrimaryClient';
+import { TRootStore } from 'stores/RootStore';
 
 const DEFAULT_USER = {
   role: ERole.GUEST,
-  email: null,
+  email: '',
+  theme: ETheme.LIGHT,
+  timezone: 'Europe/Moscow',
+  locale: 'en_US',
 };
 
 class AppStore {
-  @observable root: IRootStore;
+  @observable root: TRootStore;
   @observable user: IUser = DEFAULT_USER;
   @observable init = false;
   @observable isOpenMenu = false;
   @observable thingHasBeenChanged = 0;
 
-  constructor(rootSore: IRootStore) {
+  constructor(rootSore: TRootStore) {
     this.root = rootSore;
     makeObservable(this);
   }

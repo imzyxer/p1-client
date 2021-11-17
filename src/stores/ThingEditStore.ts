@@ -2,17 +2,17 @@ import { action, computed, makeObservable, observable } from 'mobx';
 import { EProgress, Nullable, TId } from 'types/app';
 import { fetchById, doUpdate, doRemove, doStarred } from 'services/api/Thing';
 import { IThingForFormik, IThing } from 'types/thing';
-import { IRootStore } from 'types/store';
 import ThingEntity from 'entities/ThingEntity';
+import { TRootStore } from 'stores/RootStore';
 
 class ThingEditStore {
-  @observable root: IRootStore;
+  @observable root: TRootStore;
   @observable currentThingId: Nullable<TId> = null;
   @observable thing: Nullable<IThing> = null;
   @observable progress: EProgress = EProgress.INIT;
   @observable init = false;
 
-  constructor(rootStore: IRootStore) {
+  constructor(rootStore: TRootStore) {
     this.root = rootStore;
     makeObservable(this);
   }

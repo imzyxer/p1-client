@@ -1,9 +1,9 @@
 import { action, computed, makeObservable, observable } from 'mobx';
-import { IRootStore } from 'types/store';
 import { Nullable, TId } from 'types/app';
 import { doCreate, doRemove, doUpdate } from 'services/api/Group';
 import { IGroupForFormik } from 'types/group';
 import GroupEntity from 'entities/GroupEntity';
+import { TRootStore } from 'stores/RootStore';
 
 enum EMode {
   LIST,
@@ -12,13 +12,13 @@ enum EMode {
 }
 
 class GroupsManageStore {
-  @observable root: IRootStore;
+  @observable root: TRootStore;
   @observable init = false;
   @observable groupId: Nullable<TId> = null;
   @observable opened = false;
   @observable mode: EMode = EMode.LIST;
 
-  constructor(rootStore: IRootStore) {
+  constructor(rootStore: TRootStore) {
     this.root = rootStore;
     makeObservable(this);
   }

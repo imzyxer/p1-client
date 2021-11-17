@@ -2,16 +2,16 @@ import { action, computed, makeObservable, observable } from 'mobx';
 import { EProgress, Nullable } from 'types/app';
 import { fetchByGroup } from 'services/api/Thing';
 import { IThing } from 'types/thing';
-import { IRootStore } from 'types/store';
 import ThingEntity from 'entities/ThingEntity';
+import { TRootStore } from 'stores/RootStore';
 
 class GroupViewStore {
-  @observable root: IRootStore;
+  @observable root: TRootStore;
   @observable currentGroupId: Nullable<string> = null;
   @observable things: IThing[] = [];
   @observable progress: EProgress = EProgress.INIT;
 
-  constructor(rootStore: IRootStore) {
+  constructor(rootStore: TRootStore) {
     this.root = rootStore;
     makeObservable(this);
   }

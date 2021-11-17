@@ -2,6 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import withEnvelope from 'components/hoc/withEnvelope';
 import { APP_NAME } from 'constants/app';
+import Profile from 'components/Profile';
 
 const ProfilePage: FC = () => {
   // const historyStore = useHistoryStore();
@@ -12,7 +13,7 @@ const ProfilePage: FC = () => {
 
   // if (historyStore.progress !== EProgress.LOADED) return <LinearProgress />;
 
-  return <>1</>;
+  return <Profile />;
 };
 
 export default withEnvelope(observer(ProfilePage));

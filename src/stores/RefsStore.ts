@@ -2,20 +2,20 @@ import { action, computed, makeObservable, observable } from 'mobx';
 import { EProgress, ERef, Nullable } from 'types/app';
 import { fetchGroups } from 'services/api/Group';
 import { IGroup } from 'types/group';
-import { IRootStore } from 'types/store';
+import { TRootStore } from 'stores/RootStore';
 
 type TProgress = {
   [key: string]: EProgress;
 };
 
 class RefsStore {
-  @observable root: IRootStore;
+  @observable root: TRootStore;
   @observable groups: IGroup[] = [];
   @observable progress: TProgress = {
     [ERef.GROUPS]: EProgress.INIT,
   };
 
-  constructor(rootStore: IRootStore) {
+  constructor(rootStore: TRootStore) {
     this.root = rootStore;
     makeObservable(this);
   }
