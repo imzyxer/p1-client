@@ -13,8 +13,20 @@ import ListItemIcon from 'components/layout/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import HistoryIcon from '@material-ui/icons/History';
 import { PAGE_HISTORY, PAGE_PROFILE } from 'constants/pages';
+import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 
-const Account: FC = () => {
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      borderRadius: '4px',
+    },
+    email: {
+      fontSize: theme.typography.fontSize,
+      paddingRight: theme.spacing(1),
+    },
+  });
+
+const Account: FC<WithStyles<typeof styles>> = ({ classes }) => {
   const params = useParams<Record<string, string | undefined>>();
   const appStore = useAppStore();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -32,8 +44,15 @@ const Account: FC = () => {
 
   return (
     <div>
-      <IconButton aria-label="account of current user" aria-controls="menu-appbar" aria-haspopup="true" onClick={handleMenu} color="inherit">
-        <AccountCircle />
+      <IconButton
+        aria-label="account of current user"
+        aria-controls="menu-appbar"
+        aria-haspopup="true"
+        onClick={handleMenu}
+        color="inherit"
+        className={classes.root}
+      >
+        <span className={classes.email}>{appStore.user.email}</span> <AccountCircle />
       </IconButton>
       <Menu
         id="menu-appbar"
@@ -73,4 +92,4 @@ const Account: FC = () => {
   );
 };
 
-export default observer(Account);
+export default withStyles(styles)(observer(Account));
