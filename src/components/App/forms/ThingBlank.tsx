@@ -22,6 +22,7 @@ const ThingBlank: FC<{ type: EThingType }> = ({ type }) => {
       </Grid>
       <Grid item xs={6}>
         <FormControl variant="outlined" style={{ minWidth: '100%' }}>
+          <input type="hidden" value="prayer" />
           <InputLabel htmlFor="groupId">Group</InputLabel>
           <Field
             component={Select}
