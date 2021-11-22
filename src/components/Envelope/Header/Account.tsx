@@ -14,6 +14,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import HistoryIcon from '@material-ui/icons/History';
 import { PAGE_HISTORY, PAGE_PROFILE } from 'constants/pages';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import Hidden from '@material-ui/core/Hidden';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -52,7 +53,10 @@ const Account: FC<WithStyles<typeof styles>> = ({ classes }) => {
         color="inherit"
         className={classes.root}
       >
-        <span className={classes.email}>{appStore.user.email}</span> <AccountCircle />
+        <Hidden smDown>
+          <span className={classes.email}>{appStore.user.email}</span>
+        </Hidden>
+        <AccountCircle />
       </IconButton>
       <Menu
         id="menu-appbar"

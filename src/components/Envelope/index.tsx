@@ -7,6 +7,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 import LogotypeIcon from '@material-ui/icons/Https';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import Hidden from '@material-ui/core/Hidden';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import useStyles from 'components/Envelope/styles';
@@ -43,9 +44,11 @@ const Index: FC = ({ children }) => {
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             <LogotypeIcon className={classes.title__icon} />
-            <span>
-              Storage <strong>П1</strong> <sup>&beta;</sup>
-            </span>
+            <Hidden smDown>
+              <span>
+                Storage <strong>П1</strong> <sup>&beta;</sup>
+              </span>
+            </Hidden>
           </Typography>
           {/* <Search /> */}
           <div className={classes.grow} />
