@@ -25,6 +25,9 @@ const ThingEdit: FC = () => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('xs'));
   const { enqueueSnackbar } = useSnackbar();
+  const handleOnClose = (event: React.MouseEvent, reason: string) => {
+    if (reason !== 'backdropClick') store.close();
+  };
   const handleClose = () => store.close();
   const onSubmit = (values: IThingForFormik, { setSubmitting }: FormikHelpers<IThingForFormik>) => {
     store.doUpdate(
@@ -57,7 +60,7 @@ const ThingEdit: FC = () => {
   };
 
   return (
-    <Dialog fullWidth fullScreen={fullScreen} open={open} onClose={handleClose} aria-labelledby="responsive-dialog-title">
+    <Dialog fullWidth fullScreen={fullScreen} open={open} onClose={handleOnClose} aria-labelledby="responsive-dialog-title">
       <Formik initialValues={initialValues} onSubmit={onSubmit}>
         {({ values, dirty, isSubmitting }) => (
           <Form>

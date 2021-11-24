@@ -23,7 +23,7 @@ const ThingBlank: FC<{ type: EThingType }> = ({ type }) => {
       <Grid item xs={6}>
         <FormControl variant="outlined" style={{ minWidth: '100%' }}>
           <input type="hidden" value="prayer" />
-          <InputLabel htmlFor="groupId">Group</InputLabel>
+          <InputLabel htmlFor="groupId">Group *</InputLabel>
           <Field
             component={Select}
             name="groupId"
@@ -31,7 +31,8 @@ const ThingBlank: FC<{ type: EThingType }> = ({ type }) => {
               id: 'groupId',
             }}
             autoWidth={false}
-            labelWidth={50}
+            labelWidth={60}
+            required
           >
             {storeRefs.groups.map(group => (
               <MenuItem key={group.id} value={group.id}>
@@ -44,7 +45,7 @@ const ThingBlank: FC<{ type: EThingType }> = ({ type }) => {
       {type === EThingType.PASSWORD && <PieceForPassword />}
       {type === EThingType.CARD && <PieceForCard />}
       <Grid item xs={12}>
-        <Field id="comment" component={TextField} name="comment" label="Comment" variant="outlined" fullWidth multiline rowsMax={4} />
+        <Field id="comment" component={TextField} name="comment" label="Comment" variant="outlined" fullWidth multiline maxRows={4} />
       </Grid>
     </Grid>
   );

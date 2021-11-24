@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 
 import { Field } from 'formik';
 import { TextField } from 'formik-material-ui';
+import FormikPasswordField from 'components/common/FormikPasswordField';
 
 const PieceForPassword: FC = () => (
   <>
@@ -13,7 +14,7 @@ const PieceForPassword: FC = () => (
       <Field id="login" component={TextField} name="payload.login" label="Login" variant="outlined" required fullWidth />
     </Grid>
     <Grid item xs={6}>
-      <Field id="password" component={TextField} type="password" name="payload.password" label="Password" variant="outlined" fullWidth />
+      <FormikPasswordField id="password" name="payload.password" label="Password" labelWidth={80} />
     </Grid>
   </>
 );
