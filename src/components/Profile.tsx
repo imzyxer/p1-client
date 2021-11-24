@@ -9,6 +9,7 @@ import { Form, Formik } from 'formik';
 import { useRootStore } from 'stores/hooks/useRootStore';
 import ProfileBlank from 'components/App/forms/ProfileBlank';
 import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 
 const Profile: FC = () => {
   const { profileEditStore } = useRootStore();
@@ -23,17 +24,20 @@ const Profile: FC = () => {
         <Grid item xs={12} md={6}>
           <Paper>
             <PageTitle icon={<FaceIcon />}>Profile</PageTitle>
-            <Formik initialValues={initialValues} onSubmit={onSubmit}>
-              {({ dirty, isSubmitting }) => (
-                <Form>
-                  <ProfileBlank />
-                  <Button type="submit" color="primary" disabled={!dirty || isSubmitting}>
-                    Save
-                  </Button>
-                  <Button color="primary">Cancel</Button>
-                </Form>
-              )}
-            </Formik>
+            <Box p={3}>
+              <Formik initialValues={initialValues} onSubmit={onSubmit}>
+                {({ dirty, isSubmitting }) => (
+                  <Form>
+                    <ProfileBlank />
+                    <Box pt={2}>
+                      <Button type="submit" variant="contained" color="primary" disabled={!dirty || isSubmitting}>
+                        Save
+                      </Button>
+                    </Box>
+                  </Form>
+                )}
+              </Formik>
+            </Box>
           </Paper>
         </Grid>
       </Grid>

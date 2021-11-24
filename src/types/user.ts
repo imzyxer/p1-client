@@ -1,4 +1,5 @@
 import { Nullable } from 'types/app';
+import { IHistory } from 'types/history';
 
 export enum ERole {
   GUEST = 'GUEST',
@@ -17,6 +18,7 @@ export interface IUser {
   theme: ETheme;
   timezone: string;
   locale: string;
+  lastVisit: Nullable<IHistory>;
 }
 
 export interface IProfileForFormik {

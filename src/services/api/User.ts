@@ -10,7 +10,7 @@ export const signIn = (login: string, password: string) => {
     signature: md5(password),
   });
   const client = api();
-  return client.rawPost<IUser & { accessToken: string }>('/user/sign-in', data).then(client.handleSuccess).catch(client.handleError);
+  return client.rawPost<{ accessToken: string; profile: IUser }>('/user/sign-in', data).then(client.handleSuccess).catch(client.handleError);
 };
 
 export const signOut = () => api().get('/user/sign-out');

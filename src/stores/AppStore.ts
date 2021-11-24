@@ -10,6 +10,7 @@ const DEFAULT_USER = {
   theme: ETheme.LIGHT,
   timezone: 'Europe/Moscow',
   locale: 'en_US',
+  lastVisit: null,
 };
 
 class AppStore {
@@ -65,7 +66,7 @@ class AppStore {
     signIn(login, password)
       .then(
         action('doSignInSuccess', response => {
-          this.setUserData(response.result);
+          this.setUserData(response.result.profile);
           authenticator.setCredentials(response.result.accessToken, password);
           success();
         })
