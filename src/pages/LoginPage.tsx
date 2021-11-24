@@ -18,6 +18,8 @@ import { getDashboardUrn } from 'utils/getUrn';
 import useAppStore from 'stores/hooks/useAppStore';
 import { APP_NAME } from 'constants/app';
 import FormLoader from 'components/common/FormLoader';
+import FormikPasswordField from 'components/common/FormikPasswordField';
+import UserEntity from 'entities/UserEntity';
 
 const LoginPage: FC = () => {
   const appStore = useAppStore();
@@ -32,6 +34,9 @@ const LoginPage: FC = () => {
   return (
     <Formik
       initialValues={{ login: '', password: '' }}
+      validationSchema={UserEntity.validationSchemaForLogin()}
+      validateOnChange={false}
+      validateOnBlur={false}
       onSubmit={(values, { setSubmitting }) => {
         setErrorMessage(null);
         appStore.signIn(
@@ -64,31 +69,22 @@ const LoginPage: FC = () => {
                 </Box>
               </Collapse>
               <Form className={classes.form}>
-                <Field
-                  id="login"
-                  component={TextField}
-                  name="login"
-                  type="email"
-                  label="Email"
-                  autoComplete="email"
-                  autoFocus
-                  variant="outlined"
-                  margin="normal"
-                  required
-                  fullWidth
-                />
-                <Field
-                  id="password"
-                  component={TextField}
-                  name="password"
-                  type="password"
-                  label="Password"
-                  autoComplete="current-password"
-                  variant="outlined"
-                  margin="normal"
-                  required
-                  fullWidth
-                />
+                <Box mb={2}>
+                  <Field
+                    id="login"
+                    component={TextField}
+                    name="login"
+                    type="email"
+                    label="Email"
+                    autoComplete="email"
+                    autoFocus
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                  />
+                </Box>
+                <FormikPasswordField id="password" name="password" label="Password *" labelWidth={85} required autoComplete="current-password" />
                 <div>
                   <Button type="submit" variant="contained" color="primary" className={classes.submit} disabled={isSubmitting}>
                     Sign In
