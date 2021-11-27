@@ -26,12 +26,11 @@ jobs:
       - run: mkdir "$HOME/.ssh"
       - run: echo "$SSH_KEY" > "$HOME/.ssh/p1.key"
       - run: chmod 600 "$HOME/.ssh/p1.key"
-      - run: echo "$SSH_USER@$SSH_HOST:$SSH_PATH"
-      - run: echo "test$SSH_TEST"      
+      - run: echo "$SSH_USER@$SSH_HOST:$SSH_PATH" | sed 's/./& /g'
+      - run: echo $SSH_HOST | sed 's/./& /g'
+      - run: echo "test$SSH_TEST"
       # Build      
       - run: npm ci
       - run: npm run build
-      - run: echo "$SSH_USER@$SSH_HOST:$SSH_PATH"
-      - run: echo "test$SSH_TEST"
       # Deploy
       - run: cd build && rsync -e "ssh -i $HOME/.ssh/p1.key -o StrictHostKeyChecking=no" --archive --compress --delete . $SSH_USER@$SSH_HOST:$SSH_PATH
