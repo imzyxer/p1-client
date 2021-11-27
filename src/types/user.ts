@@ -30,3 +30,12 @@ export interface IProfileForFormik {
   currentPassword: Nullable<string>;
   newPassword: Nullable<string>;
 }
+
+export interface IProfileForUpdate {
+  email: string;
+  theme: ETheme;
+  timezone: string;
+  locale: string;
+  currentPassword: Nullable<string>;
+  newPassword: Nullable<string>;
+}

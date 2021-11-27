@@ -1,7 +1,8 @@
 import md5 from 'md5';
-import { IUser } from 'types/user';
+import { IProfileForUpdate, IUser } from 'types/user';
 import { IHistory } from 'types/history';
 import PrimaryClient from 'services/PrimaryClient';
+import { TResultWithData } from 'types/app';
 
 const api = PrimaryClient.getClient();
 export const signIn = (login: string, password: string) => {
@@ -18,3 +19,5 @@ export const signOut = () => api().get('/user/sign-out');
 export const fetchUser = () => api().get<IUser>('/user');
 
 export const fetchHistory = () => api().get<IHistory[]>('/user/history');
+
+export const doProfileUpdate = (data: IProfileForUpdate) => api().put<TResultWithData<IUser>>('/user', data);

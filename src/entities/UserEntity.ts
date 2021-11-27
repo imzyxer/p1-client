@@ -1,5 +1,6 @@
-import { IUser, IProfileForFormik } from 'types/user';
+import { IUser, IProfileForFormik, IProfileForUpdate } from 'types/user';
 import * as Yup from 'yup';
+import _isEmpty from 'lodash/isEmpty';
 
 class UserEntity {
   prepareProfileForFormik = (profile: IUser): IProfileForFormik => ({
@@ -10,6 +11,15 @@ class UserEntity {
     isChangePassword: false,
     currentPassword: '',
     newPassword: '',
+  });
+
+  prepareProfileForUpdate = (data: IProfileForFormik): IProfileForUpdate => ({
+    email: data.email,
+    theme: data.theme,
+    locale: data.locale,
+    timezone: data.timezone,
+    currentPassword: _isEmpty(data.currentPassword) ? null : data.currentPassword,
+    newPassword: _isEmpty(data.newPassword) ? null : data.currentPassword,
   });
 
   validationSchemaForLogin = () =>

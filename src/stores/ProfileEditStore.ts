@@ -1,9 +1,7 @@
 import { action, computed, makeObservable, observable } from 'mobx';
-import { doUpdate } from 'services/api/Thing';
-import { IThingForFormik } from 'types/thing';
-import ThingEntity from 'entities/ThingEntity';
+import { doProfileUpdate } from 'services/api/User';
 import UserEntity from 'entities/UserEntity';
-import { IProfileForFormik } from 'types/user';
+import { IProfileForFormik, IUser } from 'types/user';
 import { TRootStore } from 'stores/RootStore';
 
 class ProfileEditStore {
@@ -15,13 +13,13 @@ class ProfileEditStore {
   }
 
   @action
-  public doUpdate = (values: IThingForFormik, success: () => void, failure: () => void): void => {
-    const data = ThingEntity.prepareForUpdate(values);
-    doUpdate(data)
+  public doUpdate = (values: IProfileForFormik, success: () => void, failure: () => void): void => {
+    const data = UserEntity.prepareProfileForUpdate(values);
+    doProfileUpdate(data)
       .then(
-        action('doUpdateSuccess', () => {
+        action('doUpdateSuccess', response => {
+          this.root.appStore.setUserData(<IUser>response.result.data);
           success();
-          this.root.appStore.refreshThingList();
         })
       )
       .catch(action('doUpdateFailure', () => failure()));
