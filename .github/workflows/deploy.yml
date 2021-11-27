@@ -15,22 +15,14 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-        env:
-          SSH_KEY: ${{ secrets.PRIVATE_KEY }}
-          SSH_HOST: ${{ secrets.TARGET_HOST }}
-          SSH_USER: ${{ secrets.TARGET_USER }}
-          SSH_PATH: ${{ secrets.TARGET_PATH }}
-          SSH_TEST: test
       # Setup key
       - run: set -eu
       - run: mkdir "$HOME/.ssh"
       - run: echo "${{ secrets.PRIVATE_KEY }}" > "$HOME/.ssh/p1.key"
       - run: chmod 600 "$HOME/.ssh/p1.key"
-      - run: echo "$SSH_USER@$SSH_HOST:$SSH_PATH" | sed 's/./& /g'
-      - run: echo ${{ secrets.TARGET_HOST }} | sed 's/./& /g'
-      - run: echo "test$SSH_TEST"
       # Build      
       - run: npm ci
+      - run: echo "${{ secrets.DOT_ENV }}" > "./.env"
       - run: npm run build
       # Deploy
       - run: cd build && rsync -e "ssh -i $HOME/.ssh/p1.key -o StrictHostKeyChecking=no" --archive --compress --delete . ${{ secrets.TARGET_USER }}@${{ secrets.TARGET_HOST }}:${{ secrets.TARGET_PATH }}
