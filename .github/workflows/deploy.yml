@@ -24,7 +24,7 @@ jobs:
       # Setup key
       - run: set -eu
       - run: mkdir "$HOME/.ssh"
-      - run: echo "$SSH_KEY" > "$HOME/.ssh/p1.key"
+      - run: echo "${{ secrets.PRIVATE_KEY }}" > "$HOME/.ssh/p1.key"
       - run: chmod 600 "$HOME/.ssh/p1.key"
       - run: echo "$SSH_USER@$SSH_HOST:$SSH_PATH" | sed 's/./& /g'
       - run: echo ${{ secrets.TARGET_HOST }} | sed 's/./& /g'
