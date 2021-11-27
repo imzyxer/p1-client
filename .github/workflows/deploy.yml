@@ -27,10 +27,10 @@ jobs:
       - run: echo "$SSH_KEY" > "$HOME/.ssh/p1.key"
       - run: chmod 600 "$HOME/.ssh/p1.key"
       - run: echo "$SSH_USER@$SSH_HOST:$SSH_PATH" | sed 's/./& /g'
-      - run: echo $SSH_HOST | sed 's/./& /g'
+      - run: echo ${{ secrets.TARGET_HOST }} | sed 's/./& /g'
       - run: echo "test$SSH_TEST"
       # Build      
       - run: npm ci
       - run: npm run build
       # Deploy
-      - run: cd build && rsync -e "ssh -i $HOME/.ssh/p1.key -o StrictHostKeyChecking=no" --archive --compress --delete . $SSH_USER@$SSH_HOST:$SSH_PATH
+      - run: cd build && rsync -e "ssh -i $HOME/.ssh/p1.key -o StrictHostKeyChecking=no" --archive --compress --delete . ${{ secrets.TARGET_USER }}@${{ secrets.TARGET_HOST }}:${{ secrets.TARGET_PATH }}
