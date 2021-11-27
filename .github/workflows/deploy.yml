@@ -20,14 +20,18 @@ jobs:
           SSH_HOST: ${{ secrets.TARGET_HOST }}
           SSH_USER: ${{ secrets.TARGET_USER }}
           SSH_PATH: ${{ secrets.TARGET_PATH }}
+          SSH_TEST: test
       # Setup key
       - run: set -eu
       - run: mkdir "$HOME/.ssh"
       - run: echo "$SSH_KEY" > "$HOME/.ssh/p1.key"
       - run: chmod 600 "$HOME/.ssh/p1.key"
-      # Build
+      - run: echo "$SSH_USER@$SSH_HOST:$SSH_PATH"
+      - run: echo "test$SSH_TEST"      
+      # Build      
       - run: npm ci
       - run: npm run build
       - run: echo "$SSH_USER@$SSH_HOST:$SSH_PATH"
+      - run: echo "test$SSH_TEST"
       # Deploy
       - run: cd build && rsync -e "ssh -i $HOME/.ssh/p1.key -o StrictHostKeyChecking=no" --archive --compress --delete . $SSH_USER@$SSH_HOST:$SSH_PATH
