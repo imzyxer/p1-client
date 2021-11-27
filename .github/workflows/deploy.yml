@@ -1,0 +1,32 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    name: Deploy p1 client
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+        env:
+          SSH_KEY: ${{ secrets.PRIVATE_KEY }}
+          SSH_HOST: ${{ secrets.TARGET_HOST }}
+          SSH_USER: ${{ secrets.TARGET_USER }}
+          SSH_PATH: ${{ secrets.TARGET_PATH }}
+      # Setup key
+      - run: set -eu
+      - run: mkdir "$HOME/.ssh"
+      - run: echo "$SSH_KEY" > "$HOME/.ssh/p1.key"
+      - run: chmod 600 "$HOME/.ssh/p1.key"
+      # Build
+      - run: npm ci
+      - run: npm run build
+      # Deploy
+      - run: cd dist && rsync -e "ssh -i $HOME/.ssh/p1.key -o StrictHostKeyChecking=no" --archive --compress --delete . $SSH_USER@$SSH_HOST:$SSH_PATH
