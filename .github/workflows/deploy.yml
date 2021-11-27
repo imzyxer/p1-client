@@ -28,5 +28,7 @@ jobs:
       # Build
       - run: npm ci
       - run: npm run build
+      - run: pwd
+      - run: ls -la
       # Deploy
-      - run: cd dist && rsync -e "ssh -i $HOME/.ssh/p1.key -o StrictHostKeyChecking=no" --archive --compress --delete . $SSH_USER@$SSH_HOST:$SSH_PATH
+      - run: cd build && rsync -e "ssh -i $HOME/.ssh/p1.key -o StrictHostKeyChecking=no" --archive --compress --delete . $SSH_USER@$SSH_HOST:$SSH_PATH
