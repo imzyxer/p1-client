@@ -1,5 +1,4 @@
 import React, { FC, useEffect, useState } from 'react';
-import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -9,8 +8,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Alert from '@material-ui/lab/Alert';
 import Collapse from '@material-ui/core/Collapse';
-import LogotypeIcon from '@material-ui/icons/Https';
-import useStyles from 'components/Login/styles';
+import useStyles from 'components/Login/hooks/useStyles';
 import { Form, Formik, Field } from 'formik';
 import { TextField } from 'formik-material-ui';
 import { observer } from 'mobx-react';
@@ -20,6 +18,7 @@ import { APP_NAME } from 'constants/app';
 import FormLoader from 'components/common/FormLoader';
 import FormikPasswordField from 'components/common/FormikPasswordField';
 import UserEntity from 'entities/UserEntity';
+import Logotype from 'components/common/Logotype';
 
 const LoginPage: FC = () => {
   const appStore = useAppStore();
@@ -34,7 +33,7 @@ const LoginPage: FC = () => {
   return (
     <Formik
       initialValues={{ login: '', password: '' }}
-      validationSchema={UserEntity.validationSchemaForLogin()}
+      validationSchema={UserEntity.validationSchemaForSignIn()}
       validateOnChange={false}
       validateOnBlur={false}
       onSubmit={(values, { setSubmitting }) => {
@@ -57,12 +56,7 @@ const LoginPage: FC = () => {
           <Grid item xs={12} sm={8} md={5} lg={3} component={Paper} elevation={6} square>
             <FormLoader />
             <div className={classes.paper}>
-              <Avatar className={classes.avatar}>
-                <LogotypeIcon />
-              </Avatar>
-              <Typography variant="subtitle1" color="textSecondary">
-                Storage <strong>П1</strong> <sup>&beta;</sup>
-              </Typography>
+              <Logotype />
               <Collapse in={errorMessage !== null} className={classes.errorMessage}>
                 <Box mt={2}>
                   <Alert severity="error">{errorMessage}</Alert>

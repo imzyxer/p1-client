@@ -17,12 +17,6 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-    width: theme.spacing(7),
-    height: theme.spacing(7),
-  },
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
