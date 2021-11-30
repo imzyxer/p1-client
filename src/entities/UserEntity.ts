@@ -35,7 +35,7 @@ class UserEntity {
     Yup.object({
       login: Yup.string().required('This field is required').email('The email is invalid'),
       password: Yup.string().required('This field is required').password().label('Password'),
-      invite: Yup.string().required('This field is required').length(26).label('Invite'),
+      invitation: Yup.string().required('This field is required').length(26).label('Invitation code'),
     });
 }
 

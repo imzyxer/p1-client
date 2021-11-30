@@ -24,9 +24,9 @@ const SignupPage: FC = () => {
   const [errorMessage, setErrorMessage] = useState<null | string>(null);
   const history = useHistory();
   const query = new URLSearchParams(history.location.search);
-  const invite = query.get('invite');
-  const isInviteReadonly = invite !== null;
-  const initialValues = { login: '', password: '', invite: invite ?? '' };
+  const invitation = query.get('invitation');
+  const isInvitationCodeReadonly = invitation !== null;
+  const initialValues = { login: '', password: '', invitation: invitation ?? '' };
   const classes = useStyles();
 
   useEffect(() => {
@@ -73,14 +73,14 @@ const SignupPage: FC = () => {
                 </Grid>
                 <Grid item xs={12}>
                   <Field
-                    id="invite"
+                    id="invitation"
                     component={TextField}
-                    name="invite"
-                    label="Invite"
+                    name="invitation"
+                    label="Invitation code"
                     variant="outlined"
                     required
                     fullWidth
-                    InputProps={{ readOnly: isInviteReadonly }}
+                    InputProps={{ readOnly: isInvitationCodeReadonly }}
                   />
                 </Grid>
               </Grid>
