@@ -1,6 +1,7 @@
 export const PATH_HOME = '/';
 
 export const PATH_LOGIN = '/login';
+export const PATH_SIGNUP = '/signup';
 export const PATH_ERROR_500 = '/error/500';
 
 export const PAGE_DASHBOARD = 'dashboard';

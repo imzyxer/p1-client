@@ -1,5 +1,5 @@
 import { makeObservable, observable, action, computed } from 'mobx';
-import { signIn, signOut, fetchUser } from 'services/api/User';
+import { signUp, signIn, signOut, fetchUser } from 'services/api/User';
 import { ERole, ETheme, IUser } from 'types/user';
 import PrimaryClient from 'services/PrimaryClient';
 import { TRootStore } from 'stores/RootStore';
@@ -73,6 +73,26 @@ class AppStore {
       )
       .catch(
         action('doSignInFailure', response => {
+          failure(response);
+        })
+      );
+  };
+
+  @action
+  public signUp = (params: { login: string; password: string; invite: string }, success: () => void, failure: (response: any) => void) => {
+    const { login, password, invite } = params;
+    const client = PrimaryClient.getClient();
+    const authenticator = client().getAuthenticator();
+    signUp(login, password, invite)
+      .then(
+        action('doSignUpSuccess', response => {
+          this.setUserData(response.result.profile);
+          authenticator.setCredentials(response.result.accessToken, password);
+          success();
+        })
+      )
+      .catch(
+        action('doSignUpFailure', response => {
           failure(response);
         })
       );

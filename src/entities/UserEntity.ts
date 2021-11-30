@@ -1,6 +1,9 @@
 import { IUser, IProfileForFormik, IProfileForUpdate } from 'types/user';
 import * as Yup from 'yup';
+import YupPassword from 'yup-password';
 import _isEmpty from 'lodash/isEmpty';
+
+YupPassword(Yup);
 
 class UserEntity {
   prepareProfileForFormik = (profile: IUser): IProfileForFormik => ({
@@ -22,10 +25,17 @@ class UserEntity {
     newPassword: _isEmpty(data.newPassword) ? null : data.currentPassword,
   });
 
-  validationSchemaForLogin = () =>
+  validationSchemaForSignIn = () =>
     Yup.object({
       login: Yup.string().required('This field is required').email('The email is invalid'),
       password: Yup.string().required('This field is required'),
+    });
+
+  validationSchemaForSignup = () =>
+    Yup.object({
+      login: Yup.string().required('This field is required').email('The email is invalid'),
+      password: Yup.string().required('This field is required').password().label('Password'),
+      invite: Yup.string().required('This field is required').length(26).label('Invite'),
     });
 }
 

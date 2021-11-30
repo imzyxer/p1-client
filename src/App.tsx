@@ -12,6 +12,7 @@ import Wrapper from 'components/App/Wrapper';
 
 const NotFoundPage = React.lazy(() => import('pages/NotFoundPage'));
 const LoginPage = React.lazy(() => import('pages/LoginPage'));
+const SignupPage = React.lazy(() => import('pages/SignupPage'));
 const DashboardPage = React.lazy(() => import('pages/DashboardPage'));
 const HistoryPage = React.lazy(() => import('pages/HistoryPage'));
 const GroupViewPage = React.lazy(() => import('pages/GroupViewPage'));
@@ -42,6 +43,7 @@ const App: FC = () => {
             {appStore.userIsGuest && <Redirect to={getLoginUrn()} />}
             {!appStore.userIsGuest && <Redirect to={getDashboardUrn()} />}
           </Route>
+          <Route path={pages.PATH_SIGNUP} exact strict component={SignupPage} />
           <Route path="*" component={NotFoundPage} />
         </Switch>
       </Suspense>
