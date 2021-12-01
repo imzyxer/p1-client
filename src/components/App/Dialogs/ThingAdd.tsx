@@ -48,7 +48,7 @@ const ThingAdd: FC = () => {
     <Dialog fullWidth fullScreen={fullScreen} open={open} onClose={handleOnClose} aria-labelledby="responsive-dialog-title">
       <Formik initialValues={initialValues} onSubmit={onSubmit}>
         {({ dirty, isSubmitting }) => (
-          <Form>
+          <Form autoComplete="off">
             <DialogTitle onClose={handleClose}>
               <ThingTypeIcon type={store.type} />
               <span>&nbsp;Add Thing</span>
