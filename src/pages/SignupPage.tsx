@@ -66,10 +66,21 @@ const SignupPage: FC = () => {
             <Form className={classes.form}>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  <Field id="login" component={TextField} name="login" type="email" label="Email" autoFocus variant="outlined" required fullWidth />
+                  <Field
+                    id="login"
+                    component={TextField}
+                    name="login"
+                    type="email"
+                    label="Email"
+                    autoFocus
+                    variant="outlined"
+                    required
+                    fullWidth
+                    autoComplete="email"
+                  />
                 </Grid>
                 <Grid item xs={12}>
-                  <FormikPasswordField id="password" name="password" label="Password *" labelWidth={85} required />
+                  <FormikPasswordField id="password" name="password" label="Password *" labelWidth={85} required autoComplete="new-password" />
                 </Grid>
                 <Grid item xs={12}>
                   <Field
