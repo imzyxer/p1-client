@@ -7,10 +7,8 @@ import { Field, useFormikContext } from 'formik';
 import { TextField, Checkbox } from 'formik-material-ui';
 import { IProfileForFormik } from 'types/user';
 import FormikPasswordField from 'components/common/FormikPasswordField';
-// import { useRootStore } from 'stores/hooks/useRootStore';
 
 const ProfileBlank: FC = () => {
-  // const { profileEditStore } = useRootStore();
   const { values } = useFormikContext<IProfileForFormik>();
 
   return (
@@ -19,7 +17,11 @@ const ProfileBlank: FC = () => {
         <Field id="email" component={TextField} name="email" label="Login" variant="outlined" fullWidth required />
       </Grid>
       <Grid item xs={12}>
-        <FormControlLabel control={<Field id="isChangePassword" component={Checkbox} name="isChangePassword" />} label="Change password" disabled />
+        <FormControlLabel
+          control={<Field type="checkbox" id="isChangePassword" component={Checkbox} name="isChangePassword" />}
+          label="Change password"
+          disabled
+        />
       </Grid>
       {values.isChangePassword && (
         <>
