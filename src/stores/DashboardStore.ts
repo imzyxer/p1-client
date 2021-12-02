@@ -30,6 +30,13 @@ class DashboardStore {
     this.initiate(true);
   };
 
+  @action
+  public reset = () => {
+    this.init = false;
+    this.latest = [];
+    this.starred = [];
+  };
+
   @computed
   get isInit() {
     return this.init;

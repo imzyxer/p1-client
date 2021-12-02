@@ -105,7 +105,9 @@ class AppStore {
     signOut().then(
       action('doSignOutResult', () => {
         authenticator.revokeCredentials();
-        this.setUserData(DEFAULT_USER);
+        this.reset();
+        this.root.dashboardStore.reset();
+        this.root.refsStore.reset();
         success();
       })
     );
@@ -134,6 +136,12 @@ class AppStore {
   public refreshThingList() {
     this.thingHasBeenChanged += 1;
   }
+
+  @action
+  public reset = () => {
+    this.setUserData(DEFAULT_USER);
+    this.thingHasBeenChanged = 0;
+  };
 }
 
 export default AppStore;

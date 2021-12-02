@@ -14,7 +14,7 @@ const DashboardPage: FC = () => {
 
   useEffect(() => {
     document.title = `Dashboard — ${APP_NAME}`;
-    dashboardStore.initiate();
+    dashboardStore.initiate(appStore.thingHasBeenChanged > 0);
 
     const disposer = reaction(
       () => appStore.thingHasBeenChanged,

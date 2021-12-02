@@ -52,6 +52,12 @@ class RefsStore {
   public getGroup(groupId: string): Nullable<IGroup> {
     return this.groups.find(i => i.id === groupId) || null;
   }
+
+  @action
+  public reset = () => {
+    this.groups = [];
+    this.progress[ERef.GROUPS] = EProgress.INIT;
+  };
 }
 
 export default RefsStore;
