@@ -20,13 +20,13 @@ const Dashboard: FC = () => {
         <Grid item xs={12} md={6}>
           <Paper>
             <PageTitle icon={<StarIcon />}>Starred</PageTitle>
-            <ThingsTable things={starred} columns={[EColumn.TYPE, EColumn.TITLE, EColumn.SUBJECT, EColumn.STARRED, EColumn.EDIT, EColumn.REQUESTED]} />
+            <ThingsTable things={starred} columns={[EColumn.TYPE, EColumn.TITLE, EColumn.SUBJECT, EColumn.STARRED, EColumn.EDIT]} />
           </Paper>
         </Grid>
         <Grid item xs={12} md={6}>
           <Paper>
             <PageTitle icon={<TimeIcon />}>Latest</PageTitle>
-            <ThingsTable things={latest} columns={[EColumn.TYPE, EColumn.TITLE, EColumn.SUBJECT, EColumn.STARRED, EColumn.EDIT, EColumn.REQUESTED]} />
+            <ThingsTable things={latest} columns={[EColumn.TYPE, EColumn.TITLE, EColumn.SUBJECT, EColumn.STARRED, EColumn.EDIT]} />
           </Paper>
         </Grid>
       </Grid>

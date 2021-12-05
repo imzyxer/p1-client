@@ -17,6 +17,7 @@ import useThingEditStore from 'stores/hooks/useThingEditStore';
 import Empty from 'components/common/Empty';
 import confirmStore from 'stores/ConfirmStore';
 import { useSnackbar } from 'notistack';
+import { makeStyles } from '@material-ui/core/styles';
 
 export enum EColumn {
   TYPE,
@@ -34,7 +35,14 @@ interface IThingTable {
   things: TThingForList[];
 }
 
+const useStyles = makeStyles(theme => ({
+  requested: {
+    color: theme.palette.text.secondary,
+  },
+}));
+
 const ThingsTable: FC<IThingTable> = ({ columns, things }) => {
+  const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
   const thingViewStore = useThingViewStore();
   const thingEditStore = useThingEditStore();
@@ -85,7 +93,13 @@ const ThingsTable: FC<IThingTable> = ({ columns, things }) => {
                   </IconButton>
                 </TableCell>
               )}
-              {columns.includes(EColumn.TITLE) && <TableCell size="small">{thing.title}</TableCell>}
+              {columns.includes(EColumn.TITLE) && (
+                <TableCell size="small">
+                  {thing.title}
+                  <br />
+                  <small className={classes.requested}>{thing.requested}</small>
+                </TableCell>
+              )}
               {columns.includes(EColumn.SUBJECT) && <TableCell size="small">{thing.subject}</TableCell>}
               {columns.includes(EColumn.STARRED) && (
                 <TableCell size="small" padding="none">
