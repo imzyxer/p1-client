@@ -1,10 +1,9 @@
 import React, { FC, useEffect } from 'react';
 import Typography from '@material-ui/core/Typography';
-import withEnvelope from 'components/hoc/withEnvelope';
 import { APP_NAME } from 'constants/app';
 import ErrorPage from 'components/ErrorPage';
 
-const NotFoundPage: FC = () => {
+const NotFound: FC = () => {
   useEffect(() => {
     document.title = `404 Not Found — ${APP_NAME}`;
   }, []);
@@ -20,4 +19,4 @@ const NotFoundPage: FC = () => {
   );
 };
 
-export default withEnvelope(NotFoundPage);
+export default NotFound;

@@ -1,22 +1,23 @@
 import React, { FC, useEffect } from 'react';
 import { observer } from 'mobx-react';
-import History from 'components/History';
-import withEnvelope from 'components/hoc/withEnvelope';
-import { APP_NAME } from 'constants/app';
+import HistoryComponent from 'components/History';
 import useHistoryStore from 'stores/hooks/useHistoryStore';
-import { EProgress } from 'types/app';
+import { EElement, EProgress } from 'types/app';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import useAppStore from 'stores/hooks/useAppStore';
 
-const HistoryPage: FC = () => {
+const History: FC = () => {
+  const appStore = useAppStore();
   const historyStore = useHistoryStore();
+
   useEffect(() => {
-    document.title = `History — ${APP_NAME}`;
+    appStore.setElement(EElement.HISTORY, 'History');
     historyStore.initiate();
-  }, [historyStore]);
+  }, [appStore, historyStore]);
 
   if (historyStore.progress !== EProgress.LOADED) return <LinearProgress />;
 
-  return <History />;
+  return <HistoryComponent />;
 };
 
-export default withEnvelope(observer(HistoryPage));
+export default observer(History);

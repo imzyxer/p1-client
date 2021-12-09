@@ -9,7 +9,7 @@ import { computed } from 'mobx';
 import { ERef } from 'types/app';
 
 const GroupList: FC = () => {
-  const params = useParams<Record<string, string | undefined>>();
+  const params = useParams<keyof { groupId: string }>();
   const refsStore = useRefsStore();
   const { groups } = refsStore;
   const groupsProgress = computed(() => refsStore.getProgress(ERef.GROUPS)).get();

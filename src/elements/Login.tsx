@@ -3,7 +3,7 @@ import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
-import { useHistory } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Alert from '@material-ui/lab/Alert';
@@ -20,15 +20,20 @@ import FormikPasswordField from 'components/common/FormikPasswordField';
 import UserEntity from 'entities/UserEntity';
 import Logotype from 'components/common/Logotype';
 
-const LoginPage: FC = () => {
+const Login: FC = () => {
   const appStore = useAppStore();
+  const location = useLocation();
   const classes = useStyles();
   const [errorMessage, setErrorMessage] = useState(null);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.title = `Welcome — ${APP_NAME}`;
   }, []);
+
+  if (!appStore.userIsGuest) {
+    return <Navigate to={getDashboardUrn()} state={{ from: location }} />;
+  }
 
   return (
     <Formik
@@ -41,7 +46,7 @@ const LoginPage: FC = () => {
         appStore.signIn(
           values,
           () => {
-            history.replace(getDashboardUrn());
+            navigate(getDashboardUrn(), { replace: true });
           },
           response => {
             setErrorMessage(response.result.message);
@@ -101,4 +106,4 @@ const LoginPage: FC = () => {
   );
 };
 
-export default observer(LoginPage);
+export default observer(Login);

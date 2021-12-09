@@ -1,19 +1,18 @@
 import React, { FC, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import { reaction } from 'mobx';
-import Dashboard from 'components/Dashboard';
+import DashboardComponent from 'components/Dashboard';
 import useDashboardStore from 'stores/hooks/useDashboardStore';
-import withEnvelope from 'components/hoc/withEnvelope';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import { APP_NAME } from 'constants/app';
 import useAppStore from 'stores/hooks/useAppStore';
+import { EElement } from 'types/app';
 
-const DashboardPage: FC = () => {
-  const dashboardStore = useDashboardStore();
+const Dashboard: FC = () => {
   const appStore = useAppStore();
+  const dashboardStore = useDashboardStore();
 
   useEffect(() => {
-    document.title = `Dashboard — ${APP_NAME}`;
+    appStore.setElement(EElement.DASHBOARD, 'Dashboard');
     dashboardStore.initiate(appStore.thingHasBeenChanged > 0);
 
     const disposer = reaction(
@@ -29,7 +28,7 @@ const DashboardPage: FC = () => {
     return <LinearProgress />;
   }
 
-  return <Dashboard />;
+  return <DashboardComponent />;
 };
 
-export default withEnvelope(observer(DashboardPage));
+export default observer(Dashboard);

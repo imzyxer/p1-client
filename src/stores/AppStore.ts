@@ -1,8 +1,10 @@
-import { makeObservable, observable, action, computed } from 'mobx';
-import { signUp, signIn, signOut, fetchUser } from 'services/api/User';
+import { action, computed, makeObservable, observable } from 'mobx';
+import { fetchUser, signIn, signOut, signUp } from 'services/api/User';
 import { ERole, ETheme, IUser } from 'types/user';
 import PrimaryClient from 'services/PrimaryClient';
 import { TRootStore } from 'stores/RootStore';
+import { EElement } from 'types/app';
+import { APP_NAME } from 'constants/app';
 
 const DEFAULT_USER = {
   role: ERole.GUEST,
@@ -19,6 +21,7 @@ class AppStore {
   @observable init = false;
   @observable isOpenMenu = false;
   @observable thingHasBeenChanged = 0;
+  @observable element: EElement = EElement.HOME;
 
   constructor(rootSore: TRootStore) {
     this.root = rootSore;
@@ -141,6 +144,12 @@ class AppStore {
   public reset = () => {
     this.setUserData(DEFAULT_USER);
     this.thingHasBeenChanged = 0;
+  };
+
+  @action
+  public setElement = (element: EElement, title: string) => {
+    this.element = element;
+    document.title = `${title} — ${APP_NAME}`;
   };
 }
 

@@ -1,26 +1,24 @@
 import React, { FC, useEffect } from 'react';
-import Group from 'components/Group';
-import withEnvelope from 'components/hoc/withEnvelope';
+import GroupViewComponent from 'components/Group';
 import { observer } from 'mobx-react';
 import useGroupStore from 'stores/hooks/useGroupStore';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { useParams } from 'react-router-dom';
 import Empty from 'components/common/Empty';
-import { EProgress } from 'types/app';
-import { APP_NAME } from 'constants/app';
+import { EElement, EProgress } from 'types/app';
 import { reaction } from 'mobx';
 import useAppStore from 'stores/hooks/useAppStore';
 
-const GroupViewPage: FC = () => {
-  const params = useParams<Record<string, string | undefined>>();
+const GroupView: FC = () => {
+  const params = useParams<keyof { groupId: string }>();
   const groupStore = useGroupStore();
   const appStore = useAppStore();
   const groupId = params.groupId ?? null;
 
   useEffect(() => {
-    document.title = `Things — ${APP_NAME}`;
+    appStore.setElement(EElement.GROUP_VIEW, 'Things');
     groupStore.initiate(groupId);
-  }, [groupStore, groupId]);
+  }, [appStore, groupStore, groupId]);
 
   useEffect(() => {
     const disposer = reaction(
@@ -36,7 +34,7 @@ const GroupViewPage: FC = () => {
 
   const { group } = groupStore;
 
-  return group ? <Group group={group} /> : <Empty />;
+  return group ? <GroupViewComponent group={group} /> : <Empty />;
 };
 
-export default withEnvelope(observer(GroupViewPage));
+export default observer(GroupView);

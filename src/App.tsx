@@ -1,23 +1,20 @@
-import React, { FC, useEffect, Suspense } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import React, { FC, useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import { observer } from 'mobx-react';
 import GlobalLoader from 'components/common/GlobalLoader';
-import * as pages from 'constants/pages';
-import { getDashboardUrn, getLoginUrn } from 'utils/getUrn';
-import PrivateRoute from 'components/App/PrivateRoute';
-import LoginRoute from 'components/App/LoginRoute';
-import useAppStore from 'stores/hooks/useAppStore';
-import { LinearProgress } from '@material-ui/core';
 import Wrapper from 'components/App/Wrapper';
+import Envelope from 'components/Envelope';
+import useAppStore from 'stores/hooks/useAppStore';
+import DashboardElement from 'elements/DashboardElement';
+import HistoryElement from 'elements/HistoryElement';
+import GroupViewElement from 'elements/GroupViewElement';
+import HomeElement from 'elements/HomeElement';
+import InternalErrorElement from 'elements/InternalErrorElement';
+import LoginElement from 'elements/LoginElement';
+import NotFoundElement from 'elements/NotFoundElement';
+import ProfileElement from 'elements/ProfileElement';
+import SignupElement from 'elements/SignupElement';
 
-const NotFoundPage = React.lazy(() => import('pages/NotFoundPage'));
-const LoginPage = React.lazy(() => import('pages/LoginPage'));
-const SignupPage = React.lazy(() => import('pages/SignupPage'));
-const DashboardPage = React.lazy(() => import('pages/DashboardPage'));
-const HistoryPage = React.lazy(() => import('pages/HistoryPage'));
-const GroupViewPage = React.lazy(() => import('pages/GroupViewPage'));
-const ProfilePage = React.lazy(() => import('pages/ProfilePage'));
-const InternalErrorPage = React.lazy(() => import('pages/InternalErrorPage'));
 const App: FC = () => {
   const appStore = useAppStore();
 
@@ -30,24 +27,23 @@ const App: FC = () => {
   }
 
   return (
-    <Wrapper>
-      <Suspense fallback={<LinearProgress />}>
-        <Switch>
-          <PrivateRoute path={pages.PATH_DASHBOARD} exact strict component={DashboardPage} />
-          <PrivateRoute path={pages.PATH_HISTORY} exact strict component={HistoryPage} />
-          <PrivateRoute path={pages.PATH_GROUP} exact strict component={GroupViewPage} />
-          <PrivateRoute path={pages.PATH_PROFILE} exact strict component={ProfilePage} />
-          <LoginRoute path={pages.PATH_LOGIN} exact strict component={LoginPage} />
-          <LoginRoute path={pages.PATH_ERROR_500} exact strict component={InternalErrorPage} />
-          <Route path={pages.PATH_HOME} exact strict>
-            {appStore.userIsGuest && <Redirect to={getLoginUrn()} />}
-            {!appStore.userIsGuest && <Redirect to={getDashboardUrn()} />}
-          </Route>
-          <Route path={pages.PATH_SIGNUP} exact strict component={SignupPage} />
-          <Route path="*" component={NotFoundPage} />
-        </Switch>
-      </Suspense>
-    </Wrapper>
+    <Routes>
+      <Route path="/" element={<Wrapper />}>
+        <Route index element={<HomeElement />} />
+        <Route element={<Envelope />}>
+          <Route path="dashboard" element={<DashboardElement />} />
+          <Route path="group/:groupId" element={<GroupViewElement />} />
+          <Route path="history" element={<HistoryElement />} />
+          <Route path="profile" element={<ProfileElement />} />
+        </Route>
+
+        <Route path="login" element={<LoginElement />} />
+        <Route path="signup" element={<SignupElement />} />
+
+        <Route path="error/500" element={<InternalErrorElement />} />
+        <Route path="*" element={<NotFoundElement />} />
+      </Route>
+    </Routes>
   );
 };
 

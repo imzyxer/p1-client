@@ -6,15 +6,15 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import FaceIcon from '@material-ui/icons/Face';
 import { observer } from 'mobx-react';
-import { useHistory, Link, useParams } from 'react-router-dom';
-import { getLoginUrn, getHistoryUrn, getProfileUrn } from 'utils/getUrn';
+import { Link, useNavigate } from 'react-router-dom';
+import { getHistoryUrn, getLoginUrn, getProfileUrn } from 'utils/getUrn';
 import useAppStore from 'stores/hooks/useAppStore';
 import ListItemIcon from 'components/layout/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import HistoryIcon from '@material-ui/icons/History';
-import { PAGE_HISTORY, PAGE_PROFILE } from 'constants/pages';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import Hidden from '@material-ui/core/Hidden';
+import { EElement } from 'types/app';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -28,11 +28,10 @@ const styles = (theme: Theme) =>
   });
 
 const Account: FC<WithStyles<typeof styles>> = ({ classes }) => {
-  const params = useParams<Record<string, string | undefined>>();
   const appStore = useAppStore();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const history = useHistory();
+  const navigate = useNavigate();
   const handleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -40,7 +39,7 @@ const Account: FC<WithStyles<typeof styles>> = ({ classes }) => {
     setAnchorEl(null);
   };
   const handleLogout = () => {
-    appStore.signOut(() => history.replace(getLoginUrn()));
+    appStore.signOut(() => navigate(getLoginUrn(), { replace: true }));
   };
 
   return (
@@ -73,13 +72,13 @@ const Account: FC<WithStyles<typeof styles>> = ({ classes }) => {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem selected={params.name === PAGE_PROFILE} component={Link} to={getProfileUrn()}>
+        <MenuItem selected={appStore.element === EElement.PROFILE} component={Link} to={getProfileUrn()}>
           <ListItemIcon>
             <FaceIcon />
           </ListItemIcon>
           <ListItemText primary="Profile" />
         </MenuItem>
-        <MenuItem selected={params.name === PAGE_HISTORY} component={Link} to={getHistoryUrn()}>
+        <MenuItem selected={appStore.element === EElement.HISTORY} component={Link} to={getHistoryUrn()}>
           <ListItemIcon>
             <HistoryIcon />
           </ListItemIcon>

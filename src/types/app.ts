@@ -13,6 +13,14 @@ export enum EMode {
   EDIT,
 }
 
+export enum EElement {
+  HOME = 'HOME',
+  DASHBOARD = 'DASHBOARD',
+  PROFILE = 'PROFILE',
+  HISTORY = 'HISTORY',
+  GROUP_VIEW = 'GROUP_VIEW',
+}
+
 export type Nullable<T> = T | null;
 
 export type TId = string;

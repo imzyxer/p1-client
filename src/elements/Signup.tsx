@@ -13,17 +13,18 @@ import { Form, Formik, Field } from 'formik';
 import UserEntity from 'entities/UserEntity';
 import { getDashboardUrn, getLoginUrn } from 'utils/getUrn';
 import FormikPasswordField from 'components/common/FormikPasswordField';
-import { useHistory } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useAppStore from 'stores/hooks/useAppStore';
 import Collapse from '@material-ui/core/Collapse';
 import Box from '@material-ui/core/Box';
 import Alert from '@material-ui/lab/Alert';
 
-const SignupPage: FC = () => {
+const Signup: FC = () => {
   const appStore = useAppStore();
   const [errorMessage, setErrorMessage] = useState<null | string>(null);
-  const history = useHistory();
-  const query = new URLSearchParams(history.location.search);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const query = new URLSearchParams(location.search);
   const invitation = query.get('invitation');
   const isInvitationCodeReadonly = invitation !== null;
   const initialValues = { login: '', password: '', invitation: invitation ?? '' };
@@ -53,7 +54,7 @@ const SignupPage: FC = () => {
             appStore.signUp(
               values,
               () => {
-                history.replace(getDashboardUrn());
+                navigate(getDashboardUrn(), { replace: true });
               },
               response => {
                 setErrorMessage(response.result.message);
@@ -113,4 +114,4 @@ const SignupPage: FC = () => {
   );
 };
 
-export default observer(SignupPage);
+export default observer(Signup);

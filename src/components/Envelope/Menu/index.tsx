@@ -7,20 +7,22 @@ import ManageGroupIcon from '@material-ui/icons/CreateNewFolder';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import MenuItemAddThing from 'components/Envelope/Menu/MenuItemAddThing';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import * as urns from 'utils/getUrn';
-import { PAGE_DASHBOARD } from 'constants/pages';
 import GroupList from 'components/Envelope/Menu/GroupList';
 import { useRootStore } from 'stores/hooks/useRootStore';
+import { observer } from 'mobx-react';
+import useAppStore from 'stores/hooks/useAppStore';
+import { EElement } from 'types/app';
 
 const Index: FC = () => {
-  const params = useParams<Record<string, string | undefined>>();
+  const appStore = useAppStore();
   const { groupsManageStore } = useRootStore();
 
   return (
     <>
       <List>
-        <ListItem button component={Link} to={urns.getDashboardUrn()} selected={params.name === PAGE_DASHBOARD}>
+        <ListItem button component={Link} to={urns.getDashboardUrn()} selected={appStore.element === EElement.DASHBOARD}>
           <ListItemIcon>
             <DashboardIcon />
           </ListItemIcon>
@@ -40,4 +42,4 @@ const Index: FC = () => {
   );
 };
 
-export default Index;
+export default observer(Index);

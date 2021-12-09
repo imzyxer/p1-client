@@ -17,17 +17,14 @@ import Menu from 'components/Envelope/Menu';
 import { observer } from 'mobx-react';
 import useAppStore from 'stores/hooks/useAppStore';
 import Dialogs from 'components/App/Dialogs';
+import { Outlet } from 'react-router-dom';
 
-const Index: FC = ({ children }) => {
+const Index: FC = () => {
   const appStore = useAppStore();
   const classes = useStyles();
   const open = appStore.isOpenMenu;
   const handleDrawerOpen = () => appStore.setIsOpenMenu(true);
   const handleDrawerClose = () => appStore.setIsOpenMenu(false);
-
-  if (appStore.userIsGuest) {
-    return <>{children}</>;
-  }
 
   return (
     <div className={classes.root}>
@@ -78,7 +75,7 @@ const Index: FC = ({ children }) => {
         })}
       >
         <div className={classes.appBarSpacer} />
-        {children}
+        <Outlet />
       </main>
       <Dialogs />
     </div>

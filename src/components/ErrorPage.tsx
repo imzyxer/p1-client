@@ -22,7 +22,7 @@ const ErrorPage: FC<{ title: string }> = ({ title, children }) => {
 
   return (
     <Container maxWidth="sm" className={classes.root}>
-      <Grid container justify="center">
+      <Grid container justifyContent="center">
         <Grid item xs={5}>
           <Box pr={2}>
             <Typography variant="h1" component="h1" align="right">
@@ -31,7 +31,7 @@ const ErrorPage: FC<{ title: string }> = ({ title, children }) => {
           </Box>
         </Grid>
         <Divider orientation="vertical" flexItem />
-        <Grid xs={6}>
+        <Grid item xs={6}>
           <Box pl={2}>
             {children}
             <Link href={getHomePageUrn()}>Take me home</Link>
