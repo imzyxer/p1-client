@@ -17,7 +17,7 @@ import useThingEditStore from 'stores/hooks/useThingEditStore';
 import Empty from 'components/common/Empty';
 import confirmStore from 'stores/ConfirmStore';
 import { useSnackbar } from 'notistack';
-import makeStyles from '@mui/styles/makeStyles';
+import Box from '@mui/material/Box';
 
 export enum EColumn {
   TYPE,
@@ -35,14 +35,7 @@ interface IThingTable {
   things: TThingForList[];
 }
 
-const useStyles = makeStyles(theme => ({
-  requested: {
-    color: theme.palette.text.secondary,
-  },
-}));
-
 const ThingsTable: FC<IThingTable> = ({ columns, things }) => {
-  const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
   const thingViewStore = useThingViewStore();
   const thingEditStore = useThingEditStore();
@@ -97,7 +90,9 @@ const ThingsTable: FC<IThingTable> = ({ columns, things }) => {
                 <TableCell size="small">
                   {thing.title}
                   <br />
-                  <small className={classes.requested}>{thing.requested}</small>
+                  <Box component="small" sx={{ color: t => t.palette.text.secondary }}>
+                    {thing.requested}
+                  </Box>
                 </TableCell>
               )}
               {columns.includes(EColumn.SUBJECT) && <TableCell size="small">{thing.subject}</TableCell>}
