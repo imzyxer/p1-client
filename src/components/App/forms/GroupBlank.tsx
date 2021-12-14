@@ -1,18 +1,17 @@
 import React, { FC } from 'react';
 import { observer } from 'mobx-react';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import Button from '@material-ui/core/Button';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import Button from '@mui/material/Button';
 import { Field, Form, Formik } from 'formik';
 import FormLoader from 'components/common/FormLoader';
 import { useRootStore } from 'stores/hooks/useRootStore';
 import { EMode } from 'types/app';
 import { EGroupIcon, IGroupForFormik } from 'types/group';
-import Grid from '@material-ui/core/Grid';
-import { Select, TextField } from 'formik-material-ui';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
+import Grid from '@mui/material/Grid';
+import { Select, TextField } from 'formik-mui';
+import FormControl from '@mui/material/FormControl';
+import MenuItem from '@mui/material/MenuItem';
 import GroupIcon, { GroupIconTitle, mapIcons } from 'components/common/GroupIcon';
 
 interface IProps {
@@ -34,17 +33,7 @@ const FormBlank: FC<IProps> = ({ mode, initialValues, onSubmit }) => {
             <Grid container spacing={2}>
               <Grid item xs={12} md={6}>
                 <FormControl variant="outlined" style={{ minWidth: '100%' }}>
-                  <InputLabel htmlFor="icon">Icon</InputLabel>
-                  <Field
-                    component={Select}
-                    name="icon"
-                    inputProps={{
-                      id: 'icon',
-                    }}
-                    autoWidth={false}
-                    labelWidth={30}
-                    required
-                  >
+                  <Field component={Select} name="icon" labelId="icon" label="Icon *" required>
                     {Array.from(mapIcons.keys()).map((icon: EGroupIcon) => (
                       <MenuItem value={icon} key={icon}>
                         <div style={{ display: 'flex', alignItems: 'center' }}>

@@ -15,10 +15,12 @@ export enum EMode {
 
 export enum EElement {
   HOME = 'HOME',
+  LOGIN = 'LOGIN',
   DASHBOARD = 'DASHBOARD',
   PROFILE = 'PROFILE',
   HISTORY = 'HISTORY',
   GROUP_VIEW = 'GROUP_VIEW',
+  SIGNUP = 'SIGNUP',
 }
 
 export type Nullable<T> = T | null;

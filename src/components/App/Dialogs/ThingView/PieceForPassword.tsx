@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import Grid from '@material-ui/core/Grid';
+import Grid from '@mui/material/Grid';
 
-import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
+import TextField from '@mui/material/TextField';
+import Link from '@mui/material/Link';
 import { TThingPayloadPassword } from 'types/thing';
 import AdvancedPasswordField from 'components/common/AdvancedPasswordField';
 
@@ -17,7 +17,7 @@ const PieceForPassword: FC<{ payload: TThingPayloadPassword }> = ({ payload }) =
       <TextField label="Login" variant="outlined" InputProps={{ readOnly: true }} defaultValue={payload.login} fullWidth />
     </Grid>
     <Grid item xs={6}>
-      <AdvancedPasswordField id="thing_card_password" value={payload.password} label="Password" labelWidth={75} />
+      <AdvancedPasswordField id="thing_card_password" value={payload.password} label="Password" />
     </Grid>
   </>
 );

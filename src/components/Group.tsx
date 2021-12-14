@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 import { observer } from 'mobx-react';
 import { IGroup } from 'types/group';
 import GroupIcon from 'components/common/GroupIcon';

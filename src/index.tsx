@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import Wrapper from 'components/App/Wrapper';
 import { UseRootStore } from 'stores/hooks/useRootStore';
 import PrimaryAuthenticator from 'services/PrimaryAuthenticator';
 import PrimaryClient from 'services/PrimaryClient';
@@ -12,9 +12,9 @@ PrimaryClient.createClientInstance(baseURL, authenticator);
 
 ReactDOM.render(
   <UseRootStore>
-    <BrowserRouter>
+    <Wrapper>
       <App />
-    </BrowserRouter>
+    </Wrapper>
   </UseRootStore>,
   document.getElementById('root')
 );

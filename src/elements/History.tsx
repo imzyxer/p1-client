@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import HistoryComponent from 'components/History';
 import useHistoryStore from 'stores/hooks/useHistoryStore';
 import { EElement, EProgress } from 'types/app';
-import LinearProgress from '@material-ui/core/LinearProgress';
+import LinearProgress from '@mui/material/LinearProgress';
 import useAppStore from 'stores/hooks/useAppStore';
 
 const History: FC = () => {

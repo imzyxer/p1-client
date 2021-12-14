@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import MuiListItemIcon from '@material-ui/core/ListItemIcon';
-import { makeStyles } from '@material-ui/core/styles';
+import MuiListItemIcon from '@mui/material/ListItemIcon';
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles(theme => ({
   root: {

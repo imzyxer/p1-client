@@ -1,15 +1,15 @@
 import React, { FC } from 'react';
 import { TThingForList } from 'types/thing';
-import Table from '@material-ui/core/Table';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
-import TableBody from '@material-ui/core/TableBody';
-import IconButton from '@material-ui/core/IconButton';
-import StarredFalse from '@material-ui/icons/StarBorder';
-import StarredTrue from '@material-ui/icons/Star';
-import SettingsIcon from '@material-ui/icons/Settings';
-import TableContainer from '@material-ui/core/TableContainer';
+import Table from '@mui/material/Table';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';
+import TableBody from '@mui/material/TableBody';
+import IconButton from '@mui/material/IconButton';
+import StarredFalse from '@mui/icons-material/StarBorder';
+import StarredTrue from '@mui/icons-material/Star';
+import SettingsIcon from '@mui/icons-material/Settings';
+import TableContainer from '@mui/material/TableContainer';
 import useThingViewStore from 'stores/hooks/useThingViewStore';
 import ThingTypeIcon from 'components/common/ThingTypeIcon';
 import { TId } from 'types/app';
@@ -17,7 +17,7 @@ import useThingEditStore from 'stores/hooks/useThingEditStore';
 import Empty from 'components/common/Empty';
 import confirmStore from 'stores/ConfirmStore';
 import { useSnackbar } from 'notistack';
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 
 export enum EColumn {
   TYPE,

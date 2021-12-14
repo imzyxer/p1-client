@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
-import ListItem from '@material-ui/core/ListItem';
+import ListItem from '@mui/material/ListItem';
 import ListItemIcon from 'components/layout/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import ManageGroupIcon from '@material-ui/icons/CreateNewFolder';
-import Divider from '@material-ui/core/Divider';
-import List from '@material-ui/core/List';
+import ListItemText from '@mui/material/ListItemText';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import ManageGroupIcon from '@mui/icons-material/CreateNewFolder';
+import Divider from '@mui/material/Divider';
+import List from '@mui/material/List';
 import MenuItemAddThing from 'components/Envelope/Menu/MenuItemAddThing';
 import { Link } from 'react-router-dom';
 import * as urns from 'utils/getUrn';

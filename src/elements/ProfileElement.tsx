@@ -1,5 +1,5 @@
 import React, { FC, Suspense } from 'react';
-import { LinearProgress } from '@material-ui/core';
+import { LinearProgress } from '@mui/material';
 import RequireAuth from 'components/App/RequireAuth';
 
 const Element = React.lazy(() => import('elements/Profile'));

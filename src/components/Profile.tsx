@@ -1,15 +1,15 @@
 import React, { FC } from 'react';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 import { observer } from 'mobx-react';
-import FaceIcon from '@material-ui/icons/Face';
+import FaceIcon from '@mui/icons-material/Face';
 import PageTitle from 'components/layout/PageTitle';
 import PageContainer from 'components/layout/PageContainer';
 import { Form, Formik, FormikHelpers } from 'formik';
 import { useRootStore } from 'stores/hooks/useRootStore';
 import ProfileBlank from 'components/App/forms/ProfileBlank';
-import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 import { IProfileForFormik } from 'types/user';
 import { useSnackbar } from 'notistack';
 

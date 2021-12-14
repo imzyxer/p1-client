@@ -1,15 +1,15 @@
 import React, { FC } from 'react';
 import clsx from 'clsx';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import Typography from '@material-ui/core/Typography';
-import LogotypeIcon from '@material-ui/icons/Https';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import Hidden from '@material-ui/core/Hidden';
-import Drawer from '@material-ui/core/Drawer';
-import Divider from '@material-ui/core/Divider';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import Typography from '@mui/material/Typography';
+import LogotypeIcon from '@mui/icons-material/Https';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import Hidden from '@mui/material/Hidden';
+import Drawer from '@mui/material/Drawer';
+import Divider from '@mui/material/Divider';
 import useStyles from 'components/Envelope/styles';
 // import Search from 'components/Envelope/Header/Search';
 import Account from 'components/Envelope/Header/Account';
@@ -36,12 +36,13 @@ const Index: FC = () => {
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+            size="large"
           >
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             <LogotypeIcon className={classes.title__icon} />
-            <Hidden smDown>
+            <Hidden mdDown>
               <span>
                 Storage <strong>П1</strong> <sup>&beta;</sup>
               </span>
@@ -62,7 +63,7 @@ const Index: FC = () => {
         open={open}
       >
         <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton onClick={handleDrawerClose} size="large">
             <ChevronLeftIcon />
           </IconButton>
         </div>

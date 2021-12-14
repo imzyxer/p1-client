@@ -1,12 +1,11 @@
 import React, { FC } from 'react';
 import { observer } from 'mobx-react';
-import Grid from '@material-ui/core/Grid';
-import MenuItem from '@material-ui/core/MenuItem';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
+import Grid from '@mui/material/Grid';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
 
 import { Field } from 'formik';
-import { Select, TextField } from 'formik-material-ui';
+import { Select, TextField } from 'formik-mui';
 import useRefsStore from 'stores/hooks/useRefsStore';
 import { EThingType } from 'types/thing';
 import PieceForPassword from 'components/App/forms/ThingBlank/PieceForPassword';
@@ -22,17 +21,7 @@ const ThingBlank: FC<{ type: EThingType }> = ({ type }) => {
       </Grid>
       <Grid item xs={6}>
         <FormControl variant="outlined" style={{ minWidth: '100%' }}>
-          <InputLabel htmlFor="groupId">Group *</InputLabel>
-          <Field
-            component={Select}
-            name="groupId"
-            inputProps={{
-              id: 'groupId',
-            }}
-            autoWidth={false}
-            labelWidth={60}
-            required
-          >
+          <Field component={Select} labelId="groupId" name="groupId" label="Group *" required>
             {storeRefs.groups.map(group => (
               <MenuItem key={group.id} value={group.id}>
                 {group.name}

@@ -1,9 +1,12 @@
 import React from 'react';
-import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
+import { Theme } from '@mui/material/styles';
+import { WithStyles } from '@mui/styles';
+import createStyles from '@mui/styles/createStyles';
+import withStyles from '@mui/styles/withStyles';
+import MuiDialogTitle from '@mui/material/DialogTitle';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -32,12 +35,12 @@ export interface DialogTitleProps extends WithStyles<typeof styles> {
 const DialogTitle = withStyles(styles)((props: DialogTitleProps) => {
   const { children, classes, onClose, ...other } = props;
   return (
-    <MuiDialogTitle disableTypography className={classes.root} {...other}>
+    <MuiDialogTitle className={classes.root} {...other}>
       <Typography variant="h6" component="div" className={classes.root__title}>
         {children}
       </Typography>
       {onClose ? (
-        <IconButton aria-label="close" className={classes.root__close} onClick={onClose}>
+        <IconButton aria-label="close" className={classes.root__close} onClick={onClose} size="large">
           <CloseIcon />
         </IconButton>
       ) : null}

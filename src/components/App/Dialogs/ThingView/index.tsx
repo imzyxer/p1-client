@@ -1,19 +1,19 @@
 import React, { FC } from 'react';
 import { observer } from 'mobx-react';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import useThingViewStore from 'stores/hooks/useThingViewStore';
 import ThingTypeIcon from 'components/common/ThingTypeIcon';
 import { EProgress } from 'types/app';
 
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 import GlobalLoader from 'components/common/GlobalLoader';
 
-import { useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@mui/material/styles';
 import DialogTitle from 'components/layout/DialogTitle';
 import PieceForPassword from 'components/App/Dialogs/ThingView/PieceForPassword';
 import PieceForCard from 'components/App/Dialogs/ThingView/PieceForCard';
@@ -23,7 +23,7 @@ import _isEmpty from 'lodash/isEmpty';
 const Index: FC = () => {
   const store = useThingViewStore();
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('xs'));
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const handleClose = () => store.close();
   const open = store.isThingCardOpened;
 
