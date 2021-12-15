@@ -31,6 +31,7 @@ const AdvancedPasswordField: FC<{ id: string; value: string; label: string }> = 
             </IconButton>
           </InputAdornment>
         }
+        label={label}
       />
     </FormControl>
   );
