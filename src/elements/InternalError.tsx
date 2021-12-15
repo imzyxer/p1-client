@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react';
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 import { APP_NAME } from 'constants/app';
 import ErrorPage from 'components/ErrorPage';
 

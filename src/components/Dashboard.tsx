@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 import { observer } from 'mobx-react';
-import StarIcon from '@material-ui/icons/Star';
-import TimeIcon from '@material-ui/icons/AccessTime';
+import StarIcon from '@mui/icons-material/Star';
+import TimeIcon from '@mui/icons-material/AccessTime';
 import ThingsTable, { EColumn } from 'components/common/ThingsTable';
 import useDashboardStore from 'stores/hooks/useDashboardStore';
 import PageTitle from 'components/layout/PageTitle';

@@ -1,21 +1,13 @@
 import React, { FC } from 'react';
-import Box from '@material-ui/core/Box';
+import Box from '@mui/material/Box';
 import { useFormikContext } from 'formik';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles(() => ({
-  root: {
-    opacity: 0.5,
-  },
-}));
+import LinearProgress from '@mui/material/LinearProgress';
 
 const FormLoader: FC = () => {
-  const classes = useStyles();
   const { isSubmitting } = useFormikContext();
 
   return (
-    <Box component="div" className={classes.root} visibility={isSubmitting ? 'visible' : 'hidden'}>
+    <Box component="div" visibility={isSubmitting ? 'visible' : 'hidden'} sx={{ opacity: 0.5 }}>
       <LinearProgress />
     </Box>
   );

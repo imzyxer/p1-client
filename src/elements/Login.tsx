@@ -1,35 +1,33 @@
 import React, { FC, useEffect, useState } from 'react';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Link from '@mui/material/Link';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import Alert from '@material-ui/lab/Alert';
-import Collapse from '@material-ui/core/Collapse';
-import useStyles from 'components/Login/hooks/useStyles';
-import { Form, Formik, Field } from 'formik';
-import { TextField } from 'formik-material-ui';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import Alert from '@mui/material/Alert';
+import Collapse from '@mui/material/Collapse';
+import { Field, Form, Formik } from 'formik';
+import { TextField } from 'formik-mui';
 import { observer } from 'mobx-react';
 import { getDashboardUrn } from 'utils/getUrn';
 import useAppStore from 'stores/hooks/useAppStore';
-import { APP_NAME } from 'constants/app';
 import FormLoader from 'components/common/FormLoader';
 import FormikPasswordField from 'components/common/FormikPasswordField';
 import UserEntity from 'entities/UserEntity';
 import Logotype from 'components/common/Logotype';
+import { EElement } from 'types/app';
 
 const Login: FC = () => {
   const appStore = useAppStore();
   const location = useLocation();
-  const classes = useStyles();
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    document.title = `Welcome — ${APP_NAME}`;
-  }, []);
+    appStore.setElement(EElement.LOGIN, 'Welcome');
+  }, [appStore]);
 
   if (!appStore.userIsGuest) {
     return <Navigate to={getDashboardUrn()} state={{ from: location }} />;
@@ -56,18 +54,44 @@ const Login: FC = () => {
       }}
     >
       {({ isSubmitting }) => (
-        <Grid container component="main" className={classes.root}>
-          <Grid item xs={false} sm={4} md={7} lg={9} className={classes.image} />
+        <Grid container component="main" sx={{ height: '100vh' }}>
+          <Grid
+            item
+            xs={false}
+            sm={4}
+            md={7}
+            lg={9}
+            sx={{
+              backgroundImage: 'url(https://source.unsplash.com/random)',
+              backgroundRepeat: 'no-repeat',
+              backgroundColor: t => (t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900]),
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          />
           <Grid item xs={12} sm={8} md={5} lg={3} component={Paper} elevation={6} square>
             <FormLoader />
-            <div className={classes.paper}>
+            <Box
+              sx={{
+                my: 8,
+                mx: 4,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
               <Logotype />
-              <Collapse in={errorMessage !== null} className={classes.errorMessage}>
+              <Collapse
+                in={errorMessage !== null}
+                sx={{
+                  width: '100%',
+                }}
+              >
                 <Box mt={2}>
                   <Alert severity="error">{errorMessage}</Alert>
                 </Box>
               </Collapse>
-              <Form className={classes.form}>
+              <Form>
                 <Box mb={2}>
                   <Field
                     id="login"
@@ -84,11 +108,15 @@ const Login: FC = () => {
                   />
                 </Box>
                 <FormikPasswordField id="password" name="password" label="Password *" labelWidth={85} required autoComplete="current-password" />
-                <div>
-                  <Button type="submit" variant="contained" color="primary" className={classes.submit} disabled={isSubmitting}>
+                <Box
+                  sx={{
+                    margin: t => t.spacing(3, 0, 2),
+                  }}
+                >
+                  <Button type="submit" variant="contained" color="primary" disabled={isSubmitting}>
                     Sign In
                   </Button>
-                </div>
+                </Box>
                 <Box mt={5}>
                   <Typography variant="body2" color="textSecondary">
                     Powered by{' '}
@@ -98,7 +126,7 @@ const Login: FC = () => {
                   </Typography>
                 </Box>
               </Form>
-            </div>
+            </Box>
           </Grid>
         </Grid>
       )}

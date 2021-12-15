@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { observer } from 'mobx-react';
-import Grid from '@material-ui/core/Grid';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Grid from '@mui/material/Grid';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 import { Field, useFormikContext } from 'formik';
-import { TextField, Checkbox } from 'formik-material-ui';
+import { TextField, Checkbox } from 'formik-mui';
 import { IProfileForFormik } from 'types/user';
 import FormikPasswordField from 'components/common/FormikPasswordField';
 

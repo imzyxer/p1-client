@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import Box from '@material-ui/core/Box';
-import SpeakerNotesOffIcon from '@material-ui/icons/SpeakerNotesOff';
+import Box from '@mui/material/Box';
+import SpeakerNotesOffIcon from '@mui/icons-material/SpeakerNotesOff';
 
 const Empty: FC = () => (
   <Box textAlign="center" p={5} m={2}>

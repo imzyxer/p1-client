@@ -1,23 +1,22 @@
 import React, { FC, useEffect, useState } from 'react';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { TextField } from 'formik-material-ui';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
-import { APP_NAME } from 'constants/app';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import { TextField } from 'formik-mui';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
 import { observer } from 'mobx-react';
-import useStyles from 'components/Signup/hooks/useStyles';
 import Logotype from 'components/common/Logotype';
-import { Form, Formik, Field } from 'formik';
+import { Field, Form, Formik } from 'formik';
 import UserEntity from 'entities/UserEntity';
 import { getDashboardUrn, getLoginUrn } from 'utils/getUrn';
 import FormikPasswordField from 'components/common/FormikPasswordField';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useAppStore from 'stores/hooks/useAppStore';
-import Collapse from '@material-ui/core/Collapse';
-import Box from '@material-ui/core/Box';
-import Alert from '@material-ui/lab/Alert';
+import Collapse from '@mui/material/Collapse';
+import Box from '@mui/material/Box';
+import Alert from '@mui/material/Alert';
+import { EElement } from 'types/app';
 
 const Signup: FC = () => {
   const appStore = useAppStore();
@@ -28,18 +27,29 @@ const Signup: FC = () => {
   const invitation = query.get('invitation');
   const isInvitationCodeReadonly = invitation !== null;
   const initialValues = { login: '', password: '', invitation: invitation ?? '' };
-  const classes = useStyles();
 
   useEffect(() => {
-    document.title = `Welcome — ${APP_NAME}`;
-  }, []);
+    appStore.setElement(EElement.SIGNUP, 'Welcome');
+  }, [appStore]);
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      <div className={classes.paper}>
+      <Box
+        sx={{
+          marginTop: t => t.spacing(8),
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
         <Logotype />
-        <Collapse in={errorMessage !== null} className={classes.errorMessage}>
+        <Collapse
+          in={errorMessage !== null}
+          sx={{
+            width: '100%',
+          }}
+        >
           <Box mt={2}>
             <Alert severity="error">{errorMessage}</Alert>
           </Box>
@@ -64,8 +74,14 @@ const Signup: FC = () => {
           }}
         >
           {({ isSubmitting }) => (
-            <Form className={classes.form}>
-              <Grid container spacing={2}>
+            <Form>
+              <Grid
+                container
+                spacing={2}
+                sx={{
+                  mt: 2,
+                }}
+              >
                 <Grid item xs={12}>
                   <Field
                     id="login"
@@ -96,9 +112,15 @@ const Signup: FC = () => {
                   />
                 </Grid>
               </Grid>
-              <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} disabled={isSubmitting}>
-                Sign Up
-              </Button>
+              <Box
+                sx={{
+                  margin: t => t.spacing(3, 0, 2),
+                }}
+              >
+                <Button type="submit" fullWidth variant="contained" color="primary" disabled={isSubmitting}>
+                  Sign Up
+                </Button>
+              </Box>
               <Grid container justifyContent="flex-end">
                 <Grid item>
                   <Link href={getLoginUrn()} variant="body2">
@@ -109,7 +131,7 @@ const Signup: FC = () => {
             </Form>
           )}
         </Formik>
-      </div>
+      </Box>
     </Container>
   );
 };

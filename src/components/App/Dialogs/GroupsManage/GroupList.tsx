@@ -1,19 +1,19 @@
 import React, { FC } from 'react';
 import { observer } from 'mobx-react';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import Button from '@material-ui/core/Button';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import Button from '@mui/material/Button';
 import { useRootStore } from 'stores/hooks/useRootStore';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
 import ListItemIcon from 'components/layout/ListItemIcon';
 import GroupIcon from 'components/common/GroupIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
-import Divider from '@material-ui/core/Divider';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import Divider from '@mui/material/Divider';
 import confirmStore from 'stores/ConfirmStore';
 import { useSnackbar } from 'notistack';
 import { TId } from 'types/app';
@@ -59,7 +59,7 @@ const GroupList: FC = () => {
               <ListItemText primary={group.name} />
               {group.isEmpty && (
                 <ListItemSecondaryAction>
-                  <IconButton edge="end" aria-label="delete" onClick={() => onDelete(group.id)}>
+                  <IconButton edge="end" aria-label="delete" onClick={() => onDelete(group.id)} size="large">
                     <DeleteIcon />
                   </IconButton>
                 </ListItemSecondaryAction>

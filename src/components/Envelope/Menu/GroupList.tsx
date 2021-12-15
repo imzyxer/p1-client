@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import LocalLoader from 'components/common/LocalLoader';
-import List from '@material-ui/core/List';
+import List from '@mui/material/List';
 import useRefsStore from 'stores/hooks/useRefsStore';
 import GroupItem from 'components/Envelope/Menu/GroupItem';
 import { useParams } from 'react-router-dom';

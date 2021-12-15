@@ -1,15 +1,15 @@
 import React, { FC } from 'react';
 import { EGroupIcon } from 'types/group';
-import EmailIcon from '@material-ui/icons/MailOutline';
-import SiteIcon from '@material-ui/icons/CloudQueue';
-import ShopIcon from '@material-ui/icons/ShoppingBasket';
-import CardIcon from '@material-ui/icons/Payment';
-import ImIcon from '@material-ui/icons/Telegram';
-import HostingIcon from '@material-ui/icons/Dns';
-import WorkIcon from '@material-ui/icons/WorkOutline';
-import ApplicationIcon from '@material-ui/icons/PhoneIphone';
-import DefaultIcon from '@material-ui/icons/VpnKey';
-import { SvgIconProps } from '@material-ui/core';
+import EmailIcon from '@mui/icons-material/MailOutline';
+import SiteIcon from '@mui/icons-material/CloudQueue';
+import ShopIcon from '@mui/icons-material/ShoppingBasket';
+import CardIcon from '@mui/icons-material/Payment';
+import ImIcon from '@mui/icons-material/Telegram';
+import HostingIcon from '@mui/icons-material/Dns';
+import WorkIcon from '@mui/icons-material/WorkOutline';
+import ApplicationIcon from '@mui/icons-material/PhoneIphone';
+import DefaultIcon from '@mui/icons-material/VpnKey';
+import { SvgIconProps } from '@mui/material';
 
 export const mapIcons = new Map();
 mapIcons.set(EGroupIcon.EMAIL, {

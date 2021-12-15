@@ -1,17 +1,8 @@
 import React, { FC } from 'react';
-import MuiListItemIcon from '@material-ui/core/ListItemIcon';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    minWidth: theme.spacing(5),
-  },
-}));
+import MuiListItemIcon from '@mui/material/ListItemIcon';
 
 const ListItemIcon: FC = ({ children }) => {
-  const classes = useStyles();
-
-  return <MuiListItemIcon className={classes.root}>{children}</MuiListItemIcon>;
+  return <MuiListItemIcon sx={{ minWidth: t => t.spacing(5) }}>{children}</MuiListItemIcon>;
 };
 
 export default ListItemIcon;

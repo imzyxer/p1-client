@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import Grid from '@material-ui/core/Grid';
+import Grid from '@mui/material/Grid';
 
 import { Field } from 'formik';
-import { TextField } from 'formik-material-ui';
+import { TextField } from 'formik-mui';
 
 const PieceForCard: FC = () => (
   <>

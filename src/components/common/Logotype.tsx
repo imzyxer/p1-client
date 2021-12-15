@@ -1,22 +1,18 @@
 import React, { FC } from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import LogotypeIcon from '@material-ui/icons/Https';
-import Typography from '@material-ui/core/Typography';
-import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import Avatar from '@mui/material/Avatar';
+import LogotypeIcon from '@mui/icons-material/Https';
+import Typography from '@mui/material/Typography';
 
-const styles = (theme: Theme) =>
-  createStyles({
-    avatar: {
-      margin: theme.spacing(1),
-      backgroundColor: theme.palette.secondary.main,
-      width: theme.spacing(7),
-      height: theme.spacing(7),
-    },
-  });
-
-const Logotype: FC<WithStyles<typeof styles>> = ({ classes }) => (
+const Logotype: FC = () => (
   <>
-    <Avatar className={classes.avatar}>
+    <Avatar
+      sx={{
+        m: 1,
+        backgroundColor: 'secondary.main',
+        width: t => t.spacing(7),
+        height: t => t.spacing(7),
+      }}
+    >
       <LogotypeIcon />
     </Avatar>
     <Typography variant="subtitle1" color="textSecondary">
@@ -25,4 +21,4 @@ const Logotype: FC<WithStyles<typeof styles>> = ({ classes }) => (
   </>
 );
 
-export default withStyles(styles)(Logotype);
+export default Logotype;

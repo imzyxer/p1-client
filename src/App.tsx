@@ -1,8 +1,7 @@
 import React, { FC, useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { observer } from 'mobx-react';
 import GlobalLoader from 'components/common/GlobalLoader';
-import Wrapper from 'components/App/Wrapper';
 import Envelope from 'components/Envelope';
 import useAppStore from 'stores/hooks/useAppStore';
 import DashboardElement from 'elements/DashboardElement';
@@ -27,23 +26,25 @@ const App: FC = () => {
   }
 
   return (
-    <Routes>
-      <Route path="/" element={<Wrapper />}>
-        <Route index element={<HomeElement />} />
-        <Route element={<Envelope />}>
-          <Route path="dashboard" element={<DashboardElement />} />
-          <Route path="group/:groupId" element={<GroupViewElement />} />
-          <Route path="history" element={<HistoryElement />} />
-          <Route path="profile" element={<ProfileElement />} />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/">
+          <Route index element={<HomeElement />} />
+          <Route element={<Envelope />}>
+            <Route path="dashboard" element={<DashboardElement />} />
+            <Route path="group/:groupId" element={<GroupViewElement />} />
+            <Route path="history" element={<HistoryElement />} />
+            <Route path="profile" element={<ProfileElement />} />
+          </Route>
+
+          <Route path="login" element={<LoginElement />} />
+          <Route path="signup" element={<SignupElement />} />
+
+          <Route path="error/500" element={<InternalErrorElement />} />
+          <Route path="*" element={<NotFoundElement />} />
         </Route>
-
-        <Route path="login" element={<LoginElement />} />
-        <Route path="signup" element={<SignupElement />} />
-
-        <Route path="error/500" element={<InternalErrorElement />} />
-        <Route path="*" element={<NotFoundElement />} />
-      </Route>
-    </Routes>
+      </Routes>
+    </BrowserRouter>
   );
 };
 

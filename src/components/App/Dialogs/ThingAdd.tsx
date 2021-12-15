@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 import { observer } from 'mobx-react';
 import ThingTypeIcon from 'components/common/ThingTypeIcon';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import Button from '@material-ui/core/Button';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { useTheme } from '@material-ui/core/styles';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import Button from '@mui/material/Button';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 import DialogTitle from 'components/layout/DialogTitle';
 import { Form, Formik, FormikHelpers } from 'formik';
 import { IThingForFormik } from 'types/thing';
@@ -19,7 +19,7 @@ const ThingAdd: FC = () => {
   const store = useThingAddStore();
   // const storeRefs = useRefsStore();
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('xs'));
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const { enqueueSnackbar } = useSnackbar();
   const handleOnClose = (event: React.MouseEvent, reason: string) => {
     if (reason !== 'backdropClick') store.close();

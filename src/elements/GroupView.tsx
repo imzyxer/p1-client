@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 import GroupViewComponent from 'components/Group';
 import { observer } from 'mobx-react';
 import useGroupStore from 'stores/hooks/useGroupStore';
-import LinearProgress from '@material-ui/core/LinearProgress';
+import LinearProgress from '@mui/material/LinearProgress';
 import { useParams } from 'react-router-dom';
 import Empty from 'components/common/Empty';
 import { EElement, EProgress } from 'types/app';

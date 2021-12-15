@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import { SvgIconProps } from '@material-ui/core';
+import { SvgIconProps } from '@mui/material';
 import { EThingType } from 'types/thing';
-import VpnKeyIcon from '@material-ui/icons/VpnKey';
-import PaymentIcon from '@material-ui/icons/Payment';
+import VpnKeyIcon from '@mui/icons-material/VpnKey';
+import PaymentIcon from '@mui/icons-material/Payment';
 
 const ThingTypeIcon: FC<SvgIconProps & { type: EThingType }> = ({ type, ...props }) => {
   const map = {

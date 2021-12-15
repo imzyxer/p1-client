@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
-import ListItem from '@material-ui/core/ListItem';
+import ListItem from '@mui/material/ListItem';
 import ListItemIcon from 'components/layout/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import VpnKeyIcon from '@material-ui/icons/VpnKey';
-import PaymentIcon from '@material-ui/icons/Payment';
+import ListItemText from '@mui/material/ListItemText';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import VpnKeyIcon from '@mui/icons-material/VpnKey';
+import PaymentIcon from '@mui/icons-material/Payment';
 import useThingAddStore from 'stores/hooks/useThingAddStore';
 import { EThingType } from 'types/thing';
 

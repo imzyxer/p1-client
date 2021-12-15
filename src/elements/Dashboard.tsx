@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import { reaction } from 'mobx';
 import DashboardComponent from 'components/Dashboard';
 import useDashboardStore from 'stores/hooks/useDashboardStore';
-import LinearProgress from '@material-ui/core/LinearProgress';
+import LinearProgress from '@mui/material/LinearProgress';
 import useAppStore from 'stores/hooks/useAppStore';
 import { EElement } from 'types/app';
 

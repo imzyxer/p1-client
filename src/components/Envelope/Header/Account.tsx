@@ -1,19 +1,22 @@
 import React, { FC } from 'react';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import IconButton from '@material-ui/core/IconButton';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import FaceIcon from '@material-ui/icons/Face';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import IconButton from '@mui/material/IconButton';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import FaceIcon from '@mui/icons-material/Face';
 import { observer } from 'mobx-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getHistoryUrn, getLoginUrn, getProfileUrn } from 'utils/getUrn';
 import useAppStore from 'stores/hooks/useAppStore';
 import ListItemIcon from 'components/layout/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import HistoryIcon from '@material-ui/icons/History';
-import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
-import Hidden from '@material-ui/core/Hidden';
+import ListItemText from '@mui/material/ListItemText';
+import HistoryIcon from '@mui/icons-material/History';
+import { Theme } from '@mui/material/styles';
+import { WithStyles } from '@mui/styles';
+import createStyles from '@mui/styles/createStyles';
+import withStyles from '@mui/styles/withStyles';
+import Hidden from '@mui/material/Hidden';
 import { EElement } from 'types/app';
 
 const styles = (theme: Theme) =>
@@ -51,8 +54,9 @@ const Account: FC<WithStyles<typeof styles>> = ({ classes }) => {
         onClick={handleMenu}
         color="inherit"
         className={classes.root}
+        size="large"
       >
-        <Hidden smDown>
+        <Hidden mdDown>
           <span className={classes.email}>{appStore.user.email}</span>
         </Hidden>
         <AccountCircle />

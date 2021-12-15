@@ -3,14 +3,14 @@ import { observer } from 'mobx-react';
 import useThingEditStore from 'stores/hooks/useThingEditStore';
 import ThingTypeIcon from 'components/common/ThingTypeIcon';
 import { EProgress } from 'types/app';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import Button from '@material-ui/core/Button';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import IconButton from '@material-ui/core/IconButton';
-import { useTheme } from '@material-ui/core/styles';
-import DeleteIcon from '@material-ui/icons/Delete';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import Button from '@mui/material/Button';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import IconButton from '@mui/material/IconButton';
+import { useTheme } from '@mui/material/styles';
+import DeleteIcon from '@mui/icons-material/Delete';
 import GlobalLoader from 'components/common/GlobalLoader';
 import DialogTitle from 'components/layout/DialogTitle';
 import { Form, Formik, FormikHelpers } from 'formik';
@@ -23,7 +23,7 @@ import ThingBlank from 'components/App/forms/ThingBlank';
 const ThingEdit: FC = () => {
   const store = useThingEditStore();
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('xs'));
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const { enqueueSnackbar } = useSnackbar();
   const handleOnClose = (event: React.MouseEvent, reason: string) => {
     if (reason !== 'backdropClick') store.close();
@@ -73,7 +73,7 @@ const ThingEdit: FC = () => {
               <ThingBlank type={store.data.type} />
             </DialogContent>
             <DialogActions>
-              <IconButton aria-label="delete" onClick={onDelete}>
+              <IconButton aria-label="delete" onClick={onDelete} size="large">
                 <DeleteIcon />
               </IconButton>
               <Button type="submit" color="primary" disabled={!dirty || isSubmitting}>

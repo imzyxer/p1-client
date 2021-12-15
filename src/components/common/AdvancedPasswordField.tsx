@@ -1,13 +1,13 @@
 import React, { FC, useState } from 'react';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import IconButton from '@material-ui/core/IconButton';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import OutlinedInput from '@mui/material/OutlinedInput';
 
-const AdvancedPasswordField: FC<{ id: string; value: string; label: string; labelWidth: number }> = ({ id, value, label, labelWidth }) => {
+const AdvancedPasswordField: FC<{ id: string; value: string; label: string }> = ({ id, value, label }) => {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -26,12 +26,12 @@ const AdvancedPasswordField: FC<{ id: string; value: string; label: string; labe
         value={value}
         endAdornment={
           <InputAdornment position="end">
-            <IconButton aria-label="toggle password visibility" onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword} edge="end">
+            <IconButton aria-label="toggle password visibility" onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword} edge="end" size="large">
               {showPassword ? <Visibility /> : <VisibilityOff />}
             </IconButton>
           </InputAdornment>
         }
-        labelWidth={labelWidth}
+        label={label}
       />
     </FormControl>
   );

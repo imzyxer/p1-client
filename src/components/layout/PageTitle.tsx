@@ -1,7 +1,10 @@
 import React from 'react';
-import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import { SvgIconProps } from '@material-ui/core';
+import { Theme } from '@mui/material/styles';
+import { WithStyles } from '@mui/styles';
+import createStyles from '@mui/styles/createStyles';
+import withStyles from '@mui/styles/withStyles';
+import Typography from '@mui/material/Typography';
+import { SvgIconProps } from '@mui/material';
 
 const styles = (theme: Theme) =>
   createStyles({
