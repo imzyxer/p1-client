@@ -91,7 +91,7 @@ const Login: FC = () => {
                   <Alert severity="error">{errorMessage}</Alert>
                 </Box>
               </Collapse>
-              <Form>
+              <Form style={{ width: '100%' }}>
                 <Box mb={2}>
                   <Field
                     id="login"
