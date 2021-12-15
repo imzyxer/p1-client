@@ -28,18 +28,18 @@
   },
   "rules": {
     "prettier/prettier": "error",
-    "arrow-parens": [2, "as-needed"],
-    "object-curly-newline": [2, { "consistent": true }],
-    "max-classes-per-file": 0,
-    "no-console": 0,
-    "operator-linebreak": [2, "after"],
-    "max-len": [2, { "code": 160 }],
-    "@typescript-eslint/lines-between-class-members": [2, "always", { "exceptAfterSingleLine": true }],
-    "@typescript-eslint/explicit-module-boundary-types": [0],
-    "@typescript-eslint/no-explicit-any": [0],
-    "@typescript-eslint/no-unused-vars": [1],
-    "import/no-cycle": 0,
-    "react/jsx-props-no-spreading": [1, {
+    "arrow-parens": ["error", "as-needed"],
+    "object-curly-newline": ["error", { "consistent": true }],
+    "max-classes-per-file": "off",
+    "no-console": "off",
+    "operator-linebreak": ["error", "after"],
+    "max-len": ["error", { "code": 160 }],
+    "@typescript-eslint/lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
+    "@typescript-eslint/explicit-module-boundary-types": ["off"],
+    "@typescript-eslint/no-explicit-any": ["off"],
+    "@typescript-eslint/no-unused-vars": ["warn"],
+    "import/no-cycle": "off",
+    "react/jsx-props-no-spreading": ["warn", {
       "html": "enforce",
       "custom": "ignore"
     }]
