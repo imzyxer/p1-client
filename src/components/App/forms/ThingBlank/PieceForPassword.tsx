@@ -14,7 +14,7 @@ const PieceForPassword: FC = () => (
       <Field id="login" component={TextField} name="payload.login" label="Login" variant="outlined" required fullWidth autoComplete="new-login" />
     </Grid>
     <Grid item xs={6}>
-      <FormikPasswordField id="password" name="payload.password" label="Password" labelWidth={80} autoComplete="new-password" />
+      <FormikPasswordField id="password" name="payload.password" label="Password" autoComplete="new-password" />
     </Grid>
   </>
 );

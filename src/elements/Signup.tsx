@@ -97,7 +97,7 @@ const Signup: FC = () => {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <FormikPasswordField id="password" name="password" label="Password *" labelWidth={85} required autoComplete="new-password" />
+                  <FormikPasswordField id="password" name="password" label="Password *" required autoComplete="new-password" />
                 </Grid>
                 <Grid item xs={12}>
                   <Field

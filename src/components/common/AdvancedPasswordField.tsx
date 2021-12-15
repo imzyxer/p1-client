@@ -32,6 +32,7 @@ const AdvancedPasswordField: FC<{ id: string; value: string; label: string }> = 
           </InputAdornment>
         }
         label={label}
+        sx={{ fontFamily: `'Roboto Mono', monospace` }}
       />
     </FormControl>
   );

@@ -13,10 +13,9 @@ type TProps = {
   id: string;
   name: string;
   label: string;
-  labelWidth: number;
 };
 
-const FormikPasswordField: FC<TProps & OutlinedInputProps> = ({ id, name, label, labelWidth, ...muiParams }) => {
+const FormikPasswordField: FC<TProps & OutlinedInputProps> = ({ id, name, label, ...muiParams }) => {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -51,6 +50,7 @@ const FormikPasswordField: FC<TProps & OutlinedInputProps> = ({ id, name, label,
               </InputAdornment>
             }
             label={label}
+            sx={{ fontFamily: `'Roboto Mono', monospace` }}
           />
           <FormHelperText>{meta.touched && meta.error}</FormHelperText>
         </FormControl>

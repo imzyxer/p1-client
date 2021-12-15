@@ -107,7 +107,7 @@ const Login: FC = () => {
                     fullWidth
                   />
                 </Box>
-                <FormikPasswordField id="password" name="password" label="Password *" labelWidth={85} required autoComplete="current-password" />
+                <FormikPasswordField id="password" name="password" label="Password *" required autoComplete="current-password" />
                 <Box
                   sx={{
                     margin: t => t.spacing(3, 0, 2),

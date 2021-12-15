@@ -26,10 +26,10 @@ const ProfileBlank: FC = () => {
       {values.isChangePassword && (
         <>
           <Grid item xs={12}>
-            <FormikPasswordField id="currentPassword" name="currentPassword" label="Current password" labelWidth={180} disabled required />
+            <FormikPasswordField id="currentPassword" name="currentPassword" label="Current password" disabled required />
           </Grid>
           <Grid item xs={12}>
-            <FormikPasswordField id="newPassword" name="newPassword" label="New password" labelWidth={120} disabled required />
+            <FormikPasswordField id="newPassword" name="newPassword" label="New password" disabled required />
           </Grid>
         </>
       )}
