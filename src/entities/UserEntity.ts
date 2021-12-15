@@ -34,7 +34,7 @@ class UserEntity {
   validationSchemaForSignup = () =>
     Yup.object({
       login: Yup.string().required('This field is required').email('The email is invalid'),
-      password: Yup.string().required('This field is required').password().label('Password'),
+      password: Yup.string().min(8).max(250).required('This field is required').minLowercase(1).minUppercase(1).minNumbers(1).label('Password'),
       invitation: Yup.string().required('This field is required').length(26).label('Invitation code'),
     });
 }

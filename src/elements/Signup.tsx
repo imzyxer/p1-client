@@ -108,7 +108,12 @@ const Signup: FC = () => {
                     variant="outlined"
                     required
                     fullWidth
-                    InputProps={{ readOnly: isInvitationCodeReadonly }}
+                    InputProps={{
+                      readOnly: isInvitationCodeReadonly,
+                      sx: {
+                        fontFamily: `'Roboto Mono', monospace`,
+                      },
+                    }}
                   />
                 </Grid>
               </Grid>
