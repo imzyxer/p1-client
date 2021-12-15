@@ -3,6 +3,7 @@ import Grid from '@mui/material/Grid';
 
 import { Field } from 'formik';
 import { TextField } from 'formik-mui';
+import FormikPasswordField from 'components/common/FormikPasswordField';
 
 const PieceForCard: FC = () => (
   <>
@@ -10,13 +11,13 @@ const PieceForCard: FC = () => (
       <Field id="number" component={TextField} name="payload.number" label="Card number" variant="outlined" required fullWidth autoComplete="cc-number" />
     </Grid>
     <Grid item xs={4}>
-      <Field id="pin" component={TextField} name="payload.pin" label="PIN" variant="outlined" fullWidth autoComplete="cc-pin" />
+      <FormikPasswordField id="pin" name="payload.pin" label="PIN" autoComplete="cc-pin" />
     </Grid>
     <Grid item xs={8}>
       <Field id="holder" component={TextField} name="payload.holder" label="Name on card" variant="outlined" fullWidth autoComplete="cc-name" />
     </Grid>
     <Grid item xs={4}>
-      <Field id="cvc" component={TextField} name="payload.cvc" label="CVC" variant="outlined" fullWidth autoComplete="cc-csc" />
+      <FormikPasswordField id="cvc" name="payload.cvc" label="CVC" autoComplete="cc-csc" />
     </Grid>
   </>
 );
