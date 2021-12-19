@@ -39,7 +39,11 @@ const Index: FC = () => {
       <DialogContent dividers>
         <Grid container spacing={2}>
           {store.data.type === EThingType.PASSWORD && <PieceForPassword payload={store.passwordPayload} />}
-          {store.data.type === EThingType.CARD && <PieceForCard payload={store.cardPayload} />}
+          {store.data.type === EThingType.CARD && (
+            <Grid item xs={12}>
+              <PieceForCard payload={store.cardPayload} />
+            </Grid>
+          )}
           {!_isEmpty(store.data.comment) && (
             <Grid item xs={12}>
               <Typography variant="h6" gutterBottom>

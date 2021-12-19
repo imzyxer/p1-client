@@ -14,13 +14,13 @@ const PieceForPassword: FC<{ payload: TThingPayloadPassword }> = ({ payload }) =
         {payload.link}
       </Link>
     </Grid>
-    <Grid item xs={6}>
+    <Grid item xs={12} sm={6}>
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <TextField label="Login" variant="outlined" InputProps={{ readOnly: true }} defaultValue={payload.login} fullWidth />
         <CopyButton copyText={payload.login} sx={{ ml: 1 }} />
       </Box>
     </Grid>
-    <Grid item xs={6}>
+    <Grid item xs={12} sm={6}>
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <AdvancedPasswordField id="thing_card_password" value={payload.password} label="Password" />
         <CopyButton copyText={payload.password} sx={{ ml: 1 }} />
