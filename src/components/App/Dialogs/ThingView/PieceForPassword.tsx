@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
 import Grid from '@mui/material/Grid';
-
+import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
 import { TThingPayloadPassword } from 'types/thing';
 import AdvancedPasswordField from 'components/common/AdvancedPasswordField';
+import CopyButton from 'components/common/CopyButton';
 
 const PieceForPassword: FC<{ payload: TThingPayloadPassword }> = ({ payload }) => (
   <>
@@ -14,10 +15,16 @@ const PieceForPassword: FC<{ payload: TThingPayloadPassword }> = ({ payload }) =
       </Link>
     </Grid>
     <Grid item xs={6}>
-      <TextField label="Login" variant="outlined" InputProps={{ readOnly: true }} defaultValue={payload.login} fullWidth />
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <TextField label="Login" variant="outlined" InputProps={{ readOnly: true }} defaultValue={payload.login} fullWidth />
+        <CopyButton copyText={payload.login} sx={{ ml: 1 }} />
+      </Box>
     </Grid>
     <Grid item xs={6}>
-      <AdvancedPasswordField id="thing_card_password" value={payload.password} label="Password" />
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <AdvancedPasswordField id="thing_card_password" value={payload.password} label="Password" />
+        <CopyButton copyText={payload.password} sx={{ ml: 1 }} />
+      </Box>
     </Grid>
   </>
 );
