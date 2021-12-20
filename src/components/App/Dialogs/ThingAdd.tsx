@@ -17,7 +17,6 @@ import ThingBlank from 'components/App/forms/ThingBlank';
 
 const ThingAdd: FC = () => {
   const store = useThingAddStore();
-  // const storeRefs = useRefsStore();
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const { enqueueSnackbar } = useSnackbar();
