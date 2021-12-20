@@ -18,6 +18,7 @@ import Empty from 'components/common/Empty';
 import confirmStore from 'stores/ConfirmStore';
 import { useSnackbar } from 'notistack';
 import Box from '@mui/material/Box';
+import Hidden from '@mui/material/Hidden';
 
 export enum EColumn {
   TYPE,
@@ -59,7 +60,7 @@ const ThingsTable: FC<IThingTable> = ({ columns, things }) => {
       <Table>
         <TableHead>
           <TableRow>
-            {columns.includes(EColumn.TYPE) && <TableCell>&nbsp;</TableCell>}
+            <Hidden smDown>{columns.includes(EColumn.TYPE) && <TableCell>&nbsp;</TableCell>}</Hidden>
             {columns.includes(EColumn.TITLE) && <TableCell>Title</TableCell>}
             {columns.includes(EColumn.SUBJECT) && <TableCell>Subject</TableCell>}
             {columns.includes(EColumn.STARRED) && <TableCell>&nbsp;</TableCell>}
@@ -79,18 +80,20 @@ const ThingsTable: FC<IThingTable> = ({ columns, things }) => {
               }}
               hover
             >
-              {columns.includes(EColumn.TYPE) && (
-                <TableCell align="center" padding="none">
-                  <IconButton size="medium">
-                    <ThingTypeIcon type={thing.type} />
-                  </IconButton>
-                </TableCell>
-              )}
+              <Hidden smDown>
+                {columns.includes(EColumn.TYPE) && (
+                  <TableCell align="center" padding="none">
+                    <IconButton size="medium">
+                      <ThingTypeIcon type={thing.type} />
+                    </IconButton>
+                  </TableCell>
+                )}
+              </Hidden>
               {columns.includes(EColumn.TITLE) && (
                 <TableCell size="small">
                   {thing.title}
                   <br />
-                  <Box component="small" sx={{ color: t => t.palette.text.secondary }}>
+                  <Box component="small" sx={{ color: t => t.palette.text.secondary }} whiteSpace="nowrap">
                     {thing.requested}
                   </Box>
                 </TableCell>
