@@ -1,6 +1,6 @@
 import { action, computed, makeObservable, observable } from 'mobx';
 import { fetchUser, signIn, signOut, signUp } from 'services/api/User';
-import { ERole, ETheme, IUser } from 'types/user';
+import { ELocale, ERole, ETheme, IUser } from 'types/user';
 import PrimaryClient from 'services/PrimaryClient';
 import { TRootStore } from 'stores/RootStore';
 import { EElement } from 'types/app';
@@ -11,7 +11,7 @@ const DEFAULT_USER = {
   email: '',
   theme: ETheme.LIGHT,
   timezone: 'Europe/Moscow',
-  locale: 'en_US',
+  locale: ELocale.en_US,
   lastVisit: null,
 };
 

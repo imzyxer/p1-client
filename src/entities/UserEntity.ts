@@ -2,6 +2,7 @@ import { IUser, IProfileForFormik, IProfileForUpdate } from 'types/user';
 import * as Yup from 'yup';
 import YupPassword from 'yup-password';
 import _isEmpty from 'lodash/isEmpty';
+import timezones from 'timezones-list';
 
 YupPassword(Yup);
 
@@ -11,6 +12,7 @@ class UserEntity {
     theme: profile.theme,
     locale: profile.locale,
     timezone: profile.timezone,
+    defaultTimezone: timezones.find(i => i.tzCode === profile.timezone),
     isChangePassword: false,
     currentPassword: '',
     newPassword: '',

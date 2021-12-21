@@ -9,7 +9,11 @@ export enum ERole {
 
 export enum ETheme {
   LIGHT = 'LIGHT',
-  // DARK = 'DARK',
+  DARK = 'DARK',
+}
+export enum ELocale {
+  ru_RU = 'ru_RU',
+  en_US = 'en_US',
 }
 
 export interface IUser {
@@ -17,7 +21,7 @@ export interface IUser {
   email: string;
   theme: ETheme;
   timezone: string;
-  locale: string;
+  locale: ELocale;
   lastVisit: Nullable<IHistory>;
 }
 
@@ -25,7 +29,8 @@ export interface IProfileForFormik {
   email: string;
   theme: ETheme;
   timezone: string;
-  locale: string;
+  defaultTimezone: any;
+  locale: ELocale;
   isChangePassword: boolean;
   currentPassword: Nullable<string>;
   newPassword: Nullable<string>;
@@ -35,7 +40,7 @@ export interface IProfileForUpdate {
   email: string;
   theme: ETheme;
   timezone: string;
-  locale: string;
+  locale: ELocale;
   currentPassword: Nullable<string>;
   newPassword: Nullable<string>;
 }

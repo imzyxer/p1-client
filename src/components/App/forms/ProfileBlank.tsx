@@ -2,14 +2,18 @@ import React, { FC } from 'react';
 import { observer } from 'mobx-react';
 import Grid from '@mui/material/Grid';
 import FormControlLabel from '@mui/material/FormControlLabel';
-
 import { Field, useFormikContext } from 'formik';
-import { TextField, Checkbox } from 'formik-mui';
+import { TextField, Checkbox, Select } from 'formik-mui';
 import { IProfileForFormik } from 'types/user';
 import FormikPasswordField from 'components/common/FormikPasswordField';
+import FormControl from '@mui/material/FormControl';
+import MenuItem from '@mui/material/MenuItem';
+import { LOCALES, THEMES } from 'constants/app';
+import timezones from 'timezones-list';
+import Autocomplete from '@mui/material/Autocomplete';
 
 const ProfileBlank: FC = () => {
-  const { values } = useFormikContext<IProfileForFormik>();
+  const { values, setFieldValue } = useFormikContext<IProfileForFormik>();
 
   return (
     <Grid container spacing={2}>
@@ -34,13 +38,38 @@ const ProfileBlank: FC = () => {
         </>
       )}
       <Grid item xs={12}>
-        <Field id="timezone" component={TextField} name="timezone" label="Timezone" variant="outlined" fullWidth disabled />
+        <Autocomplete
+          disableClearable
+          options={timezones}
+          fullWidth
+          defaultValue={values.defaultTimezone}
+          renderInput={params => <Field {...params} id="timezone" component={TextField} name="timezone" label="Timezone" fullWidth />}
+          onChange={(e, value: any | null) => {
+            setFieldValue('timezone', value.tzCode ?? '');
+          }}
+        />
       </Grid>
       <Grid item xs={12}>
-        <Field id="lang" component={TextField} name="locale" label="Language" variant="outlined" fullWidth disabled />
+        <FormControl variant="outlined" style={{ minWidth: '100%' }}>
+          <Field component={Select} labelId="locale" name="locale" label="Language *" required>
+            {LOCALES.map(locale => (
+              <MenuItem key={locale.value} value={locale.value}>
+                {locale.label}
+              </MenuItem>
+            ))}
+          </Field>
+        </FormControl>
       </Grid>
       <Grid item xs={12}>
-        <Field id="theme" component={TextField} name="theme" label="Theme" variant="outlined" fullWidth disabled />
+        <FormControl variant="outlined" style={{ minWidth: '100%' }}>
+          <Field component={Select} labelId="theme" name="theme" label="Theme *" required>
+            {THEMES.map(theme => (
+              <MenuItem key={theme.value} value={theme.value}>
+                {theme.label}
+              </MenuItem>
+            ))}
+          </Field>
+        </FormControl>
       </Grid>
     </Grid>
   );
