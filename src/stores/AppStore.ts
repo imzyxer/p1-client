@@ -41,6 +41,7 @@ class AppStore {
         })
       );
     } else {
+      this.setUserDataDefault();
       authenticator.revokeCredentials();
       this.init = true;
     }
@@ -54,11 +55,18 @@ class AppStore {
   @action
   public setUserData = (user: IUser) => {
     this.user = user;
+    localStorage.setItem('theme', user.theme);
+    localStorage.setItem('locale', user.locale);
   };
 
   @action
-  public resetUserData = () => {
-    this.setUserData(DEFAULT_USER);
+  public setUserDataDefault = () => {
+    const user = { ...DEFAULT_USER };
+    const theme = localStorage.getItem('theme');
+    const locale = localStorage.getItem('locale');
+    if (theme !== null && theme in ETheme) user.theme = <ETheme>theme;
+    if (locale !== null && locale in ELocale) user.locale = <ELocale>locale;
+    this.user = user;
   };
 
   @action
@@ -142,7 +150,7 @@ class AppStore {
 
   @action
   public reset = () => {
-    this.setUserData(DEFAULT_USER);
+    this.setUserDataDefault();
     this.thingHasBeenChanged = 0;
   };
 
