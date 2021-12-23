@@ -5,6 +5,7 @@ import PrimaryClient from 'services/PrimaryClient';
 import { TRootStore } from 'stores/RootStore';
 import { EElement } from 'types/app';
 import { APP_NAME } from 'constants/app';
+import { PaletteMode } from '@mui/material';
 
 const DEFAULT_USER = {
   role: ERole.GUEST,
@@ -136,6 +137,11 @@ class AppStore {
   @computed
   get userIsClient() {
     return this.userIs(ERole.CLIENT);
+  }
+
+  @computed
+  get paletteMode(): PaletteMode {
+    return <'light' | 'dark'>this.user.theme.toLowerCase();
   }
 
   @action
