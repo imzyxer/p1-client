@@ -8,7 +8,7 @@ class HistoryEntity {
       datetime: this.extractDate(item.datetime),
     }));
 
-  extractDate = (dateIso: string): string => moment(dateIso).format('MM/DD/YYYY kk:mm');
+  extractDate = (dateIso: string): string => moment.parseZone(dateIso).format('MM/DD/YYYY kk:mm');
 }
 
 export default new HistoryEntity();

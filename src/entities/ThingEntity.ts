@@ -54,7 +54,7 @@ class ThingEntity {
       requested: this.extractDate(thing.requested),
     }));
 
-  extractDate = (dateIso: string): string => moment(dateIso).format('MM/DD/YYYY kk:mm');
+  extractDate = (dateIso: string): string => moment.parseZone(dateIso).format('MM/DD/YYYY kk:mm');
 
   maskCardNumber = (number: string): string => `•••• ${number.substr(number.length - 4)}`;
 
