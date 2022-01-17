@@ -1,0 +1,12 @@
+{
+  "menu": {
+    "dashboard": "Dashboard",
+    "manageGroups": "Manage Groups",
+    "addThing": "Add Thing",
+    "addPassword": "Add Password",
+    "addCard": "Add Card",
+    "profile": "Profile",
+    "accessHistory": "Access History",
+    "logout": "Logout"
+  }
+}

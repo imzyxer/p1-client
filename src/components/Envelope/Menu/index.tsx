@@ -14,10 +14,12 @@ import { useRootStore } from 'stores/hooks/useRootStore';
 import { observer } from 'mobx-react';
 import useAppStore from 'stores/hooks/useAppStore';
 import { EElement } from 'types/app';
+import { useTranslation } from 'react-i18next';
 
 const Index: FC = () => {
   const appStore = useAppStore();
   const { groupsManageStore } = useRootStore();
+  const { t } = useTranslation();
 
   return (
     <>
@@ -26,14 +28,14 @@ const Index: FC = () => {
           <ListItemIcon>
             <DashboardIcon />
           </ListItemIcon>
-          <ListItemText primary="Dashboard" />
+          <ListItemText primary={t('menu.dashboard')} />
         </ListItem>
         <MenuItemAddThing />
         <ListItem button onClick={() => groupsManageStore.open()}>
           <ListItemIcon>
             <ManageGroupIcon />
           </ListItemIcon>
-          <ListItemText primary="Manage Groups" />
+          <ListItemText primary={t('menu.manageGroups')} />
         </ListItem>
       </List>
       <Divider />

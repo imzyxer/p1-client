@@ -1,0 +1,12 @@
+{
+  "menu": {
+    "dashboard": "Пуск",
+    "manageGroups": "Группы",
+    "addThing": "Новая запись",
+    "addPassword": "Добавить пароль",
+    "addCard": "Добавить карту",
+    "profile": "Профиль",
+    "accessHistory": "История входов",
+    "logout": "Выход"
+  }
+}

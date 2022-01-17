@@ -6,6 +6,7 @@ import PrimaryAuthenticator from 'services/PrimaryAuthenticator';
 import PrimaryClient from 'services/PrimaryClient';
 import * as Sentry from '@sentry/react';
 import { Integrations } from '@sentry/tracing';
+import './i18n';
 import App from './App';
 
 if (process.env.NODE_ENV === 'production') {

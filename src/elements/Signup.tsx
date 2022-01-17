@@ -17,6 +17,7 @@ import Collapse from '@mui/material/Collapse';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import { EElement } from 'types/app';
+import { useTranslation } from 'react-i18next';
 
 const Signup: FC = () => {
   const appStore = useAppStore();
@@ -25,19 +26,27 @@ const Signup: FC = () => {
   const navigate = useNavigate();
   const query = new URLSearchParams(location.search);
   const invitation = query.get('invitation');
+  const locale = query.get('locale');
   const isInvitationCodeReadonly = invitation !== null;
   const initialValues = { login: '', password: '', invitation: invitation ?? '' };
+  const { t, i18n } = useTranslation('signup');
 
   useEffect(() => {
-    appStore.setElement(EElement.SIGNUP, 'Welcome');
-  }, [appStore]);
+    appStore.setElement(EElement.SIGNUP, t('pageTitle'));
+  }, [t, appStore]);
+
+  useEffect(() => {
+    if (locale === 'ru_RU') {
+      i18n.changeLanguage(locale);
+    }
+  }, [t, i18n, locale]);
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <Box
         sx={{
-          marginTop: t => t.spacing(8),
+          marginTop: theme => theme.spacing(8),
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -88,7 +97,7 @@ const Signup: FC = () => {
                     component={TextField}
                     name="login"
                     type="email"
-                    label="Email"
+                    label={t('labelEmail')}
                     autoFocus
                     variant="outlined"
                     required
@@ -97,14 +106,14 @@ const Signup: FC = () => {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <FormikPasswordField id="password" name="password" label="Password *" required autoComplete="new-password" />
+                  <FormikPasswordField id="password" name="password" label={t('labelPassword')} required autoComplete="new-password" />
                 </Grid>
                 <Grid item xs={12}>
                   <Field
                     id="invitation"
                     component={TextField}
                     name="invitation"
-                    label="Invitation code"
+                    label={t('labelInvitation')}
                     variant="outlined"
                     required
                     fullWidth
@@ -119,17 +128,17 @@ const Signup: FC = () => {
               </Grid>
               <Box
                 sx={{
-                  margin: t => t.spacing(3, 0, 2),
+                  margin: theme => theme.spacing(3, 0, 2),
                 }}
               >
                 <Button type="submit" fullWidth variant="contained" color="primary" disabled={isSubmitting}>
-                  Sign Up
+                  {t('buttonSignUp')}
                 </Button>
               </Box>
               <Grid container justifyContent="flex-end">
                 <Grid item>
                   <Link href={getLoginUrn()} variant="body2">
-                    Already have an account? Sign in
+                    {t('linkSignIn')}
                   </Link>
                 </Grid>
               </Grid>
