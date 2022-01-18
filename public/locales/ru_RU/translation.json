@@ -8,5 +8,18 @@
     "profile": "Профиль",
     "accessHistory": "История входов",
     "logout": "Выход"
+  },
+  "thingsTable": {
+    "thTitle": "Название",
+    "thSubject": "Объект",
+    "thCreated": "Создано",
+    "thUpdated": "Обновлено",
+    "thRequested": "Запрошено",
+    "tooltipView": "Просмотреть",
+    "tooltipEdit": "Редактировать",
+    "tooltipStarred": "В избранное",
+    "tooltipUnStarred": "Убрать из избранного",
+    "confirmStarred": "Вы хотите добавить запись в избранное?",
+    "confirmUnStarred": "Вы хотит убрать запись из избранного?"
   }
 }

@@ -19,6 +19,8 @@ import confirmStore from 'stores/ConfirmStore';
 import { useSnackbar } from 'notistack';
 import Box from '@mui/material/Box';
 import Hidden from '@mui/material/Hidden';
+import Tooltip from '@mui/material/Tooltip';
+import { useTranslation } from 'react-i18next';
 
 export enum EColumn {
   TYPE,
@@ -37,13 +39,16 @@ interface IThingTable {
 }
 
 const ThingsTable: FC<IThingTable> = ({ columns, things }) => {
+  const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
   const thingViewStore = useThingViewStore();
   const thingEditStore = useThingEditStore();
   const openModal = (thingId: TId) => thingViewStore.open(thingId);
   const openEditModal = (thingId: TId) => thingEditStore.open(thingId);
-  const doStarred = (thingId: TId) => {
-    confirmStore.confirm({ description: 'Do you want starred/unstarred this thing?' }).then(
+  const doStarred = (thingId: TId, isStarred: boolean) => {
+    const confirmDescription = isStarred ? t('thingsTable.confirmUnStarred') : t('thingsTable.confirmStarred');
+
+    confirmStore.confirm({ description: confirmDescription }).then(
       () => {
         thingEditStore.doStarred(thingId, () => {
           enqueueSnackbar('Thing starred successfully', { variant: 'success' });
@@ -61,13 +66,13 @@ const ThingsTable: FC<IThingTable> = ({ columns, things }) => {
         <TableHead>
           <TableRow>
             <Hidden smDown>{columns.includes(EColumn.TYPE) && <TableCell>&nbsp;</TableCell>}</Hidden>
-            {columns.includes(EColumn.TITLE) && <TableCell>Title</TableCell>}
-            {columns.includes(EColumn.SUBJECT) && <TableCell>Subject</TableCell>}
+            {columns.includes(EColumn.TITLE) && <TableCell>{t('thingsTable.thTitle')}</TableCell>}
+            {columns.includes(EColumn.SUBJECT) && <TableCell>{t('thingsTable.thSubject')}</TableCell>}
             {columns.includes(EColumn.STARRED) && <TableCell>&nbsp;</TableCell>}
             {columns.includes(EColumn.EDIT) && <TableCell>&nbsp;</TableCell>}
-            {columns.includes(EColumn.CREATED) && <TableCell align="right">Created</TableCell>}
-            {columns.includes(EColumn.UPDATED) && <TableCell align="right">Updated</TableCell>}
-            {columns.includes(EColumn.REQUESTED) && <TableCell align="right">Requested</TableCell>}
+            {columns.includes(EColumn.CREATED) && <TableCell align="right">{t('thingsTable.thCreated')}</TableCell>}
+            {columns.includes(EColumn.UPDATED) && <TableCell align="right">{t('thingsTable.thUpdated')}</TableCell>}
+            {columns.includes(EColumn.REQUESTED) && <TableCell align="right">{t('thingsTable.thRequested')}</TableCell>}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -83,9 +88,11 @@ const ThingsTable: FC<IThingTable> = ({ columns, things }) => {
               <Hidden smDown>
                 {columns.includes(EColumn.TYPE) && (
                   <TableCell align="center" padding="none">
-                    <IconButton size="medium">
-                      <ThingTypeIcon type={thing.type} />
-                    </IconButton>
+                    <Tooltip title={t('thingsTable.tooltipView') as string}>
+                      <IconButton size="medium">
+                        <ThingTypeIcon type={thing.type} />
+                      </IconButton>
+                    </Tooltip>
                   </TableCell>
                 )}
               </Hidden>
@@ -93,7 +100,7 @@ const ThingsTable: FC<IThingTable> = ({ columns, things }) => {
                 <TableCell size="small">
                   {thing.title}
                   <br />
-                  <Box component="small" sx={{ color: t => t.palette.text.secondary }} whiteSpace="nowrap">
+                  <Box component="small" sx={{ color: theme => theme.palette.text.secondary }} whiteSpace="nowrap">
                     {thing.requested}
                   </Box>
                 </TableCell>
@@ -101,28 +108,32 @@ const ThingsTable: FC<IThingTable> = ({ columns, things }) => {
               {columns.includes(EColumn.SUBJECT) && <TableCell size="small">{thing.subject}</TableCell>}
               {columns.includes(EColumn.STARRED) && (
                 <TableCell size="small" padding="none">
-                  <IconButton
-                    size="medium"
-                    onClick={(e: React.MouseEvent) => {
-                      doStarred(thing.id);
-                      e.stopPropagation();
-                    }}
-                  >
-                    {thing.isStarred ? <StarredTrue /> : <StarredFalse />}
-                  </IconButton>
+                  <Tooltip title={t(thing.isStarred ? 'thingsTable.tooltipUnStarred' : 'thingsTable.tooltipStarred') as string}>
+                    <IconButton
+                      size="medium"
+                      onClick={(e: React.MouseEvent) => {
+                        doStarred(thing.id, thing.isStarred);
+                        e.stopPropagation();
+                      }}
+                    >
+                      {thing.isStarred ? <StarredTrue /> : <StarredFalse />}
+                    </IconButton>
+                  </Tooltip>
                 </TableCell>
               )}
               {columns.includes(EColumn.EDIT) && (
                 <TableCell align="center" size="small" padding="none">
-                  <IconButton
-                    size="medium"
-                    onClick={(e: React.MouseEvent) => {
-                      openEditModal(thing.id);
-                      e.stopPropagation();
-                    }}
-                  >
-                    <SettingsIcon />
-                  </IconButton>
+                  <Tooltip title={t('thingsTable.tooltipEdit') as string}>
+                    <IconButton
+                      size="medium"
+                      onClick={(e: React.MouseEvent) => {
+                        openEditModal(thing.id);
+                        e.stopPropagation();
+                      }}
+                    >
+                      <SettingsIcon />
+                    </IconButton>
+                  </Tooltip>
                 </TableCell>
               )}
               {columns.includes(EColumn.CREATED) && (

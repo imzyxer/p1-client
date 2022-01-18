@@ -8,5 +8,18 @@
     "profile": "Profile",
     "accessHistory": "Access History",
     "logout": "Logout"
+  },
+  "thingsTable": {
+    "thTitle": "Title",
+    "thSubject": "Subject",
+    "thCreated": "Created",
+    "thUpdated": "Updated",
+    "thRequested": "Requested",
+    "tooltipView": "View thing",
+    "tooltipEdit": "Edit thing",
+    "tooltipStarred": "Starred thing",
+    "tooltipUnStarred": "Unstarred thing",
+    "confirmStarred": "Do you want starred this thing?",
+    "confirmUnStarred": "Do you want unstarred this thing?"
   }
 }

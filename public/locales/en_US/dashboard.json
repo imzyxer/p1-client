@@ -1,3 +1,5 @@
 {
-  "pageTitle": "Dashboard"
+  "pageTitle": "Dashboard",
+  "blockTitle": "Starred",
+  "blockLatest": "Latest"
 }
