@@ -18,6 +18,7 @@ import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import { EElement } from 'types/app';
 import { useTranslation } from 'react-i18next';
+import { LOCALE_EN, LOCALE_RU } from 'constants/app';
 
 const Signup: FC = () => {
   const appStore = useAppStore();
@@ -28,7 +29,7 @@ const Signup: FC = () => {
   const invitation = query.get('invitation');
   const locale = query.get('locale');
   const isInvitationCodeReadonly = invitation !== null;
-  const initialValues = { login: '', password: '', invitation: invitation ?? '' };
+  const initialValues = { login: '', password: '', invitation: invitation ?? '', locale: locale ?? LOCALE_EN };
   const { t, i18n } = useTranslation('signup');
 
   useEffect(() => {
@@ -36,10 +37,10 @@ const Signup: FC = () => {
   }, [t, appStore]);
 
   useEffect(() => {
-    if (locale === 'ru_RU') {
+    if (locale === LOCALE_RU) {
       i18n.changeLanguage(locale);
     }
-  }, [t, i18n, locale]);
+  }, [i18n, locale]);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -106,7 +107,7 @@ const Signup: FC = () => {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <FormikPasswordField id="password" name="password" label={t('labelPassword')} required autoComplete="new-password" />
+                  <FormikPasswordField id="password" name="password" label={t('labelPassword')} autoComplete="new-password" />
                 </Grid>
                 <Grid item xs={12}>
                   <Field

@@ -9,13 +9,15 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import DialogTitle from 'components/layout/DialogTitle';
 import { Form, Formik, FormikHelpers } from 'formik';
-import { IThingForFormik } from 'types/thing';
+import { EThingType, IThingForFormik } from 'types/thing';
 import { useSnackbar } from 'notistack';
 import FormLoader from 'components/common/FormLoader';
 import useThingAddStore from 'stores/hooks/useThingAddStore';
 import ThingBlank from 'components/App/forms/ThingBlank';
+import { useTranslation } from 'react-i18next';
 
 const ThingAdd: FC = () => {
+  const { t } = useTranslation();
   const store = useThingAddStore();
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
@@ -28,9 +30,7 @@ const ThingAdd: FC = () => {
     store.doCreate(
       values,
       () => {
-        enqueueSnackbar('Thing added successfully', {
-          variant: 'success',
-        });
+        enqueueSnackbar(t('snackbar.thingAdded'), { variant: 'success' });
       },
       () => {
         enqueueSnackbar('Oops! Something wrong', {
@@ -42,6 +42,17 @@ const ThingAdd: FC = () => {
   };
 
   const { initialValues, isOpened: open } = store;
+  let title = '';
+  switch (store.type) {
+    case EThingType.CARD:
+      title = t('dialog.thing.titleCard');
+      break;
+    case EThingType.PASSWORD:
+      title = t('dialog.thing.titlePassword');
+      break;
+    default:
+      title = t('dialog.thing.titleDefault');
+  }
 
   return (
     <Dialog fullWidth fullScreen={fullScreen} open={open} onClose={handleOnClose} aria-labelledby="responsive-dialog-title">
@@ -50,7 +61,7 @@ const ThingAdd: FC = () => {
           <Form>
             <DialogTitle onClose={handleClose}>
               <ThingTypeIcon type={store.type} />
-              <span>&nbsp;Add Thing</span>
+              <span>&nbsp;{title}</span>
             </DialogTitle>
             <FormLoader />
             <DialogContent dividers>
@@ -58,10 +69,10 @@ const ThingAdd: FC = () => {
             </DialogContent>
             <DialogActions>
               <Button type="submit" color="primary" disabled={!dirty || isSubmitting}>
-                Save
+                {t('dialog.btnSave')}
               </Button>
               <Button onClick={handleClose} color="primary">
-                Cancel
+                {t('dialog.btnCancel')}
               </Button>
             </DialogActions>
           </Form>

@@ -94,11 +94,11 @@ class AppStore {
   };
 
   @action
-  public signUp = (params: { login: string; password: string; invitation: string }, success: () => void, failure: (response: any) => void) => {
-    const { login, password, invitation } = params;
+  public signUp = (params: { login: string; password: string; invitation: string; locale: string }, success: () => void, failure: (response: any) => void) => {
+    const { login, password, invitation, locale } = params;
     const client = PrimaryClient.getClient();
     const authenticator = client().getAuthenticator();
-    signUp(login, password, invitation)
+    signUp(login, password, invitation, locale)
       .then(
         action('doSignUpSuccess', response => {
           this.setUserData(response.result.profile);

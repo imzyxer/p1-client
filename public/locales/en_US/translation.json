@@ -18,8 +18,63 @@
     "tooltipView": "View thing",
     "tooltipEdit": "Edit thing",
     "tooltipStarred": "Starred thing",
-    "tooltipUnStarred": "Unstarred thing",
-    "confirmStarred": "Do you want starred this thing?",
-    "confirmUnStarred": "Do you want unstarred this thing?"
+    "tooltipUnStarred": "Unstarred thing"
+  },
+  "validations": {
+    "length": "Must be exactly {{length}} characters",
+    "email": "Email is invalid",
+    "invalid": "Field is invalid",
+    "invalidType": "Must be a {{type}}",
+    "required": "Field is required",
+    "stringMin": "Must be at least {{min}} characters",
+    "stringMax": "Must be at most {{max}} characters"
+  },
+  "snackbar": {
+    "groupAdded": "Group added successfully",
+    "groupUpdated": "Group updated successfully",
+    "groupDeleted": "Group deleted successfully",
+    "thingAdded": "Thing added successfully",
+    "thingUpdated": "Thing updated successfully",
+    "thingDeleted": "Thing deleted successfully",
+    "thingStarred": "Thing starred successfully",
+    "thingUnStarred": "Thing unstarred successfully",
+    "profileUpdated": "Profile updated successfully"
+  },
+  "dialog": {
+    "btnOk": "Ok",
+    "btnCancel": "Cancel",
+    "btnSave": "Save",
+    "btnClose": "Close",
+    "btnBack": "Back",
+    "confirm": {
+      "title": "Are you sure?"
+    },
+    "thing": {
+      "titleDefault": "Add Thing",
+      "titlePassword": "Add Password",
+      "titleCard": "Add Card",
+      "tooltipDelete": "Delete thing",
+      "labelTitle": "Title",
+      "labelGroup": "Group *",
+      "labelComment": "Comment",
+      "labelCardNumber": "Card number",
+      "labelPin": "PIN",
+      "labelHolder": "Name on card",
+      "labelCvc": "CVC",
+      "labelLink": "Link",
+      "labelLogin": "Login",
+      "labelPassword": "Password"
+    },
+    "group": {
+      "title": "Manage Groups",
+      "btnAdd": "Add Group",
+      "tooltipDelete": "Delete group",
+      "labelName": "Name",
+      "labelIcon": "Icon *"
+    }
+  },
+  "confirm": {
+    "starred": "Do you want starred this thing?",
+    "unStarred": "Do you want unstarred this thing?"
   }
 }

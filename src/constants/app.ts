@@ -11,13 +11,15 @@ export const THEMES = [
     value: ETheme.DARK,
   },
 ];
+export const LOCALE_EN = 'en_US';
+export const LOCALE_RU = 'ru_RU';
 export const LOCALES = [
   {
     label: 'English (United States)',
-    value: 'en_US',
+    value: LOCALE_EN,
   },
   {
     label: 'Russian (Russia)',
-    value: 'ru_RU',
+    value: LOCALE_RU,
   },
 ];

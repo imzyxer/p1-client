@@ -46,16 +46,21 @@ const ThingsTable: FC<IThingTable> = ({ columns, things }) => {
   const openModal = (thingId: TId) => thingViewStore.open(thingId);
   const openEditModal = (thingId: TId) => thingEditStore.open(thingId);
   const doStarred = (thingId: TId, isStarred: boolean) => {
-    const confirmDescription = isStarred ? t('thingsTable.confirmUnStarred') : t('thingsTable.confirmStarred');
+    const confirmDescription = isStarred ? t('confirm.unStarred') : t('confirm.starred');
+    const snackbarMessage = isStarred ? t('snackbar.thingUnStarred') : t('snackbar.thingStarred');
 
-    confirmStore.confirm({ description: confirmDescription }).then(
-      () => {
-        thingEditStore.doStarred(thingId, () => {
-          enqueueSnackbar('Thing starred successfully', { variant: 'success' });
-        });
-      },
-      () => {}
-    );
+    confirmStore
+      .confirm({
+        description: confirmDescription,
+      })
+      .then(
+        () => {
+          thingEditStore.doStarred(thingId, () => {
+            enqueueSnackbar(snackbarMessage, { variant: 'success' });
+          });
+        },
+        () => {}
+      );
   };
 
   if (things.length === 0) return <Empty />;

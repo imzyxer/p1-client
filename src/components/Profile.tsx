@@ -12,8 +12,10 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { IProfileForFormik } from 'types/user';
 import { useSnackbar } from 'notistack';
+import { useTranslation } from 'react-i18next';
 
 const Profile: FC = () => {
+  const { t } = useTranslation();
   const { profileEditStore } = useRootStore();
   const { enqueueSnackbar } = useSnackbar();
   const { initialValues } = profileEditStore;
@@ -21,9 +23,7 @@ const Profile: FC = () => {
     profileEditStore.doUpdate(
       values,
       () => {
-        enqueueSnackbar('Profile updated successfully', {
-          variant: 'success',
-        });
+        enqueueSnackbar(t('snackbar.profileUpdated'), { variant: 'success' });
         setSubmitting(false);
         resetForm({ values });
       },

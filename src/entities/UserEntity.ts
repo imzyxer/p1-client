@@ -3,6 +3,7 @@ import * as Yup from 'yup';
 import YupPassword from 'yup-password';
 import _isEmpty from 'lodash/isEmpty';
 import timezones from 'timezones-list';
+import i18n from 'i18next';
 
 YupPassword(Yup);
 
@@ -29,15 +30,15 @@ class UserEntity {
 
   validationSchemaForSignIn = () =>
     Yup.object({
-      login: Yup.string().required('This field is required').email('The email is invalid'),
-      password: Yup.string().required('This field is required'),
+      login: Yup.string().required(i18n.t('validations.required')).email(i18n.t('validations.email')),
+      password: Yup.string().required(i18n.t('validations.required')),
     });
 
   validationSchemaForSignup = () =>
     Yup.object({
-      login: Yup.string().required('This field is required').email('The email is invalid'),
-      password: Yup.string().min(8).max(250).required('This field is required').minLowercase(1).minUppercase(1).minNumbers(1).label('Password'),
-      invitation: Yup.string().required('This field is required').length(26).label('Invitation code'),
+      login: Yup.string().required(i18n.t('validations.required')).email(i18n.t('validations.email')),
+      password: Yup.string().min(8).max(250).required(i18n.t('validations.required')).minLowercase(1).minUppercase(1).minNumbers(1).label('Password'),
+      invitation: Yup.string().required(i18n.t('validations.required')).length(26),
     });
 }
 
