@@ -11,29 +11,31 @@ import MenuItem from '@mui/material/MenuItem';
 import { LOCALES, THEMES } from 'constants/app';
 import timezones from 'timezones-list';
 import Autocomplete from '@mui/material/Autocomplete';
+import { useTranslation } from 'react-i18next';
 
 const ProfileBlank: FC = () => {
+  const { t } = useTranslation('profile');
   const { values, setFieldValue } = useFormikContext<IProfileForFormik>();
 
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
-        <Field id="email" component={TextField} name="email" label="Login" variant="outlined" fullWidth required />
+        <Field id="email" component={TextField} name="email" label={t('labelLogin')} variant="outlined" fullWidth required />
       </Grid>
       <Grid item xs={12}>
         <FormControlLabel
           control={<Field type="checkbox" id="isChangePassword" component={Checkbox} name="isChangePassword" />}
-          label="Change password"
+          label={t('labelChangePassword') as string}
           disabled
         />
       </Grid>
       {values.isChangePassword && (
         <>
           <Grid item xs={12}>
-            <FormikPasswordField id="currentPassword" name="currentPassword" label="Current password" disabled required />
+            <FormikPasswordField id="currentPassword" name="currentPassword" label={t('labelCurrentPassword')} disabled required />
           </Grid>
           <Grid item xs={12}>
-            <FormikPasswordField id="newPassword" name="newPassword" label="New password" disabled required />
+            <FormikPasswordField id="newPassword" name="newPassword" label={t('labelNewPassword')} disabled required />
           </Grid>
         </>
       )}
@@ -43,7 +45,7 @@ const ProfileBlank: FC = () => {
           options={timezones}
           fullWidth
           defaultValue={values.defaultTimezone}
-          renderInput={params => <Field {...params} id="timezone" component={TextField} name="timezone" label="Timezone" fullWidth />}
+          renderInput={params => <Field {...params} id="timezone" component={TextField} name="timezone" label={t('labelTimezone')} fullWidth />}
           onChange={(e, value: any | null) => {
             setFieldValue('timezone', value.tzCode ?? '');
           }}
@@ -51,7 +53,7 @@ const ProfileBlank: FC = () => {
       </Grid>
       <Grid item xs={12}>
         <FormControl variant="outlined" style={{ minWidth: '100%' }}>
-          <Field component={Select} labelId="locale" name="locale" label="Language *" required>
+          <Field component={Select} labelId="locale" name="locale" label={t('labelLanguage')} required>
             {LOCALES.map(locale => (
               <MenuItem key={locale.value} value={locale.value}>
                 {locale.label}
@@ -62,7 +64,7 @@ const ProfileBlank: FC = () => {
       </Grid>
       <Grid item xs={12}>
         <FormControl variant="outlined" style={{ minWidth: '100%' }}>
-          <Field component={Select} labelId="theme" name="theme" label="Theme *" required>
+          <Field component={Select} labelId="theme" name="theme" label={t('labelTheme')} required>
             {THEMES.map(theme => (
               <MenuItem key={theme.value} value={theme.value}>
                 {theme.label}

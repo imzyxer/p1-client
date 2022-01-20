@@ -1,0 +1,9 @@
+{
+  "pageTitle": "Access History",
+  "thDate": "Date",
+  "thOS": "OS",
+  "thBrowser": "Browser",
+  "thLocation": "Location",
+  "labelCurrent": "Current",
+  "labelPrevious": "Previous"
+}

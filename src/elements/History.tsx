@@ -5,15 +5,17 @@ import useHistoryStore from 'stores/hooks/useHistoryStore';
 import { EElement, EProgress } from 'types/app';
 import LinearProgress from '@mui/material/LinearProgress';
 import useAppStore from 'stores/hooks/useAppStore';
+import { useTranslation } from 'react-i18next';
 
 const History: FC = () => {
+  const { t } = useTranslation('history');
   const appStore = useAppStore();
   const historyStore = useHistoryStore();
 
   useEffect(() => {
-    appStore.setElement(EElement.HISTORY, 'History');
+    appStore.setElement(EElement.HISTORY, t('pageTitle'));
     historyStore.initiate();
-  }, [appStore, historyStore]);
+  }, [t, appStore, historyStore]);
 
   if (historyStore.progress !== EProgress.LOADED) return <LinearProgress />;
 
