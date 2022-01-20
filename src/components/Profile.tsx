@@ -12,8 +12,10 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { IProfileForFormik } from 'types/user';
 import { useSnackbar } from 'notistack';
+import { useTranslation } from 'react-i18next';
 
 const Profile: FC = () => {
+  const { t } = useTranslation(['translation', 'profile']);
   const { profileEditStore } = useRootStore();
   const { enqueueSnackbar } = useSnackbar();
   const { initialValues } = profileEditStore;
@@ -21,9 +23,7 @@ const Profile: FC = () => {
     profileEditStore.doUpdate(
       values,
       () => {
-        enqueueSnackbar('Profile updated successfully', {
-          variant: 'success',
-        });
+        enqueueSnackbar(t('snackbar.profileUpdated'), { variant: 'success' });
         setSubmitting(false);
         resetForm({ values });
       },
@@ -41,7 +41,7 @@ const Profile: FC = () => {
       <Grid container>
         <Grid item xs={12} md={6}>
           <Paper>
-            <PageTitle icon={<FaceIcon />}>Profile</PageTitle>
+            <PageTitle icon={<FaceIcon />}>{t('profile:pageTitle')}</PageTitle>
             <Box p={3}>
               <Formik initialValues={initialValues} onSubmit={onSubmit}>
                 {({ dirty, isSubmitting }) => (
@@ -49,7 +49,7 @@ const Profile: FC = () => {
                     <ProfileBlank />
                     <Box pt={2}>
                       <Button type="submit" variant="contained" color="primary" disabled={!dirty || isSubmitting}>
-                        Save
+                        {t('dialog.btnSave')}
                       </Button>
                     </Box>
                   </Form>

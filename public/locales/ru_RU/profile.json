@@ -1,0 +1,10 @@
+{
+  "pageTitle": "Профиль",
+  "labelLogin": "Логин",
+  "labelChangePassword": "Сменить пароль",
+  "labelCurrentPassword": "Текущий пароль",
+  "labelNewPassword": "Новый пароль",
+  "labelTimezone": "Часовой пояс",
+  "labelLanguage": "Язык *",
+  "labelTheme": "Тема *"
+}

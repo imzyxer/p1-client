@@ -6,13 +6,15 @@ import useDashboardStore from 'stores/hooks/useDashboardStore';
 import LinearProgress from '@mui/material/LinearProgress';
 import useAppStore from 'stores/hooks/useAppStore';
 import { EElement } from 'types/app';
+import { useTranslation } from 'react-i18next';
 
 const Dashboard: FC = () => {
   const appStore = useAppStore();
   const dashboardStore = useDashboardStore();
+  const { t } = useTranslation('dashboard');
 
   useEffect(() => {
-    appStore.setElement(EElement.DASHBOARD, 'Dashboard');
+    appStore.setElement(EElement.DASHBOARD, t('pageTitle'));
     dashboardStore.initiate(appStore.thingHasBeenChanged > 0);
 
     const disposer = reaction(

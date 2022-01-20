@@ -1,0 +1,80 @@
+{
+  "menu": {
+    "dashboard": "Пуск",
+    "manageGroups": "Группы",
+    "addThing": "Новая запись",
+    "addPassword": "Добавить пароль",
+    "addCard": "Добавить карту",
+    "profile": "Профиль",
+    "accessHistory": "История входов",
+    "logout": "Выход"
+  },
+  "thingsTable": {
+    "thTitle": "Название",
+    "thSubject": "Объект",
+    "thCreated": "Создано",
+    "thUpdated": "Обновлено",
+    "thRequested": "Запрошено",
+    "tooltipView": "Просмотреть",
+    "tooltipEdit": "Редактировать",
+    "tooltipStarred": "В избранное",
+    "tooltipUnStarred": "Убрать из избранного"
+  },
+  "validations": {
+    "length": "Должно быть точно {{length}} символов",
+    "email": "Email не корректен",
+    "invalid": "Не верное значение",
+    "invalidType": "Должен быть {{type}}",
+    "required": "Обязательное поле",
+    "stringMin": "Должно быть не менее {{min}} символов",
+    "stringMax": "Должно быть не более {{max}} символов"
+  },
+  "snackbar": {
+    "groupAdded": "Группа добавлена",
+    "groupUpdated": "Группа изменена",
+    "groupDeleted": "Группа удалена",
+    "thingAdded": "Запись добавлена",
+    "thingUpdated": "Запись изменена",
+    "thingDeleted": "Запись удалена",
+    "thingStarred": "Запись добавлена в избранное",
+    "thingUnStarred": "Запись убрана из избранного",
+    "profileUpdated": "Профиль изменён"
+  },
+  "dialog": {
+    "btnOk": "Ок",
+    "btnCancel": "Отмена",
+    "btnSave": "Сохранить",
+    "btnClose": "Закрыть",
+    "btnBack": "Назад",
+    "confirm": {
+      "title": "Вы уверены?"
+    },
+    "thing": {
+      "titleDefault": "Добавить запись",
+      "titlePassword": "Добавить пароль",
+      "titleCard": "Добавить карту",
+      "tooltipDelete": "Удалить запись",
+      "labelTitle": "Название",
+      "labelGroup": "Группа *",
+      "labelComment": "Комментарий",
+      "labelCardNumber": "Номер карты",
+      "labelPin": "PIN",
+      "labelHolder": "Имя на карте",
+      "labelCvc": "CVC",
+      "labelLink": "Ссылка",
+      "labelLogin": "Логин",
+      "labelPassword": "Пароль"
+    },
+    "group": {
+      "title": "Группы",
+      "btnAdd": "Добавить группу",
+      "tooltipDelete": "Удалить группу",
+      "labelName": "Название",
+      "labelIcon": "Иконка *"
+    }
+  },
+  "confirm": {
+    "starred": "Вы хотите добавить запись в избранное?",
+    "unStarred": "Вы хотите убрать запись из избранного?"
+  }
+}

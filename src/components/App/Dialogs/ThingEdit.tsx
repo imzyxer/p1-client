@@ -19,8 +19,11 @@ import { useSnackbar } from 'notistack';
 import FormLoader from 'components/common/FormLoader';
 import confirmStore from 'stores/ConfirmStore';
 import ThingBlank from 'components/App/forms/ThingBlank';
+import { useTranslation } from 'react-i18next';
+import Tooltip from '@mui/material/Tooltip';
 
 const ThingEdit: FC = () => {
+  const { t } = useTranslation();
   const store = useThingEditStore();
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
@@ -33,7 +36,7 @@ const ThingEdit: FC = () => {
     store.doUpdate(
       values,
       () => {
-        enqueueSnackbar('Thing updated successfully', { variant: 'success' });
+        enqueueSnackbar(t('snackbar.thingUpdated'), { variant: 'success' });
         store.close();
       },
       () => {
@@ -51,7 +54,7 @@ const ThingEdit: FC = () => {
     confirmStore.confirm({ description: 'Do you want to delete this thing?' }).then(
       () => {
         store.doRemove(
-          () => enqueueSnackbar('Thing deleted successfully', { variant: 'success' }),
+          () => enqueueSnackbar(t('snackbar.thingDeleted'), { variant: 'success' }),
           () => enqueueSnackbar('Oops! Something wrong', { variant: 'warning' })
         );
       },
@@ -73,14 +76,16 @@ const ThingEdit: FC = () => {
               <ThingBlank type={store.data.type} />
             </DialogContent>
             <DialogActions>
-              <IconButton aria-label="delete" onClick={onDelete} size="large">
-                <DeleteIcon />
-              </IconButton>
+              <Tooltip title={t('dialog.thing.tooltipDelete') as string}>
+                <IconButton aria-label="delete" onClick={onDelete} size="large">
+                  <DeleteIcon />
+                </IconButton>
+              </Tooltip>
               <Button type="submit" color="primary" disabled={!dirty || isSubmitting}>
-                Save
+                {t('dialog.btnSave')}
               </Button>
               <Button onClick={handleClose} color="primary">
-                Cancel
+                {t('dialog.btnCancel')}
               </Button>
             </DialogActions>
           </Form>

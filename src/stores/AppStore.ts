@@ -6,6 +6,7 @@ import { TRootStore } from 'stores/RootStore';
 import { EElement } from 'types/app';
 import { APP_NAME } from 'constants/app';
 import { PaletteMode } from '@mui/material';
+import i18n from 'i18next';
 
 const DEFAULT_USER = {
   role: ERole.GUEST,
@@ -58,6 +59,7 @@ class AppStore {
     this.user = user;
     localStorage.setItem('theme', user.theme);
     localStorage.setItem('locale', user.locale);
+    i18n.changeLanguage(user.locale);
   };
 
   @action
@@ -68,6 +70,7 @@ class AppStore {
     if (theme !== null && theme in ETheme) user.theme = <ETheme>theme;
     if (locale !== null && locale in ELocale) user.locale = <ELocale>locale;
     this.user = user;
+    i18n.changeLanguage(user.locale);
   };
 
   @action
@@ -91,11 +94,11 @@ class AppStore {
   };
 
   @action
-  public signUp = (params: { login: string; password: string; invitation: string }, success: () => void, failure: (response: any) => void) => {
-    const { login, password, invitation } = params;
+  public signUp = (params: { login: string; password: string; invitation: string; locale: string }, success: () => void, failure: (response: any) => void) => {
+    const { login, password, invitation, locale } = params;
     const client = PrimaryClient.getClient();
     const authenticator = client().getAuthenticator();
-    signUp(login, password, invitation)
+    signUp(login, password, invitation, locale)
       .then(
         action('doSignUpSuccess', response => {
           this.setUserData(response.result.profile);

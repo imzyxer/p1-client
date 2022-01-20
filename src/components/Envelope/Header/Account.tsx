@@ -18,6 +18,7 @@ import createStyles from '@mui/styles/createStyles';
 import withStyles from '@mui/styles/withStyles';
 import Hidden from '@mui/material/Hidden';
 import { EElement } from 'types/app';
+import { useTranslation } from 'react-i18next';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -31,6 +32,7 @@ const styles = (theme: Theme) =>
   });
 
 const Account: FC<WithStyles<typeof styles>> = ({ classes }) => {
+  const { t } = useTranslation();
   const appStore = useAppStore();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -80,19 +82,19 @@ const Account: FC<WithStyles<typeof styles>> = ({ classes }) => {
           <ListItemIcon>
             <FaceIcon />
           </ListItemIcon>
-          <ListItemText primary="Profile" />
+          <ListItemText primary={t('menu.profile')} />
         </MenuItem>
         <MenuItem selected={appStore.element === EElement.HISTORY} component={Link} to={getHistoryUrn()}>
           <ListItemIcon>
             <HistoryIcon />
           </ListItemIcon>
-          <ListItemText primary="Access History" />
+          <ListItemText primary={t('menu.accessHistory')} />
         </MenuItem>
         <MenuItem onClick={handleLogout}>
           <ListItemIcon>
             <ExitToAppIcon />
           </ListItemIcon>
-          <ListItemText primary="Logout" />
+          <ListItemText primary={t('menu.logout')} />
         </MenuItem>
       </Menu>
     </div>

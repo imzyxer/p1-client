@@ -9,8 +9,10 @@ import { IGroupForFormik } from 'types/group';
 import { IThingForFormik } from 'types/thing';
 import { FormikHelpers } from 'formik';
 import { useSnackbar } from 'notistack';
+import { useTranslation } from 'react-i18next';
 
 const GroupEdit: FC = () => {
+  const { t } = useTranslation();
   const { refsStore, groupsManageStore } = useRootStore();
   const { groupId } = groupsManageStore;
   const group = computed(() => refsStore.getGroup(groupId ?? '')).get();
@@ -20,7 +22,7 @@ const GroupEdit: FC = () => {
     groupsManageStore.doUpdate(
       values,
       () => {
-        enqueueSnackbar('Group updated successfully', { variant: 'success' });
+        enqueueSnackbar(t('snackbar.groupUpdated'), { variant: 'success' });
         groupsManageStore.showList();
       },
       () => {

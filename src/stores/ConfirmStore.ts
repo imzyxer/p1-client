@@ -1,5 +1,6 @@
 import { action, makeObservable, observable } from 'mobx';
 import { Nullable } from 'types/app';
+import i18n from 'i18next';
 
 class ConfirmStore {
   @observable options = {
@@ -20,10 +21,25 @@ class ConfirmStore {
     makeObservable(this);
   }
 
+  protected getDefaultOptions = () => {
+    return {
+      title: i18n.t('dialog.confirm.title'),
+      description: '',
+      confirmationText: i18n.t('dialog.btnOk'),
+      cancellationText: i18n.t('dialog.btnCancel'),
+      dialogProps: {},
+      confirmationButtonProps: {},
+      cancellationButtonProps: {},
+    };
+  };
+
   @action
   public confirm = (options = {}) =>
     new Promise((resolve, reject) => {
-      this.options = { ...this.options, ...options };
+      this.options = {
+        ...this.getDefaultOptions(),
+        ...options,
+      };
       this.reject = reject;
       this.resolve = resolve;
       this.isOpen = true;

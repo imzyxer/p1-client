@@ -18,16 +18,18 @@ import FormikPasswordField from 'components/common/FormikPasswordField';
 import UserEntity from 'entities/UserEntity';
 import Logotype from 'components/common/Logotype';
 import { EElement } from 'types/app';
+import { useTranslation, Trans } from 'react-i18next';
 
 const Login: FC = () => {
   const appStore = useAppStore();
   const location = useLocation();
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
+  const { t } = useTranslation('login');
 
   useEffect(() => {
-    appStore.setElement(EElement.LOGIN, 'Welcome');
-  }, [appStore]);
+    appStore.setElement(EElement.LOGIN, t('pageTitle'));
+  }, [t, appStore]);
 
   if (!appStore.userIsGuest) {
     return <Navigate to={getDashboardUrn()} state={{ from: location }} />;
@@ -64,7 +66,7 @@ const Login: FC = () => {
             sx={{
               backgroundImage: 'url(https://source.unsplash.com/random)',
               backgroundRepeat: 'no-repeat',
-              backgroundColor: t => (t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900]),
+              backgroundColor: theme => (theme.palette.mode === 'light' ? theme.palette.grey[50] : theme.palette.grey[900]),
               backgroundSize: 'cover',
               backgroundPosition: 'center',
             }}
@@ -98,7 +100,7 @@ const Login: FC = () => {
                     component={TextField}
                     name="login"
                     type="email"
-                    label="Email"
+                    label={t('labelEmail')}
                     autoComplete="email"
                     autoFocus
                     variant="outlined"
@@ -107,22 +109,24 @@ const Login: FC = () => {
                     fullWidth
                   />
                 </Box>
-                <FormikPasswordField id="password" name="password" label="Password *" required autoComplete="current-password" />
+                <FormikPasswordField id="password" name="password" label={t('labelPassword')} required autoComplete="current-password" />
                 <Box
                   sx={{
-                    margin: t => t.spacing(3, 0, 2),
+                    margin: theme => theme.spacing(3, 0, 2),
                   }}
                 >
                   <Button type="submit" variant="contained" color="primary" disabled={isSubmitting}>
-                    Sign In
+                    {t('buttonSignIn')}
                   </Button>
                 </Box>
                 <Box mt={5}>
                   <Typography variant="body2" color="textSecondary">
-                    Powered by{' '}
-                    <Link color="inherit" href="https://binarika.ru/">
-                      Binarika
-                    </Link>
+                    <Trans i18nKey="poweredBy" t={t}>
+                      Powered by
+                      <Link color="inherit" href="https://binarika.ru/">
+                        Binarika
+                      </Link>
+                    </Trans>
                   </Typography>
                 </Box>
               </Form>

@@ -17,8 +17,11 @@ import Divider from '@mui/material/Divider';
 import confirmStore from 'stores/ConfirmStore';
 import { useSnackbar } from 'notistack';
 import { TId } from 'types/app';
+import { useTranslation } from 'react-i18next';
+import Tooltip from '@mui/material/Tooltip';
 
 const GroupList: FC = () => {
+  const { t } = useTranslation();
   const { groupsManageStore: store, refsStore } = useRootStore();
   const { enqueueSnackbar } = useSnackbar();
   const { groups } = refsStore;
@@ -30,7 +33,7 @@ const GroupList: FC = () => {
       () => {
         store.doRemove(
           groupId,
-          () => enqueueSnackbar('Group deleted successfully', { variant: 'success' }),
+          () => enqueueSnackbar(t('snackbar.groupDeleted'), { variant: 'success' }),
           () => enqueueSnackbar('Oops! Something wrong', { variant: 'warning' })
         );
       },
@@ -46,7 +49,7 @@ const GroupList: FC = () => {
             <ListItemIcon>
               <AddCircleIcon color="primary" />
             </ListItemIcon>
-            <ListItemText primary="Add Group" />
+            <ListItemText primary={t('dialog.group.btnAdd')} />
           </ListItem>
         </List>
         <Divider />
@@ -59,9 +62,11 @@ const GroupList: FC = () => {
               <ListItemText primary={group.name} />
               {group.isEmpty && (
                 <ListItemSecondaryAction>
-                  <IconButton edge="end" aria-label="delete" onClick={() => onDelete(group.id)} size="large">
-                    <DeleteIcon />
-                  </IconButton>
+                  <Tooltip title={t('dialog.group.tooltipDelete') as string}>
+                    <IconButton edge="end" aria-label="delete" onClick={() => onDelete(group.id)} size="large">
+                      <DeleteIcon />
+                    </IconButton>
+                  </Tooltip>
                 </ListItemSecondaryAction>
               )}
             </ListItem>
@@ -70,7 +75,7 @@ const GroupList: FC = () => {
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} color="primary">
-          Close
+          {t('dialog.btnClose')}
         </Button>
       </DialogActions>
     </>

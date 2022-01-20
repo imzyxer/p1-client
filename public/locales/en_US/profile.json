@@ -1,0 +1,10 @@
+{
+  "pageTitle": "Profile",
+  "labelLogin": "Login",
+  "labelChangePassword": "Change password",
+  "labelCurrentPassword": "Current password",
+  "labelNewPassword": "New password",
+  "labelTimezone": "Timezone",
+  "labelLanguage": "Language *",
+  "labelTheme": "Theme *"
+}

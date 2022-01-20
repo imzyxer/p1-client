@@ -1,0 +1,9 @@
+{
+  "pageTitle": "История входов",
+  "thDate": "Дата",
+  "thOS": "ОС",
+  "thBrowser": "Браузер",
+  "thLocation": "Местоположение",
+  "labelCurrent": "Текущий",
+  "labelPrevious": "Предыдущий"
+}

@@ -9,8 +9,10 @@ import ManageGroupIcon from '@mui/icons-material/CreateNewFolder';
 import GroupList from 'components/App/Dialogs/GroupsManage/GroupList';
 import GroupAdd from 'components/App/Dialogs/GroupsManage/GroupAdd';
 import GroupEdit from 'components/App/Dialogs/GroupsManage/GroupEdit';
+import { useTranslation } from 'react-i18next';
 
 const Index: FC = () => {
+  const { t } = useTranslation();
   const { groupsManageStore: store } = useRootStore();
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
@@ -21,7 +23,7 @@ const Index: FC = () => {
     <Dialog fullWidth fullScreen={fullScreen} open={open} onClose={handleClose} aria-labelledby="responsive-dialog-title">
       <DialogTitle onClose={handleClose}>
         <ManageGroupIcon />
-        <span>&nbsp;Manage Groups</span>
+        <span>&nbsp;{t('dialog.group.title')}</span>
       </DialogTitle>
       {store.isItList && <GroupList />}
       {store.isItCreateForm && <GroupAdd />}

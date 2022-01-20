@@ -13,11 +13,12 @@ export const signIn = (login: string, password: string) => {
   const client = api();
   return client.rawPost<{ accessToken: string; profile: IUser }>('/user/sign-in', data).then(client.handleSuccess).catch(client.handleError);
 };
-export const signUp = (login: string, password: string, invitation: string) => {
+export const signUp = (login: string, password: string, invitation: string, locale: string) => {
   const data = PrimaryClient.toFormData({
     login,
     signature: md5(password),
     invitation,
+    locale,
   });
   const client = api();
   return client.rawPost<{ accessToken: string; profile: IUser }>('/user/sign-up', data).then(client.handleSuccess).catch(client.handleError);

@@ -9,8 +9,10 @@ import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import PaymentIcon from '@mui/icons-material/Payment';
 import useThingAddStore from 'stores/hooks/useThingAddStore';
 import { EThingType } from 'types/thing';
+import { useTranslation } from 'react-i18next';
 
 const MenuItemAddThing: FC = () => {
+  const { t } = useTranslation();
   const thingAddStore = useThingAddStore();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const handleOpen = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -32,20 +34,20 @@ const MenuItemAddThing: FC = () => {
         <ListItemIcon>
           <AddCircleIcon />
         </ListItemIcon>
-        <ListItemText primary="Add Thing" />
+        <ListItemText primary={t('menu.addThing')} />
       </ListItem>
       <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
         <MenuItem onClick={handleClick(EThingType.PASSWORD)}>
           <ListItemIcon>
             <VpnKeyIcon fontSize="small" />
           </ListItemIcon>
-          <ListItemText primary="Add Password" />
+          <ListItemText primary={t('menu.addPassword')} />
         </MenuItem>
         <MenuItem onClick={handleClick(EThingType.CARD)}>
           <ListItemIcon>
             <PaymentIcon fontSize="small" />
           </ListItemIcon>
-          <ListItemText primary="Add Card" />
+          <ListItemText primary={t('menu.addCard')} />
         </MenuItem>
       </Menu>
     </>

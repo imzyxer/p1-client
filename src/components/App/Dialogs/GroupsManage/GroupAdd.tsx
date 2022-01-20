@@ -8,8 +8,10 @@ import { FormikHelpers } from 'formik';
 import { IThingForFormik } from 'types/thing';
 import { useRootStore } from 'stores/hooks/useRootStore';
 import { useSnackbar } from 'notistack';
+import { useTranslation } from 'react-i18next';
 
 const GroupAdd: FC = () => {
+  const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
   const { groupsManageStore } = useRootStore();
   const initialValues = GroupEntity.defaultForFormik();
@@ -17,7 +19,7 @@ const GroupAdd: FC = () => {
     groupsManageStore.doCreate(
       values,
       () => {
-        enqueueSnackbar('Group added successfully', { variant: 'success' });
+        enqueueSnackbar(t('snackbar.groupAdded'), { variant: 'success' });
         groupsManageStore.showList();
       },
       () => {

@@ -13,8 +13,10 @@ import TableBody from '@mui/material/TableBody';
 import Chip from '@mui/material/Chip';
 import useHistoryStore from 'stores/hooks/useHistoryStore';
 import PageContainer from 'components/layout/PageContainer';
+import { useTranslation } from 'react-i18next';
 
 const History: FC = () => {
+  const { t } = useTranslation('history');
   const historyStore = useHistoryStore();
 
   return (
@@ -22,16 +24,16 @@ const History: FC = () => {
       <Grid container>
         <Grid item xs={12}>
           <Paper>
-            <PageTitle icon={<HistoryIcon />}>Access History</PageTitle>
+            <PageTitle icon={<HistoryIcon />}>{t('pageTitle')}</PageTitle>
             <TableContainer>
               <Table>
                 <TableHead>
                   <TableRow>
-                    <TableCell>Date</TableCell>
+                    <TableCell>{t('thDate')}</TableCell>
                     <TableCell>IP</TableCell>
-                    <TableCell>OS</TableCell>
-                    <TableCell>Browser</TableCell>
-                    <TableCell>Location</TableCell>
+                    <TableCell>{t('thOS')}</TableCell>
+                    <TableCell>{t('thBrowser')}</TableCell>
+                    <TableCell>{t('thLocation')}</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -40,8 +42,8 @@ const History: FC = () => {
                       <TableCell>
                         {item.datetime}
                         &nbsp;
-                        {index === 0 && <Chip size="small" label="Current" color="secondary" variant="outlined" />}
-                        {index === 1 && <Chip size="small" label="Previous" color="primary" variant="outlined" />}
+                        {index === 0 && <Chip size="small" label={t('labelCurrent')} color="secondary" variant="outlined" />}
+                        {index === 1 && <Chip size="small" label={t('labelPrevious')} color="primary" variant="outlined" />}
                       </TableCell>
                       <TableCell>{item.ip}</TableCell>
                       <TableCell>{item.os}</TableCell>

@@ -13,6 +13,7 @@ import { Select, TextField } from 'formik-mui';
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import GroupIcon, { GroupIconTitle, mapIcons } from 'components/common/GroupIcon';
+import { useTranslation } from 'react-i18next';
 
 interface IProps {
   mode: EMode;
@@ -21,6 +22,7 @@ interface IProps {
 }
 
 const FormBlank: FC<IProps> = ({ mode, initialValues, onSubmit }) => {
+  const { t } = useTranslation();
   const { groupsManageStore: store } = useRootStore();
   const handleBack = () => store.showList();
 
@@ -33,7 +35,7 @@ const FormBlank: FC<IProps> = ({ mode, initialValues, onSubmit }) => {
             <Grid container spacing={2}>
               <Grid item xs={12} md={6}>
                 <FormControl variant="outlined" style={{ minWidth: '100%' }}>
-                  <Field component={Select} name="icon" labelId="icon" label="Icon *" required>
+                  <Field component={Select} name="icon" labelId="icon" label={t('dialog.group.labelIcon')} required>
                     {Array.from(mapIcons.keys()).map((icon: EGroupIcon) => (
                       <MenuItem value={icon} key={icon}>
                         <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -49,16 +51,16 @@ const FormBlank: FC<IProps> = ({ mode, initialValues, onSubmit }) => {
                 </FormControl>
               </Grid>
               <Grid item xs={12} md={6}>
-                <Field id="name" component={TextField} name="name" label="Name" variant="outlined" fullWidth required />
+                <Field id="name" component={TextField} name="name" label={t('dialog.group.labelName')} variant="outlined" fullWidth required />
               </Grid>
             </Grid>
           </DialogContent>
           <DialogActions>
             <Button type="submit" color="primary" disabled={mode === EMode.EDIT && (!dirty || isSubmitting)}>
-              Save
+              {t('dialog.btnSave')}
             </Button>
             <Button onClick={handleBack} color="primary">
-              Back
+              {t('dialog.btnBack')}
             </Button>
           </DialogActions>
         </Form>
