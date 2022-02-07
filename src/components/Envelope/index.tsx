@@ -47,7 +47,8 @@ const Main = styled('main', { shouldForwardProp: prop => prop !== 'open' })<{
 }>(({ theme, open }) => ({
   flexGrow: 1,
   height: '100vh',
-  overflow: 'auto',
+  display: 'flex',
+  flexFlow: 'column nowrap',
   backgroundColor: theme.palette.mode === 'light' ? theme.palette.grey[50] : theme.palette.grey[800],
   transition: theme.transitions.create('margin', {
     easing: theme.transitions.easing.sharp,
