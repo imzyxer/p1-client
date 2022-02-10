@@ -1,5 +1,7 @@
 {
   "pageTitle": "Dashboard",
   "blockTitle": "Starred",
-  "blockLatest": "Latest"
+  "blockLatest": "Latest",
+  "alertPreviousVisitTitle": "Previous Visit",
+  "alertPreviousVisitBody": "You last logged in on <1>{{ datetime }}</1>. Location — {{location}}, IP used — {{ip}}"
 }

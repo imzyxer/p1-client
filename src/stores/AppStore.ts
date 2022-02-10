@@ -7,6 +7,7 @@ import { EElement } from 'types/app';
 import { APP_NAME } from 'constants/app';
 import { PaletteMode } from '@mui/material';
 import i18n from 'i18next';
+import UserEntity from 'entities/UserEntity';
 
 const DEFAULT_USER = {
   role: ERole.GUEST,
@@ -140,6 +141,11 @@ class AppStore {
   @computed
   get userIsClient() {
     return this.userIs(ERole.CLIENT);
+  }
+
+  @computed
+  get userLastVisit() {
+    return UserEntity.getLastVisit(this.user);
   }
 
   @computed
