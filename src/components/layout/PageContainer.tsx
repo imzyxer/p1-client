@@ -5,10 +5,9 @@ const PageContainer: FC = ({ children }) => (
   <Container
     maxWidth={false}
     sx={{
-      paddingTop: theme => theme.spacing(4),
-      paddingBottom: theme => theme.spacing(4),
+      paddingTop: theme => theme.spacing(3),
+      paddingBottom: theme => theme.spacing(3),
       overflowY: 'auto',
-      outline: '1px solid red',
       flex: '1 1 auto',
       maxWidth: '100vw',
     }}
