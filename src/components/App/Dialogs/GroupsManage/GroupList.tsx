@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import Button from '@mui/material/Button';
-import { useRootStore } from 'stores/hooks/useRootStore';
+import useRootStore from 'stores/hooks/useRootStore';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from 'components/layout/ListItemIcon';
@@ -62,7 +62,7 @@ const GroupList: FC = () => {
               <ListItemText primary={group.name} />
               {group.isEmpty && (
                 <ListItemSecondaryAction>
-                  <Tooltip title={t('dialog.group.tooltipDelete') as string}>
+                  <Tooltip title={t<string>('dialog.group.tooltipDelete')}>
                     <IconButton edge="end" aria-label="delete" onClick={() => onDelete(group.id)} size="large">
                       <DeleteIcon />
                     </IconButton>

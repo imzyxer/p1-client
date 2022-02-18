@@ -4,7 +4,7 @@ import Dialog from '@mui/material/Dialog';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import DialogTitle from 'components/layout/DialogTitle';
-import { useRootStore } from 'stores/hooks/useRootStore';
+import useRootStore from 'stores/hooks/useRootStore';
 import ManageGroupIcon from '@mui/icons-material/CreateNewFolder';
 import GroupList from 'components/App/Dialogs/GroupsManage/GroupList';
 import GroupAdd from 'components/App/Dialogs/GroupsManage/GroupAdd';

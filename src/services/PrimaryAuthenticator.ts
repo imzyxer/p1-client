@@ -31,11 +31,10 @@ class PrimaryAuthenticator implements IAbstractAuthenticator {
     return crypto.decrypt(this.getSignature() ?? '');
   };
 
-  public getCredentials = () => {
-    return Promise.resolve({
+  public getCredentials = () =>
+    Promise.resolve({
       accessToken: this.getAccessToken(),
     });
-  };
 
   public revokeCredentials() {
     sessionStorage.removeItem(PrimaryAuthenticator.ACCESS_TOKEN_KEY);

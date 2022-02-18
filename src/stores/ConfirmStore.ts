@@ -21,17 +21,15 @@ class ConfirmStore {
     makeObservable(this);
   }
 
-  protected getDefaultOptions = () => {
-    return {
-      title: i18n.t('dialog.confirm.title'),
-      description: '',
-      confirmationText: i18n.t('dialog.btnOk'),
-      cancellationText: i18n.t('dialog.btnCancel'),
-      dialogProps: {},
-      confirmationButtonProps: {},
-      cancellationButtonProps: {},
-    };
-  };
+  protected getDefaultOptions = () => ({
+    title: i18n.t('dialog.confirm.title'),
+    description: '',
+    confirmationText: i18n.t('dialog.btnOk'),
+    cancellationText: i18n.t('dialog.btnCancel'),
+    dialogProps: {},
+    confirmationButtonProps: {},
+    cancellationButtonProps: {},
+  });
 
   @action
   public confirm = (options = {}) =>

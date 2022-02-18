@@ -4,7 +4,7 @@ import GroupBlank from 'components/App/forms/GroupBlank';
 import { EMode } from 'types/app';
 import GroupEntity from 'entities/GroupEntity';
 import { computed } from 'mobx';
-import { useRootStore } from 'stores/hooks/useRootStore';
+import useRootStore from 'stores/hooks/useRootStore';
 import { IGroupForFormik } from 'types/group';
 import { IThingForFormik } from 'types/thing';
 import { FormikHelpers } from 'formik';

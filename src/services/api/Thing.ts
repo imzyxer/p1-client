@@ -9,9 +9,7 @@ const decodeAtomCollectionResponse = (response: ResponseDto<IThingRaw[]>) => {
   const data = response.result.map(i => ThingEntity.decrypt(i));
   return Promise.resolve(new ResponseDto<IThing[]>(data));
 };
-const decodeAtomResponse = (response: ResponseDto<IThingRaw>) => {
-  return Promise.resolve(new ResponseDto<IThing>(ThingEntity.decrypt(response.result)));
-};
+const decodeAtomResponse = (response: ResponseDto<IThingRaw>) => Promise.resolve(new ResponseDto<IThing>(ThingEntity.decrypt(response.result)));
 
 export const fetchStarred = () => api().get<IThingRaw[]>('/things/starred').then(decodeAtomCollectionResponse);
 

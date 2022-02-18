@@ -8,12 +8,11 @@ abstract class AbstractClient<A extends IAbstractAuthenticator> {
   protected abstract getCommonHeaders(): Promise<AxiosRequestHeaders>;
   protected abstract getAuthHeaders(): Promise<AxiosRequestHeaders>;
 
-  static toFormData = (data: any) => {
-    return Object.keys(data).reduce((formData, key) => {
+  static toFormData = (data: any) =>
+    Object.keys(data).reduce((formData, key) => {
       formData.append(key, data[key]);
       return formData;
     }, new FormData());
-  };
 
   protected constructor(baseURL: string, authenticator: A) {
     this.authenticator = authenticator;
@@ -58,27 +57,19 @@ abstract class AbstractClient<A extends IAbstractAuthenticator> {
   });
 
   public rawGet<T = any>(url: string, config: AxiosRequestConfig = {}) {
-    return this.getAuthHeaders().then(headers => {
-      return this.httpClient.get<T>(url, this.makeRequestConfig(config, headers));
-    });
+    return this.getAuthHeaders().then(headers => this.httpClient.get<T>(url, this.makeRequestConfig(config, headers)));
   }
 
   public rawPost<T = any>(url: string, data: any = {}, config: AxiosRequestConfig = {}) {
-    return this.getAuthHeaders().then(headers => {
-      return this.httpClient.post<T>(url, data, this.makeRequestConfig(config, headers));
-    });
+    return this.getAuthHeaders().then(headers => this.httpClient.post<T>(url, data, this.makeRequestConfig(config, headers)));
   }
 
   public rawPut<T = any>(url: string, data: any, config: AxiosRequestConfig = {}) {
-    return this.getAuthHeaders().then(headers => {
-      return this.httpClient.put<T>(url, data, this.makeRequestConfig(config, headers));
-    });
+    return this.getAuthHeaders().then(headers => this.httpClient.put<T>(url, data, this.makeRequestConfig(config, headers)));
   }
 
   public rawDelete<T = any>(url: string, config: AxiosRequestConfig = {}) {
-    return this.getAuthHeaders().then(headers => {
-      return this.httpClient.delete<T>(url, this.makeRequestConfig(config, headers));
-    });
+    return this.getAuthHeaders().then(headers => this.httpClient.delete<T>(url, this.makeRequestConfig(config, headers)));
   }
 
   public getHttpClient() {

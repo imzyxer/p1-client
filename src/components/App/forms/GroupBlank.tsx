@@ -5,7 +5,7 @@ import DialogContent from '@mui/material/DialogContent';
 import Button from '@mui/material/Button';
 import { Field, Form, Formik } from 'formik';
 import FormLoader from 'components/common/FormLoader';
-import { useRootStore } from 'stores/hooks/useRootStore';
+import useRootStore from 'stores/hooks/useRootStore';
 import { EMode } from 'types/app';
 import { EGroupIcon, IGroupForFormik } from 'types/group';
 import Grid from '@mui/material/Grid';

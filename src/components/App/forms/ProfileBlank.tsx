@@ -25,7 +25,7 @@ const ProfileBlank: FC = () => {
       <Grid item xs={12}>
         <FormControlLabel
           control={<Field type="checkbox" id="isChangePassword" component={Checkbox} name="isChangePassword" />}
-          label={t('labelChangePassword') as string}
+          label={t<string>('labelChangePassword')}
           disabled
         />
       </Grid>

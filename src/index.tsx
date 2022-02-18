@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import Wrapper from 'components/App/Wrapper';
-import { UseRootStore } from 'stores/hooks/useRootStore';
+import RootStore, { RootStoreContext } from 'stores/RootStore';
 import PrimaryAuthenticator from 'services/PrimaryAuthenticator';
 import PrimaryClient from 'services/PrimaryClient';
 import * as Sentry from '@sentry/react';
@@ -25,17 +25,18 @@ if (process.env.NODE_ENV === 'production') {
 
 yup.setLocale(yupLocale);
 
+const store = new RootStore();
 const baseURL = process.env.REACT_APP_API_HOST ?? '';
 const authenticator = new PrimaryAuthenticator();
 PrimaryClient.createClientInstance(baseURL, authenticator);
 
 ReactDOM.render(
-  <UseRootStore>
+  <RootStoreContext.Provider value={store}>
     <Suspense fallback={<LinearProgress />}>
       <Wrapper>
         <App />
       </Wrapper>
     </Suspense>
-  </UseRootStore>,
+  </RootStoreContext.Provider>,
   document.getElementById('root')
 );

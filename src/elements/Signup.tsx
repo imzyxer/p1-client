@@ -38,7 +38,10 @@ const Signup: FC = () => {
 
   useEffect(() => {
     if (locale === LOCALE_RU) {
-      i18n.changeLanguage(locale);
+      i18n.changeLanguage(locale).then(
+        () => {},
+        () => {}
+      );
     }
   }, [i18n, locale]);
 

@@ -34,7 +34,7 @@ export type TResult = {
   result?: string;
 };
 
-export type TResultWithData<T extends any> = {
+export type TResultWithData<T> = {
   message: string;
   error?: string;
   data?: T;

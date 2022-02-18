@@ -16,7 +16,7 @@ import moment from 'moment';
 import { TId } from 'types/app';
 import Cipher from 'utils/Cipher';
 import PrimaryClient from 'services/PrimaryClient';
-import generator from 'generate-password';
+import passfather from 'passfather';
 
 class ThingEntity {
   private getCrypt = () => {
@@ -104,10 +104,12 @@ class ThingEntity {
   });
 
   getDefaultPayload = (thingType: EThingType): TThingPayload => {
-    const password = generator.generate({
-      length: 10,
+    const password = passfather({
       numbers: true,
-      excludeSimilarCharacters: true,
+      uppercase: true,
+      lowercase: true,
+      symbols: false,
+      length: 10,
     });
     switch (thingType) {
       case EThingType.PASSWORD:

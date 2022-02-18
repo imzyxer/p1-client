@@ -93,7 +93,7 @@ const ThingsTable: FC<IThingTable> = ({ columns, things }) => {
               <Hidden smDown>
                 {columns.includes(EColumn.TYPE) && (
                   <TableCell align="center" padding="none">
-                    <Tooltip title={t('thingsTable.tooltipView') as string}>
+                    <Tooltip title={t<string>('thingsTable.tooltipView')}>
                       <IconButton size="medium">
                         <ThingTypeIcon type={thing.type} />
                       </IconButton>
@@ -113,7 +113,7 @@ const ThingsTable: FC<IThingTable> = ({ columns, things }) => {
               {columns.includes(EColumn.SUBJECT) && <TableCell size="small">{thing.subject}</TableCell>}
               {columns.includes(EColumn.STARRED) && (
                 <TableCell size="small" padding="none">
-                  <Tooltip title={t(thing.isStarred ? 'thingsTable.tooltipUnStarred' : 'thingsTable.tooltipStarred') as string}>
+                  <Tooltip title={t<string>(thing.isStarred ? 'thingsTable.tooltipUnStarred' : 'thingsTable.tooltipStarred')}>
                     <IconButton
                       size="medium"
                       onClick={(e: React.MouseEvent) => {
@@ -128,7 +128,7 @@ const ThingsTable: FC<IThingTable> = ({ columns, things }) => {
               )}
               {columns.includes(EColumn.EDIT) && (
                 <TableCell align="center" size="small" padding="none">
-                  <Tooltip title={t('thingsTable.tooltipEdit') as string}>
+                  <Tooltip title={t<string>('thingsTable.tooltipEdit')}>
                     <IconButton
                       size="medium"
                       onClick={(e: React.MouseEvent) => {

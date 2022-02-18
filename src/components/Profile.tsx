@@ -6,7 +6,7 @@ import FaceIcon from '@mui/icons-material/Face';
 import PageTitle from 'components/layout/PageTitle';
 import PageContainer from 'components/layout/PageContainer';
 import { Form, Formik, FormikHelpers } from 'formik';
-import { useRootStore } from 'stores/hooks/useRootStore';
+import useRootStore from 'stores/hooks/useRootStore';
 import ProfileBlank from 'components/App/forms/ProfileBlank';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';

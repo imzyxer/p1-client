@@ -6,7 +6,7 @@ import GroupEntity from 'entities/GroupEntity';
 import { IGroupForFormik } from 'types/group';
 import { FormikHelpers } from 'formik';
 import { IThingForFormik } from 'types/thing';
-import { useRootStore } from 'stores/hooks/useRootStore';
+import useRootStore from 'stores/hooks/useRootStore';
 import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
 
