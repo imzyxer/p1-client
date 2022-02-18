@@ -1,7 +1,7 @@
 import React, { FC, Suspense } from 'react';
 import { observer } from 'mobx-react';
 import Confirm from 'components/App/Dialogs/Confirm';
-import { useRootStore } from 'stores/hooks/useRootStore';
+import useRootStore from 'stores/hooks/useRootStore';
 
 const ThingViewModal = React.lazy(() => import('components/App/Dialogs/ThingView'));
 const ThingEditModal = React.lazy(() => import('components/App/Dialogs/ThingEdit'));

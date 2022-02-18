@@ -37,9 +37,10 @@ class PrimaryClient extends AbstractClient<TPrimaryAuthenticator> {
     return this.rawDelete<T>(url, params).then(this.handleSuccess).catch(this.handleError);
   }
 
-  protected getCommonHeaders = async () => ({
-    'Content-Type': 'application/json',
-  });
+  protected getCommonHeaders = async () =>
+    Promise.resolve({
+      'Content-Type': 'application/json',
+    });
 
   protected async getAuthHeaders() {
     return Promise.all([this.getCommonHeaders(), this.authenticator.getCredentials()]).then(result => {
@@ -52,9 +53,9 @@ class PrimaryClient extends AbstractClient<TPrimaryAuthenticator> {
     });
   }
 
-  public handleSuccess = <T extends any>(response: AxiosResponse<T>): Promise<ResponseDto<T>> => Promise.resolve(new ResponseDto<T>(response.data));
+  public handleSuccess = <T>(response: AxiosResponse<T>): Promise<ResponseDto<T>> => Promise.resolve(new ResponseDto<T>(response.data));
 
-  public handleError = <T extends any>(error: AxiosError<T>) => {
+  public handleError = <T>(error: AxiosError<T>) => {
     if (error.response) {
       // Request made and server responded
       // Client received an error response (5xx, 4xx)

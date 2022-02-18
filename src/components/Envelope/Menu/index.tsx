@@ -10,7 +10,7 @@ import MenuItemAddThing from 'components/Envelope/Menu/MenuItemAddThing';
 import { Link } from 'react-router-dom';
 import * as urns from 'utils/getUrn';
 import GroupList from 'components/Envelope/Menu/GroupList';
-import { useRootStore } from 'stores/hooks/useRootStore';
+import useRootStore from 'stores/hooks/useRootStore';
 import { observer } from 'mobx-react';
 import useAppStore from 'stores/hooks/useAppStore';
 import { EElement } from 'types/app';

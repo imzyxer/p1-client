@@ -1,4 +1,4 @@
-import { useRootStore } from 'stores/hooks/useRootStore';
+import useRootStore from 'stores/hooks/useRootStore';
 
 export default function useAppStore() {
   const { appStore } = useRootStore();
