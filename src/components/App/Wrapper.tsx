@@ -2,7 +2,7 @@ import React, { FC, useMemo } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import { SnackbarProvider } from 'notistack';
-import createTheme from 'components/App/createTheme';
+import createTheme from 'themes/createTheme';
 import { observer } from 'mobx-react';
 import useAppStore from 'stores/hooks/useAppStore';
 
