@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
-import Wrapper from 'components/App/Wrapper';
+import AppContainer from 'components/AppContainer';
 import RootStore, { RootStoreContext } from 'stores/RootStore';
 import PrimaryAuthenticator from 'services/PrimaryAuthenticator';
 import PrimaryClient from 'services/PrimaryClient';
@@ -9,8 +9,8 @@ import { Integrations } from '@sentry/tracing';
 import * as yup from 'yup';
 import yupLocale from 'utils/yupLocale';
 import { LinearProgress } from '@mui/material';
+import AppRouter from 'router/AppRouter';
 import './i18n';
-import App from './App';
 
 if (process.env.NODE_ENV === 'production') {
   const sentryDsn = process.env.REACT_APP_SENTRY_DSN ?? null;
@@ -33,9 +33,9 @@ PrimaryClient.createClientInstance(baseURL, authenticator);
 ReactDOM.render(
   <RootStoreContext.Provider value={store}>
     <Suspense fallback={<LinearProgress />}>
-      <Wrapper>
-        <App />
-      </Wrapper>
+      <AppContainer>
+        <AppRouter />
+      </AppContainer>
     </Suspense>
   </RootStoreContext.Provider>,
   document.getElementById('root')

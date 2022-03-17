@@ -9,7 +9,7 @@ import { observer } from 'mobx-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getHistoryUrn, getLoginUrn, getProfileUrn } from 'utils/getUrn';
 import useAppStore from 'stores/hooks/useAppStore';
-import ListItemIcon from 'components/layout/ListItemIcon';
+import ListItemIcon from 'components/common/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import HistoryIcon from '@mui/icons-material/History';
 import { Theme } from '@mui/material/styles';
