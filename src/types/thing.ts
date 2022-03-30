@@ -25,7 +25,7 @@ export type TEncoded = string;
 export interface IThingRaw {
   id: TId;
   title: string;
-  groupId: string;
+  groupId: TId;
   type: EThingType;
   payload: TEncoded;
   comment: Nullable<TEncoded>;
@@ -38,7 +38,7 @@ export interface IThingRaw {
 export interface IThing {
   id: TId;
   title: string;
-  groupId: string;
+  groupId: TId;
   type: EThingType;
   payload: TThingPayloadPassword | TThingPayloadCard;
   comment: Nullable<string>;
@@ -55,7 +55,7 @@ export type TThingForList = Omit<IThing, 'payload' | 'comment'> & {
 export interface IThingForFormik {
   id: Nullable<TId>;
   title: string;
-  groupId: string;
+  groupId: TId;
   type: EThingType;
   payload: TThingPayloadPassword | TThingPayloadCard;
   comment: string;
@@ -64,7 +64,7 @@ export interface IThingForFormik {
 export interface IThingForUpdate {
   id: TId;
   title: string;
-  groupId: string;
+  groupId: TId;
   comment: Nullable<string>;
   payload: TThingPayloadPassword | TThingPayloadCard;
 }
@@ -72,7 +72,7 @@ export interface IThingForUpdate {
 export interface IThingForCreate {
   title: string;
   type: EThingType;
-  groupId: string;
+  groupId: TId;
   comment: Nullable<string>;
   payload: TThingPayloadPassword | TThingPayloadCard;
 }

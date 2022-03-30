@@ -15,6 +15,8 @@ import FormLoader from 'components/common/FormLoader';
 import useThingAddStore from 'stores/hooks/useThingAddStore';
 import ThingBlank from 'components/forms/ThingBlank';
 import { useTranslation } from 'react-i18next';
+import ThingEntity from 'entities/ThingEntity';
+import { useParams } from 'react-router-dom';
 
 const ThingAdd: FC = () => {
   const { t } = useTranslation();
@@ -40,8 +42,9 @@ const ThingAdd: FC = () => {
       }
     );
   };
-
-  const { initialValues, isOpened: open } = store;
+  const params = useParams<'groupId'>();
+  const { type, isOpened: open } = store;
+  const initialValues = ThingEntity.defaultForFormik(type, params.groupId);
   let title = '';
   switch (store.type) {
     case EThingType.CARD:

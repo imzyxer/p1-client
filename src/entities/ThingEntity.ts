@@ -94,10 +94,10 @@ class ThingEntity {
     payload: data.payload,
   });
 
-  defaultForFormik = (type: EThingType): IThingForFormik => ({
+  defaultForFormik = (type: EThingType, groupId?: TId): IThingForFormik => ({
     id: null,
     title: '',
-    groupId: '',
+    groupId: groupId || '',
     type,
     comment: '',
     payload: this.getDefaultPayload(type),

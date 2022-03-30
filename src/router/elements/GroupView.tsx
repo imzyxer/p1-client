@@ -10,7 +10,7 @@ import { reaction } from 'mobx';
 import useAppStore from 'stores/hooks/useAppStore';
 
 const GroupView: FC = () => {
-  const params = useParams<keyof { groupId: string }>();
+  const params = useParams<'groupId'>();
   const groupStore = useGroupStore();
   const appStore = useAppStore();
   const groupId = params.groupId ?? null;

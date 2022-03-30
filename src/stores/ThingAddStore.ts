@@ -50,10 +50,6 @@ class ThingAddStore {
         })
       );
   };
-
-  get initialValues(): IThingForFormik {
-    return ThingEntity.defaultForFormik(this.type);
-  }
 }
 
 export default ThingAddStore;
