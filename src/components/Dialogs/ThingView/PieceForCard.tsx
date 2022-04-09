@@ -6,12 +6,13 @@ import { TThingPayloadCard } from 'types/thing';
 import PasswordField from 'components/formControls/basic/PasswordField';
 import Box from '@mui/material/Box';
 import CopyButton from 'components/common/CopyButton';
+import CCEntity from 'entities/CCEntity';
 
 const PieceForCard: FC<{ payload: TThingPayloadCard }> = ({ payload }) => (
   <Grid container spacing={2}>
     <Grid item xs={12} sm={8}>
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <TextField label="Number" variant="outlined" InputProps={{ readOnly: true }} defaultValue={payload.number} fullWidth />
+        <TextField label="Number" variant="outlined" InputProps={{ readOnly: true }} defaultValue={CCEntity.formatCardNumber(payload.number)} fullWidth />
         <CopyButton copyText={payload.number} sx={{ ml: 1 }} />
       </Box>
     </Grid>

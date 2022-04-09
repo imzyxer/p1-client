@@ -17,6 +17,7 @@ import { TId } from 'types/app';
 import Cipher from 'utils/Cipher';
 import PrimaryClient from 'services/PrimaryClient';
 import passfather from 'passfather';
+import CCEntity from 'entities/CCEntity';
 
 class ThingEntity {
   private getCrypt = () => {
@@ -56,14 +57,12 @@ class ThingEntity {
 
   extractDate = (dateIso: string): string => moment.parseZone(dateIso).format('MM/DD/YYYY kk:mm');
 
-  maskCardNumber = (number: string): string => `•••• ${number.substr(number.length - 4)}`;
-
   extractSubject = (thing: IThing): string => {
     switch (thing.type) {
       case EThingType.PASSWORD:
         return (<TThingPayloadPassword>thing.payload).login;
       case EThingType.CARD:
-        return this.maskCardNumber((<TThingPayloadCard>thing.payload).number);
+        return CCEntity.maskCardNumber((<TThingPayloadCard>thing.payload).number);
       default:
         return '';
     }

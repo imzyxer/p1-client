@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import Grid from '@mui/material/Grid';
 import { useTranslation } from 'react-i18next';
 import TextField from 'components/formControls/TextField';
+import CCNumberField from 'components/formControls/CCNumberField';
 import PasswordField from 'components/formControls/PasswordField';
 
 const PieceForCard: FC = () => {
@@ -10,7 +11,7 @@ const PieceForCard: FC = () => {
   return (
     <>
       <Grid item xs={8}>
-        <TextField id="number" name="payload.number" label={t('dialog.thing.labelCardNumber')} required autoComplete="cc-number" />
+        <CCNumberField id="number" name="payload.number" label={t('dialog.thing.labelCardNumber')} required autoComplete="cc-number" />
       </Grid>
       <Grid item xs={4}>
         <PasswordField id="pin" name="payload.pin" label={t('dialog.thing.labelPin')} autoComplete="new-pin" />
