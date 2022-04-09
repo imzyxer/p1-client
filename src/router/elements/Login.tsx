@@ -8,13 +8,13 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
 import Collapse from '@mui/material/Collapse';
-import { Field, Form, Formik } from 'formik';
-import { TextField } from 'formik-mui';
+import { Form, Formik } from 'formik';
+import TextField from 'components/formControls/TextField';
+import PasswordField from 'components/formControls/PasswordField';
 import { observer } from 'mobx-react';
 import { getDashboardUrn } from 'utils/getUrn';
 import useAppStore from 'stores/hooks/useAppStore';
 import FormLoader from 'components/common/FormLoader';
-import FormikPasswordField from 'components/common/FormikPasswordField';
 import UserEntity from 'entities/UserEntity';
 import Logotype from 'components/common/Logotype';
 import { EElement } from 'types/app';
@@ -94,22 +94,10 @@ const Login: FC = () => {
                 </Box>
               </Collapse>
               <Form style={{ width: '100%' }}>
-                <Box mb={2}>
-                  <Field
-                    id="login"
-                    component={TextField}
-                    name="login"
-                    type="email"
-                    label={t('labelEmail')}
-                    autoComplete="email"
-                    autoFocus
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                  />
+                <Box mb={2} mt={4}>
+                  <TextField id="login" name="login" type="email" label={t('labelEmail')} autoComplete="email" autoFocus required />
                 </Box>
-                <FormikPasswordField id="password" name="password" label={t('labelPassword')} required autoComplete="current-password" />
+                <PasswordField id="password" name="password" label={t('labelPassword')} required autoComplete="current-password" />
                 <Box
                   sx={{
                     margin: theme => theme.spacing(3, 0, 2),

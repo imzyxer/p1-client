@@ -9,13 +9,9 @@ import FormHelperText from '@mui/material/FormHelperText';
 import OutlinedInput, { OutlinedInputProps } from '@mui/material/OutlinedInput';
 import { Field, FieldProps } from 'formik';
 
-type TProps = {
-  id: string;
-  name: string;
-  label: string;
-};
+type TProps = { id: string; name: string; label: string } & OutlinedInputProps;
 
-const FormikPasswordField: FC<TProps & OutlinedInputProps> = ({ id, name, label, ...muiParams }) => {
+const PasswordField: FC<TProps> = ({ id, name, label, ...muiParams }) => {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -59,4 +55,4 @@ const FormikPasswordField: FC<TProps & OutlinedInputProps> = ({ id, name, label,
   );
 };
 
-export default FormikPasswordField;
+export default PasswordField;

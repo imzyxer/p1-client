@@ -1,16 +1,14 @@
 import React, { FC, useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import { TextField } from 'formik-mui';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import { observer } from 'mobx-react';
 import Logotype from 'components/common/Logotype';
-import { Field, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import UserEntity from 'entities/UserEntity';
 import { getDashboardUrn, getLoginUrn } from 'utils/getUrn';
-import FormikPasswordField from 'components/common/FormikPasswordField';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useAppStore from 'stores/hooks/useAppStore';
 import Collapse from '@mui/material/Collapse';
@@ -19,6 +17,8 @@ import Alert from '@mui/material/Alert';
 import { EElement } from 'types/app';
 import { useTranslation } from 'react-i18next';
 import { LOCALE_EN, LOCALE_RU } from 'constants/app';
+import TextField from 'components/formControls/TextField';
+import PasswordField from 'components/formControls/PasswordField';
 
 const Signup: FC = () => {
   const appStore = useAppStore();
@@ -96,31 +96,17 @@ const Signup: FC = () => {
                 }}
               >
                 <Grid item xs={12}>
-                  <Field
-                    id="login"
-                    component={TextField}
-                    name="login"
-                    type="email"
-                    label={t('labelEmail')}
-                    autoFocus
-                    variant="outlined"
-                    required
-                    fullWidth
-                    autoComplete="email"
-                  />
+                  <TextField id="login" name="login" type="email" label={t('labelEmail')} autoComplete="email" autoFocus required />
                 </Grid>
                 <Grid item xs={12}>
-                  <FormikPasswordField id="password" name="password" label={t('labelPassword')} autoComplete="new-password" />
+                  <PasswordField id="password" name="password" label={t('labelPassword')} required autoComplete="new-password" />
                 </Grid>
                 <Grid item xs={12}>
-                  <Field
+                  <TextField
                     id="invitation"
-                    component={TextField}
                     name="invitation"
                     label={t('labelInvitation')}
-                    variant="outlined"
                     required
-                    fullWidth
                     InputProps={{
                       readOnly: isInvitationCodeReadonly,
                       sx: {

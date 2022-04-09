@@ -7,7 +7,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import OutlinedInput from '@mui/material/OutlinedInput';
 
-const AdvancedPasswordField: FC<{ id: string; value: string; label: string }> = ({ id, value, label }) => {
+const PasswordField: FC<{ id: string; value: string; label: string }> = ({ id, value, label }) => {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -38,4 +38,4 @@ const AdvancedPasswordField: FC<{ id: string; value: string; label: string }> = 
   );
 };
 
-export default AdvancedPasswordField;
+export default PasswordField;

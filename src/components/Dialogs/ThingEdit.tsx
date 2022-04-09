@@ -76,7 +76,7 @@ const ThingEdit: FC = () => {
               <ThingBlank type={store.data.type} />
             </DialogContent>
             <DialogActions>
-              <Tooltip title={t<string>('dialog.thing.tooltipDelete')}>
+              <Tooltip title={t<string>('dialog.thing.tooltipDelete')} placement="left">
                 <IconButton aria-label="delete" onClick={onDelete} size="large">
                   <DeleteIcon />
                 </IconButton>

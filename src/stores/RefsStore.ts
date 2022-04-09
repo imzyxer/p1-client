@@ -49,6 +49,11 @@ class RefsStore {
     return this.getProgress(ERef.GROUPS);
   }
 
+  @computed
+  get groupOptions() {
+    return this.groups.map(i => ({ label: i.name, value: i.id }));
+  }
+
   public getGroup(groupId: string): Nullable<IGroup> {
     return this.groups.find(i => i.id === groupId) || null;
   }

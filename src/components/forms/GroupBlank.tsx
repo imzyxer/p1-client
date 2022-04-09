@@ -3,17 +3,18 @@ import { observer } from 'mobx-react';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import Button from '@mui/material/Button';
-import { Field, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import FormLoader from 'components/common/FormLoader';
 import useRootStore from 'stores/hooks/useRootStore';
 import { EMode } from 'types/app';
 import { EGroupIcon, IGroupForFormik } from 'types/group';
 import Grid from '@mui/material/Grid';
-import { Select, TextField } from 'formik-mui';
-import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
+import Box from '@mui/material/Box';
 import GroupIcon, { GroupIconTitle, mapIcons } from 'components/common/GroupIcon';
 import { useTranslation } from 'react-i18next';
+import SelectParent from 'components/formControls/SelectParent';
+import TextField from 'components/formControls/TextField';
 
 interface IProps {
   mode: EMode;
@@ -34,24 +35,22 @@ const FormBlank: FC<IProps> = ({ mode, initialValues, onSubmit }) => {
           <DialogContent dividers>
             <Grid container spacing={2}>
               <Grid item xs={12} md={6}>
-                <FormControl variant="outlined" style={{ minWidth: '100%' }}>
-                  <Field component={Select} name="icon" labelId="icon" label={t('dialog.group.labelIcon')} required>
-                    {Array.from(mapIcons.keys()).map((icon: EGroupIcon) => (
-                      <MenuItem value={icon} key={icon}>
-                        <div style={{ display: 'flex', alignItems: 'center' }}>
-                          <GroupIcon icon={icon} fontSize="small" />
-                          <div>
-                            &nbsp;&nbsp;
-                            <GroupIconTitle icon={icon} />
-                          </div>
+                <SelectParent name="icon" label={t('dialog.group.labelIcon')} labelId="icon" required>
+                  {Array.from(mapIcons.keys()).map((icon: EGroupIcon) => (
+                    <MenuItem value={icon} key={icon}>
+                      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                        <GroupIcon icon={icon} fontSize="small" />
+                        <div>
+                          &nbsp;&nbsp;
+                          <GroupIconTitle icon={icon} />
                         </div>
-                      </MenuItem>
-                    ))}
-                  </Field>
-                </FormControl>
+                      </Box>
+                    </MenuItem>
+                  ))}
+                </SelectParent>
               </Grid>
               <Grid item xs={12} md={6}>
-                <Field id="name" component={TextField} name="name" label={t('dialog.group.labelName')} variant="outlined" fullWidth required />
+                <TextField id="name" name="name" label={t('dialog.group.labelName')} required />
               </Grid>
             </Grid>
           </DialogContent>

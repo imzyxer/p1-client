@@ -1,10 +1,8 @@
 import React, { FC } from 'react';
 import Grid from '@mui/material/Grid';
-
-import { Field } from 'formik';
-import { TextField } from 'formik-mui';
-import FormikPasswordField from 'components/common/FormikPasswordField';
 import { useTranslation } from 'react-i18next';
+import TextField from 'components/formControls/TextField';
+import PasswordField from 'components/formControls/PasswordField';
 
 const PieceForCard: FC = () => {
   const { t } = useTranslation();
@@ -12,33 +10,16 @@ const PieceForCard: FC = () => {
   return (
     <>
       <Grid item xs={8}>
-        <Field
-          id="number"
-          component={TextField}
-          name="payload.number"
-          label={t('dialog.thing.labelCardNumber')}
-          variant="outlined"
-          required
-          fullWidth
-          autoComplete="cc-number"
-        />
+        <TextField id="number" name="payload.number" label={t('dialog.thing.labelCardNumber')} required autoComplete="cc-number" />
       </Grid>
       <Grid item xs={4}>
-        <FormikPasswordField id="pin" name="payload.pin" label={t('dialog.thing.labelPin')} autoComplete="cc-pin" />
+        <PasswordField id="pin" name="payload.pin" label={t('dialog.thing.labelPin')} autoComplete="new-pin" />
       </Grid>
       <Grid item xs={8}>
-        <Field
-          id="holder"
-          component={TextField}
-          name="payload.holder"
-          label={t('dialog.thing.labelHolder')}
-          variant="outlined"
-          fullWidth
-          autoComplete="cc-name"
-        />
+        <TextField id="holder" name="payload.holder" label={t('dialog.thing.labelHolder')} autoComplete="cc-name" />
       </Grid>
       <Grid item xs={4}>
-        <FormikPasswordField id="cvc" name="payload.cvc" label={t('dialog.thing.labelCvc')} autoComplete="cc-csc" />
+        <PasswordField id="cvc" name="payload.cvc" label={t('dialog.thing.labelCvc')} autoComplete="new-csc" />
       </Grid>
     </>
   );

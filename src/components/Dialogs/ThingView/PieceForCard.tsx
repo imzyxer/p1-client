@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid';
 
 import TextField from '@mui/material/TextField';
 import { TThingPayloadCard } from 'types/thing';
-import AdvancedPasswordField from 'components/common/AdvancedPasswordField';
+import PasswordField from 'components/formControls/basic/PasswordField';
 import Box from '@mui/material/Box';
 import CopyButton from 'components/common/CopyButton';
 
@@ -16,7 +16,7 @@ const PieceForCard: FC<{ payload: TThingPayloadCard }> = ({ payload }) => (
       </Box>
     </Grid>
     <Grid item xs={6} sm={4} order={{ xs: 3, sm: 2 }}>
-      <AdvancedPasswordField id="thing_card_pin" value={payload.pin} label="PIN" />
+      <PasswordField id="thing_card_pin" value={payload.pin} label="PIN" />
     </Grid>
     <Grid item xs={12} sm={8} order={{ xs: 2, sm: 3 }}>
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -26,7 +26,7 @@ const PieceForCard: FC<{ payload: TThingPayloadCard }> = ({ payload }) => (
     </Grid>
     <Grid item xs={6} sm={4} order={{ xs: 4, sm: 4 }}>
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <AdvancedPasswordField id="thing_card_cvc" value={payload.cvc} label="CVC" />
+        <PasswordField id="thing_card_cvc" value={payload.cvc} label="CVC" />
         <CopyButton copyText={payload.cvc} sx={{ ml: 1 }} />
       </Box>
     </Grid>

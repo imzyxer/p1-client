@@ -39,3 +39,9 @@ export type TResultWithData<T> = {
   error?: string;
   data?: T;
 };
+
+export type TFormSelectOption = {
+  label: string;
+  value: string | number;
+  disabled?: boolean;
+};
