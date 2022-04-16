@@ -3,11 +3,11 @@ import { LinearProgress } from '@mui/material';
 import RequireAuth from 'router/RequireAuth';
 
 const DashboardElement: FC = () => {
-  const Element = React.lazy(() => import('router/elements/Dashboard'));
+  const Module = React.lazy(() => import('modules/DashboardModule'));
   return (
     <Suspense fallback={<LinearProgress />}>
       <RequireAuth>
-        <Element />
+        <Module />
       </RequireAuth>
     </Suspense>
   );

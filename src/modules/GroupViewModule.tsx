@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react';
-import GroupViewComponent from 'components/modules/GroupView';
+import GroupViewContent from 'modules/GroupViewModule/Content';
 import { observer } from 'mobx-react';
 import useGroupStore from 'stores/hooks/useGroupStore';
 import LinearProgress from '@mui/material/LinearProgress';
@@ -9,7 +9,7 @@ import { EElement, EProgress } from 'types/app';
 import { reaction } from 'mobx';
 import useAppStore from 'stores/hooks/useAppStore';
 
-const GroupView: FC = () => {
+const GroupViewModule: FC = () => {
   const params = useParams<'groupId'>();
   const groupStore = useGroupStore();
   const appStore = useAppStore();
@@ -34,7 +34,7 @@ const GroupView: FC = () => {
 
   const { group } = groupStore;
 
-  return group ? <GroupViewComponent group={group} /> : <Empty />;
+  return group ? <GroupViewContent group={group} /> : <Empty />;
 };
 
-export default observer(GroupView);
+export default observer(GroupViewModule);

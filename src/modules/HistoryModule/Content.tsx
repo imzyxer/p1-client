@@ -15,7 +15,7 @@ import useHistoryStore from 'stores/hooks/useHistoryStore';
 import PageContainer from 'components/common/PageContainer';
 import { useTranslation } from 'react-i18next';
 
-const History: FC = () => {
+const Content: FC = () => {
   const { t } = useTranslation('history');
   const historyStore = useHistoryStore();
 
@@ -61,4 +61,4 @@ const History: FC = () => {
   );
 };
 
-export default observer(History);
+export default observer(Content);

@@ -17,7 +17,7 @@ import { Link } from 'react-router-dom';
 import { getHistoryUrn } from 'utils/getUrn';
 import useAppStore from 'stores/hooks/useAppStore';
 
-const Dashboard: FC = () => {
+const Content: FC = () => {
   const { t } = useTranslation('dashboard');
   const dashboardStore = useDashboardStore();
   const { userLastVisit: visit } = useAppStore();
@@ -60,4 +60,4 @@ const Dashboard: FC = () => {
   );
 };
 
-export default observer(Dashboard);
+export default observer(Content);

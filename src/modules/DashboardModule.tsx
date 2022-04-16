@@ -1,14 +1,14 @@
 import React, { FC, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import { reaction } from 'mobx';
-import DashboardComponent from 'components/modules/Dashboard';
+import DashboardContent from 'modules/DashboardModule/Content';
 import useDashboardStore from 'stores/hooks/useDashboardStore';
 import LinearProgress from '@mui/material/LinearProgress';
 import useAppStore from 'stores/hooks/useAppStore';
 import { EElement } from 'types/app';
 import { useTranslation } from 'react-i18next';
 
-const Dashboard: FC = () => {
+const DashboardModule: FC = () => {
   const appStore = useAppStore();
   const dashboardStore = useDashboardStore();
   const { t } = useTranslation('dashboard');
@@ -30,7 +30,7 @@ const Dashboard: FC = () => {
     return <LinearProgress />;
   }
 
-  return <DashboardComponent />;
+  return <DashboardContent />;
 };
 
-export default observer(Dashboard);
+export default observer(DashboardModule);

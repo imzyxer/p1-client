@@ -20,7 +20,7 @@ import Logotype from 'components/common/Logotype';
 import { EElement } from 'types/app';
 import { useTranslation, Trans } from 'react-i18next';
 
-const Login: FC = () => {
+const LoginModule: FC = () => {
   const appStore = useAppStore();
   const location = useLocation();
   const [errorMessage, setErrorMessage] = useState(null);
@@ -126,4 +126,4 @@ const Login: FC = () => {
   );
 };
 
-export default observer(Login);
+export default observer(LoginModule);

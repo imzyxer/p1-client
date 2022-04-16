@@ -2,10 +2,10 @@ import React, { FC, Suspense } from 'react';
 import { LinearProgress } from '@mui/material';
 
 const LoginElement: FC = () => {
-  const Element = React.lazy(() => import('router/elements/Login'));
+  const Module = React.lazy(() => import('modules/LoginModule'));
   return (
     <Suspense fallback={<LinearProgress />}>
-      <Element />
+      <Module />
     </Suspense>
   );
 };

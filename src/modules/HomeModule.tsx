@@ -4,7 +4,7 @@ import { getDashboardUrn, getLoginUrn } from 'utils/getUrn';
 import useAppStore from 'stores/hooks/useAppStore';
 import { useLocation, Navigate } from 'react-router-dom';
 
-const Home: FC = () => {
+const HomeModule: FC = () => {
   const appStore = useAppStore();
   const location = useLocation();
   if (appStore.userIsGuest) {
@@ -14,4 +14,4 @@ const Home: FC = () => {
   return <Navigate to={getDashboardUrn()} state={{ from: location }} />;
 };
 
-export default observer(Home);
+export default observer(HomeModule);

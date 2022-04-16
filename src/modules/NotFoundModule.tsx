@@ -1,23 +1,22 @@
 import React, { FC, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 import { APP_NAME } from 'constants/app';
-import ErrorPage from 'components/modules/ErrorPage';
+import ErrorPage from 'components/ErrorPage';
 
-const InternalError: FC = () => {
+const NotFoundModule: FC = () => {
   useEffect(() => {
-    document.title = `500 Internal Server Error — ${APP_NAME}`;
+    document.title = `404 Not Found — ${APP_NAME}`;
   }, []);
-
   return (
-    <ErrorPage title="500">
+    <ErrorPage title="404">
       <Typography variant="h5" gutterBottom>
-        Oops! 500 Internal Server Error
+        Oops! 404 Not Found
       </Typography>
       <Typography variant="caption" display="block" gutterBottom>
-        Our spaghetti code is not working properly. We will be back soon!
+        Sorry, an error has occurred, requested page not found!
       </Typography>
     </ErrorPage>
   );
 };
 
-export default InternalError;
+export default NotFoundModule;

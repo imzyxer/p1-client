@@ -9,7 +9,7 @@ import useGroupStore from 'stores/hooks/useGroupStore';
 import PageTitle from 'components/common/PageTitle';
 import PageContainer from 'components/common/PageContainer';
 
-const GroupView: FC<{ group: IGroup }> = ({ group }) => {
+const Content: FC<{ group: IGroup }> = ({ group }) => {
   const groupStore = useGroupStore();
 
   return (
@@ -29,4 +29,4 @@ const GroupView: FC<{ group: IGroup }> = ({ group }) => {
   );
 };
 
-export default observer(GroupView);
+export default observer(Content);

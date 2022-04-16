@@ -20,7 +20,7 @@ import { LOCALE_EN, LOCALE_RU } from 'constants/app';
 import TextField from 'components/formControls/TextField';
 import PasswordField from 'components/formControls/PasswordField';
 
-const Signup: FC = () => {
+const SignupModule: FC = () => {
   const appStore = useAppStore();
   const [errorMessage, setErrorMessage] = useState<null | string>(null);
   const location = useLocation();
@@ -140,4 +140,4 @@ const Signup: FC = () => {
   );
 };
 
-export default observer(Signup);
+export default observer(SignupModule);

@@ -14,7 +14,7 @@ import { IProfileForFormik } from 'types/user';
 import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
 
-const Profile: FC = () => {
+const Content: FC = () => {
   const { t } = useTranslation(['translation', 'profile']);
   const { profileEditStore } = useRootStore();
   const { enqueueSnackbar } = useSnackbar();
@@ -63,4 +63,4 @@ const Profile: FC = () => {
   );
 };
 
-export default observer(Profile);
+export default observer(Content);

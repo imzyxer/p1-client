@@ -1,10 +1,10 @@
 import React, { FC, Suspense } from 'react';
 import { LinearProgress } from '@mui/material';
 
-const Element = React.lazy(() => import('router/elements/InternalError'));
+const Module = React.lazy(() => import('modules/InternalErrorModule'));
 const InternalErrorElement: FC = () => (
   <Suspense fallback={<LinearProgress />}>
-    <Element />
+    <Module />
   </Suspense>
 );
 

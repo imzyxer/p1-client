@@ -3,11 +3,11 @@ import { LinearProgress } from '@mui/material';
 import RequireAuth from 'router/RequireAuth';
 
 const GroupViewElement: FC = () => {
-  const Element = React.lazy(() => import('router/elements/GroupView'));
+  const Module = React.lazy(() => import('modules/GroupViewModule'));
   return (
     <Suspense fallback={<LinearProgress />}>
       <RequireAuth>
-        <Element />
+        <Module />
       </RequireAuth>
     </Suspense>
   );
