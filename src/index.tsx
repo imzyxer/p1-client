@@ -11,6 +11,7 @@ import yupLocale from 'utils/yupLocale';
 import { LinearProgress } from '@mui/material';
 import AppRouter from 'router/AppRouter';
 import './i18n';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 if (process.env.NODE_ENV === 'production') {
   const sentryDsn = process.env.REACT_APP_SENTRY_DSN ?? null;
@@ -40,3 +41,5 @@ ReactDOM.render(
   </RootStoreContext.Provider>,
   document.getElementById('root')
 );
+
+serviceWorkerRegistration.register();

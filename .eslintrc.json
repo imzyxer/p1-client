@@ -27,6 +27,7 @@
     "@typescript-eslint",
     "prettier"
   ],
+  "ignorePatterns": ["service-worker.js"],
   "rules": {
     "prettier/prettier": "error",
     "arrow-parens": [
