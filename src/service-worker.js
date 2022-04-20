@@ -1,6 +1,15 @@
 const ignored = self.__WB_MANIFEST;
 
-// The install handler takes care of precaching the resources we always need.
-self.addEventListener('install', () => {
-  console.log('sw', 'install');
+self.addEventListener('fetch', function(event) {
+  event.respondWith(async function() {
+    try{
+      const res = await fetch(event.request);
+      const cache = await caches.open('cache');
+      cache.put(event.request.url, res.clone());
+      return res;
+    }
+    catch(error){
+      return caches.match(event.request);
+    }
+  }());
 });
