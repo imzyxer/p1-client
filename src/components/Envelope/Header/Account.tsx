@@ -12,26 +12,12 @@ import useAppStore from 'stores/hooks/useAppStore';
 import ListItemIcon from 'components/common/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import HistoryIcon from '@mui/icons-material/History';
-import { Theme } from '@mui/material/styles';
-import { WithStyles } from '@mui/styles';
-import createStyles from '@mui/styles/createStyles';
-import withStyles from '@mui/styles/withStyles';
 import Hidden from '@mui/material/Hidden';
+import Box from '@mui/material/Box';
 import { EElement } from 'types/app';
 import { useTranslation } from 'react-i18next';
 
-const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      borderRadius: '4px',
-    },
-    email: {
-      fontSize: theme.typography.fontSize,
-      paddingRight: theme.spacing(1),
-    },
-  });
-
-const Account: FC<WithStyles<typeof styles>> = ({ classes }) => {
+const Account: FC = () => {
   const { t } = useTranslation();
   const appStore = useAppStore();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -55,11 +41,21 @@ const Account: FC<WithStyles<typeof styles>> = ({ classes }) => {
         aria-haspopup="true"
         onClick={handleMenu}
         color="inherit"
-        className={classes.root}
         size="large"
+        sx={{
+          borderRadius: '4px',
+        }}
       >
         <Hidden mdDown>
-          <span className={classes.email}>{appStore.user.email}</span>
+          <Box
+            component="span"
+            sx={{
+              fontSize: theme => theme.typography.fontSize,
+              paddingRight: theme => theme.spacing(1),
+            }}
+          >
+            {appStore.user.email}
+          </Box>
         </Hidden>
         <AccountCircle />
       </IconButton>
@@ -101,4 +97,4 @@ const Account: FC<WithStyles<typeof styles>> = ({ classes }) => {
   );
 };
 
-export default withStyles(styles)(observer(Account));
+export default observer(Account);
