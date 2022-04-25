@@ -76,5 +76,8 @@
   "confirm": {
     "starred": "Do you want starred this thing?",
     "unStarred": "Do you want unstarred this thing?"
+  },
+  "passCode": {
+    "title":"Enter your pass code"
   }
 }

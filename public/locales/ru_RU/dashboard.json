@@ -3,5 +3,7 @@
   "blockTitle": "Избранное",
   "blockLatest": "Последнее",
   "alertPreviousVisitTitle": "Предыдущий визит",
-  "alertPreviousVisitBody": "Ваш последный вход был <1>{{ datetime }}</1>. Местоположение — {{location}}, IP — {{ip}}"
+  "alertPreviousVisitBody": "Ваш последный вход был <1>{{ datetime }}</1>. Местоположение — {{location}}, IP — {{ip}}",
+  "alertPassCodeTitle": "ПИН-код",
+  "alertPassCodeBody": "Защитите приложение на этом устройстве с помощью ПИН-кода"
 }

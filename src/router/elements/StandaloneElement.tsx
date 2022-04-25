@@ -2,8 +2,8 @@ import React, { FC, Suspense } from 'react';
 import { LinearProgress } from '@mui/material';
 import AccessGuestsOnly from 'router/AccessGuestsOnly';
 
-const LoginElement: FC = () => {
-  const Module = React.lazy(() => import('modules/LoginModule'));
+const StandaloneElement: FC = () => {
+  const Module = React.lazy(() => import('modules/StandaloneModule'));
   return (
     <Suspense fallback={<LinearProgress />}>
       <AccessGuestsOnly>
@@ -13,4 +13,4 @@ const LoginElement: FC = () => {
   );
 };
 
-export default LoginElement;
+export default StandaloneElement;

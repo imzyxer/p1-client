@@ -1,10 +1,24 @@
 {
   "pageTitle": "Profile",
+  "blockProfileTitle": "Profile",
+  "blockPassCodeTitle": "Pass Code",
   "labelLogin": "Login",
   "labelChangePassword": "Change password",
   "labelCurrentPassword": "Current password",
   "labelNewPassword": "New password",
   "labelTimezone": "Timezone",
   "labelLanguage": "Language *",
-  "labelTheme": "Theme *"
+  "labelTheme": "Theme *",
+  "passCodeBlock": {
+    "messagePassCodeAlreadyExists": "A pass code has already been set for current device",
+    "messageCreatePassCode": "Protect your П1 on this device with an additional code",
+    "buttonChange": "Change",
+    "buttonReset": "Reset",
+    "buttonCreate": "Create Pass Code",
+    "confirmResetMessage": "Do you want to reset the pass code for the current device?"
+  },
+  "passCodeOverlay": {
+    "newPassCodeTitle": "Enter a new pass code for this device",
+    "repeatPassCodeTitle": "Repeat pass code"
+  }
 }

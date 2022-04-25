@@ -8,3 +8,5 @@ export const PATH_DASHBOARD = '/dashboard';
 export const PATH_HISTORY = '/history';
 export const PATH_GROUP = '/group/:groupId';
 export const PATH_PROFILE = '/profile';
+export const PATH_PROFILE_PASSCODE = '/profile/passcode';
+export const PATH_STANDALONE = '/standalone';

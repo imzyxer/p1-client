@@ -9,9 +9,11 @@ import ThingAddStore, { TThingAddStore } from 'stores/ThingAddStore';
 import HistoryStore, { THistoryStore } from 'stores/HistoryStore';
 import GroupsManageStore, { TGroupsManageStore } from 'stores/GroupsManageStore';
 import ProfileEditStore, { TProfileEditStore } from 'stores/ProfileEditStore';
+import StandaloneStore, { TStandaloneStore } from './StandaloneStore';
 
 export default class RootStore {
   public appStore: TAppStore;
+  public standaloneStore: TStandaloneStore;
   public refsStore: TRefsStore;
   public dashboardStore: TDashboardStore;
   public groupViewStore: TGroupViewStore;
@@ -24,6 +26,7 @@ export default class RootStore {
 
   constructor() {
     this.appStore = new AppStore(this);
+    this.standaloneStore = new StandaloneStore();
     this.refsStore = new RefsStore(this);
     this.dashboardStore = new DashboardStore();
     this.historyStore = new HistoryStore();

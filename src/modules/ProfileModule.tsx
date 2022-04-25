@@ -1,6 +1,8 @@
 import React, { FC, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { observer } from 'mobx-react';
-import ProfileContent from 'modules/ProfileModule/Content';
+import ProfileContent from 'modules/ProfileModule/ProfileContent';
+import PassCodeOverlay from 'modules/ProfileModule/overlays/PassCodeOverlay';
 import useAppStore from 'stores/hooks/useAppStore';
 import { EElement } from 'types/app';
 import { useTranslation } from 'react-i18next';
@@ -13,7 +15,12 @@ const ProfileModule: FC = () => {
     appStore.setElement(EElement.PROFILE, t('pageTitle'));
   }, [t, appStore]);
 
-  return <ProfileContent />;
+  return (
+    <Routes>
+      <Route index element={<ProfileContent />} />
+      <Route path="passcode" element={<PassCodeOverlay />} />
+    </Routes>
+  );
 };
 
 export default observer(ProfileModule);
