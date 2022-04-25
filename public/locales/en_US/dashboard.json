@@ -3,5 +3,7 @@
   "blockTitle": "Starred",
   "blockLatest": "Latest",
   "alertPreviousVisitTitle": "Previous Visit",
-  "alertPreviousVisitBody": "You last logged in on <1>{{ datetime }}</1>. Location — {{location}}, IP used — {{ip}}"
+  "alertPreviousVisitBody": "You last logged in on <1>{{ datetime }}</1>. Location — {{location}}, IP used — {{ip}}",
+  "alertPassCodeTitle": "Pass Code",
+  "alertPassCodeBody": "Protect the app on this device with an additional code"
 }

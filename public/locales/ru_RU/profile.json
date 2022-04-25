@@ -1,10 +1,24 @@
 {
   "pageTitle": "Профиль",
+  "blockProfileTitle": "Профиль",
+  "blockPassCodeTitle": "ПИН-код",
   "labelLogin": "Логин",
   "labelChangePassword": "Сменить пароль",
   "labelCurrentPassword": "Текущий пароль",
   "labelNewPassword": "Новый пароль",
   "labelTimezone": "Часовой пояс",
   "labelLanguage": "Язык *",
-  "labelTheme": "Тема *"
+  "labelTheme": "Тема *",
+  "passCodeBlock": {
+    "messagePassCodeAlreadyExists": "Для этого устройства уже задан ПИН-код",
+    "messageCreatePassCode": "Защитите приложение на этом устройстве с помощью ПИН-кода",
+    "buttonChange": "Изменить",
+    "buttonReset": "Сбросить",
+    "buttonCreate": "Задать ПИН-код",
+    "confirmResetMessage": "Вы хотите сбросить ПИН-код для текущего устройства?"
+  },
+  "passCodeOverlay": {
+    "newPassCodeTitle": "Укажите новый ПИН-код для этого устройства",
+    "repeatPassCodeTitle": "Повторите ПИН-код"
+  }
 }

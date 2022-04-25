@@ -1,16 +1,14 @@
 import React, { FC, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import { reaction } from 'mobx';
-import DashboardContent from 'modules/DashboardModule/Content';
-import useDashboardStore from 'stores/hooks/useDashboardStore';
+import DashboardContent from 'modules/DashboardModule/DashboardContent';
+import useRootStore from 'stores/hooks/useRootStore';
 import LinearProgress from '@mui/material/LinearProgress';
-import useAppStore from 'stores/hooks/useAppStore';
 import { EElement } from 'types/app';
 import { useTranslation } from 'react-i18next';
 
 const DashboardModule: FC = () => {
-  const appStore = useAppStore();
-  const dashboardStore = useDashboardStore();
+  const { appStore, dashboardStore } = useRootStore();
   const { t } = useTranslation('dashboard');
 
   useEffect(() => {

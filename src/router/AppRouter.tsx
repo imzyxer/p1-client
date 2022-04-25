@@ -13,6 +13,7 @@ import LoginElement from 'router/elements/LoginElement';
 import NotFoundElement from 'router/elements/NotFoundElement';
 import ProfileElement from 'router/elements/ProfileElement';
 import SignupElement from 'router/elements/SignupElement';
+import StandaloneElement from 'router/elements/StandaloneElement';
 
 const AppRouter: FC = () => {
   const appStore = useAppStore();
@@ -34,9 +35,10 @@ const AppRouter: FC = () => {
             <Route path="dashboard" element={<DashboardElement />} />
             <Route path="group/:groupId" element={<GroupViewElement />} />
             <Route path="history" element={<HistoryElement />} />
-            <Route path="profile" element={<ProfileElement />} />
+            <Route path="profile/*" element={<ProfileElement />} />
           </Route>
 
+          <Route path="standalone" element={<StandaloneElement />} />
           <Route path="login" element={<LoginElement />} />
           <Route path="signup" element={<SignupElement />} />
 

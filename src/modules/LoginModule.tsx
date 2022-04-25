@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
@@ -22,7 +22,6 @@ import { useTranslation, Trans } from 'react-i18next';
 
 const LoginModule: FC = () => {
   const appStore = useAppStore();
-  const location = useLocation();
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
   const { t } = useTranslation('login');
@@ -30,10 +29,6 @@ const LoginModule: FC = () => {
   useEffect(() => {
     appStore.setElement(EElement.LOGIN, t('pageTitle'));
   }, [t, appStore]);
-
-  if (!appStore.userIsGuest) {
-    return <Navigate to={getDashboardUrn()} state={{ from: location }} />;
-  }
 
   return (
     <Formik
