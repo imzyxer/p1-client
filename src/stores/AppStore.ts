@@ -8,6 +8,7 @@ import { APP_NAME } from 'constants/app';
 import { PaletteMode } from '@mui/material';
 import i18n from 'i18next';
 import UserEntity from 'entities/UserEntity';
+import moment from 'moment';
 
 const DEFAULT_USER = {
   role: ERole.GUEST,
@@ -61,6 +62,7 @@ class AppStore {
     localStorage.setItem('theme', user.theme);
     localStorage.setItem('locale', user.locale);
     i18n.changeLanguage(user.locale);
+    moment.locale(user.locale.substring(0, 2));
   };
 
   @action

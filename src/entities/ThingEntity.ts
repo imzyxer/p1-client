@@ -55,7 +55,7 @@ class ThingEntity {
       requested: this.extractDate(thing.requested),
     }));
 
-  extractDate = (dateIso: string): string => moment.parseZone(dateIso).format('MM/DD/YYYY kk:mm');
+  extractDate = (dateIso: string): string => moment.parseZone(dateIso).format('LLL');
 
   extractSubject = (thing: IThing): string => {
     switch (thing.type) {
