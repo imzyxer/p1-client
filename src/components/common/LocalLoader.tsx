@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import { EProgress } from 'types/app';
 
 interface ILocalLoader {
+  children?: React.ReactNode;
   progress: EProgress;
 }
 

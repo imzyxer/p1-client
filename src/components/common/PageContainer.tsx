@@ -1,7 +1,11 @@
 import React, { FC } from 'react';
 import Container from '@mui/material/Container';
 
-const PageContainer: FC = ({ children }) => (
+type TProps = {
+  children?: React.ReactNode;
+};
+
+const PageContainer: FC<TProps> = ({ children }) => (
   <Container
     maxWidth={false}
     sx={{

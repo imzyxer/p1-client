@@ -5,6 +5,7 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 
 type TDialogTitleProps = {
+  children?: React.ReactNode;
   onClose?: () => void;
 };
 

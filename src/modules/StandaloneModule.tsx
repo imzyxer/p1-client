@@ -12,7 +12,7 @@ const StandaloneModule: FC = () => {
   const location = useLocation();
   const [isError, setIsError] = useState(false);
   const toAcceptPassCode = useCallback(
-    passCode => {
+    (passCode: string) => {
       if (standaloneStore.validatePassCode(passCode)) {
         setIsError(false);
         navigate(getLoginUrn());

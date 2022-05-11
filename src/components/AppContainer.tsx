@@ -6,7 +6,11 @@ import createTheme from 'themes/createTheme';
 import { observer } from 'mobx-react';
 import useAppStore from 'stores/hooks/useAppStore';
 
-const AppContainer: FC = ({ children }) => {
+type TProps = {
+  children?: React.ReactNode;
+};
+
+const AppContainer: FC<TProps> = ({ children }) => {
   const appStore = useAppStore();
   const { paletteMode } = appStore;
   const theme = useMemo(() => createTheme(paletteMode), [paletteMode]);

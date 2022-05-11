@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import AppContainer from 'components/AppContainer';
 import RootStore, { RootStoreContext } from 'stores/RootStore';
 import PrimaryAuthenticator from 'services/PrimaryAuthenticator';
@@ -31,15 +31,17 @@ const baseURL = process.env.REACT_APP_API_HOST ?? '';
 const authenticator = new PrimaryAuthenticator();
 PrimaryClient.createClientInstance(baseURL, authenticator);
 
-ReactDOM.render(
+const container = document.getElementById('root') as Element;
+const root = createRoot(container);
+
+root.render(
   <RootStoreContext.Provider value={store}>
     <Suspense fallback={<LinearProgress />}>
       <AppContainer>
         <AppRouter />
       </AppContainer>
     </Suspense>
-  </RootStoreContext.Provider>,
-  document.getElementById('root')
+  </RootStoreContext.Provider>
 );
 
 serviceWorkerRegistration.register();

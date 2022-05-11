@@ -7,7 +7,12 @@ import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 
-const ErrorPage: FC<{ title: string }> = ({ title, children }) => (
+type TProps = {
+  title: string;
+  children?: React.ReactNode;
+};
+
+const ErrorPage: FC<TProps> = ({ title, children }) => (
   <Container
     maxWidth="sm"
     sx={{

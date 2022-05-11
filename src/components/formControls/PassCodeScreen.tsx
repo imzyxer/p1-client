@@ -23,7 +23,7 @@ const PassCodeScreen: FC<TPassCodeScreenParams> = ({ title, isError, toAcceptPas
   const [passCode, setPassCode] = useState('');
   const colorFilledCircles = isError && passCode.length === passCodeLength ? 'error' : 'primary';
   const checkCode = useCallback(
-    letter => {
+    (letter: string) => {
       // 1. erase character
       if (letter === 'C') {
         if (passCode.length === 0) return;

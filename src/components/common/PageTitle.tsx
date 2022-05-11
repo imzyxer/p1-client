@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 import { SvgIconProps } from '@mui/material';
 
 type TPageTitleProps = {
+  children?: React.ReactNode;
   icon?: React.ReactElement<SvgIconProps>;
 };
 

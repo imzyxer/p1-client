@@ -4,7 +4,11 @@ import { getDashboardUrn } from 'utils/getUrn';
 import { observer } from 'mobx-react';
 import useAppStore from 'stores/hooks/useAppStore';
 
-const AccessGuestOnly: FC = ({ children }) => {
+type TProps = {
+  children?: React.ReactNode;
+};
+
+const AccessGuestOnly: FC<TProps> = ({ children }) => {
   const appStore = useAppStore();
   const location = useLocation();
   if (!appStore.userIsGuest) {

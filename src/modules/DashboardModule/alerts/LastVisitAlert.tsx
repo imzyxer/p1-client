@@ -27,7 +27,7 @@ const LastVisitAlert: FC = () => {
         >
           <AlertTitle>{t('alertPreviousVisitTitle')}</AlertTitle>
           <Trans i18nKey="alertPreviousVisitBody" t={t}>
-            You last logged in on <strong>{{ datetime: visit.datetime }}</strong>. Location — {{ location: visit.location }}, IP used — {{ ip: visit.ip }}
+            You last logged in on {{ datetime: visit.datetime }}. Location — {{ location: visit.location }}, IP used — {{ ip: visit.ip }}
           </Trans>
         </Alert>
       )}
