@@ -108,8 +108,10 @@ class ThingEntity {
       uppercase: true,
       lowercase: true,
       symbols: false,
-      length: 10,
-    });
+      length: 12,
+    })
+      .replace(/(.{1,4})/g, '$1-')
+      .slice(0, -1);
     switch (thingType) {
       case EThingType.PASSWORD:
         return { login: '', password, link: '' };
