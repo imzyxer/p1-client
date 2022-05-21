@@ -6,7 +6,6 @@ import DialogContent from '@mui/material/DialogContent';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import useThingViewStore from 'stores/hooks/useThingViewStore';
 import ThingTypeIcon from 'components/common/ThingTypeIcon';
 import { EProgress } from 'types/app';
 
@@ -19,9 +18,12 @@ import PieceForPassword from 'components/Dialogs/ThingView/PieceForPassword';
 import PieceForCard from 'components/Dialogs/ThingView/PieceForCard';
 import { EThingType } from 'types/thing';
 import _isEmpty from 'lodash/isEmpty';
+import useRootStore from 'stores/hooks/useRootStore';
+import GroupIcon from 'components/common/GroupIcon';
+import Box from '@mui/material/Box';
 
-const Index: FC = () => {
-  const store = useThingViewStore();
+const ThingView: FC = () => {
+  const { thingViewStore: store } = useRootStore();
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const handleClose = () => store.close();
@@ -54,7 +56,14 @@ const Index: FC = () => {
           )}
         </Grid>
       </DialogContent>
-      <DialogActions>
+      <DialogActions sx={{ justifyContent: 'space-between', paddingLeft: t => t.spacing(3) }}>
+        {store.group && (
+          <Box sx={{ opacity: '.5', alignItems: 'center', display: 'inline-flex' }}>
+            <GroupIcon icon={store.group.icon} />
+            &nbsp;
+            {store.group.name}
+          </Box>
+        )}
         <Button onClick={handleClose} color="primary">
           OK
         </Button>
@@ -63,4 +72,4 @@ const Index: FC = () => {
   );
 };
 
-export default observer(Index);
+export default observer(ThingView);

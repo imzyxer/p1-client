@@ -2,14 +2,17 @@ import { action, computed, makeObservable, observable } from 'mobx';
 import { EProgress, Nullable, TId } from 'types/app';
 import { fetchById } from 'services/api/Thing';
 import { IThing, TThingPayloadCard, TThingPayloadPassword } from 'types/thing';
+import { TRootStore } from 'stores/RootStore';
 
 class ThingViewStore {
+  @observable root: TRootStore;
   @observable currentThingId: Nullable<TId> = null;
   @observable thing: Nullable<IThing> = null;
   @observable progress: EProgress = EProgress.INIT;
   @observable init = false;
 
-  constructor() {
+  constructor(rootStore: TRootStore) {
+    this.root = rootStore;
     makeObservable(this);
   }
 
@@ -43,6 +46,11 @@ class ThingViewStore {
   @computed
   get isThingCardOpened() {
     return this.progress !== EProgress.INIT;
+  }
+
+  @computed
+  get group() {
+    return this.root.refsStore.getGroup((this.thing as IThing).groupId);
   }
 
   @computed

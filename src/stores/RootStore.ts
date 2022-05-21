@@ -32,7 +32,7 @@ export default class RootStore {
     this.historyStore = new HistoryStore();
     this.groupViewStore = new GroupViewStore(this);
     this.groupsManageStore = new GroupsManageStore(this);
-    this.thingViewStore = new ThingViewStore();
+    this.thingViewStore = new ThingViewStore(this);
     this.thingEditStore = new ThingEditStore(this);
     this.thingAddStore = new ThingAddStore(this);
     this.profileEditStore = new ProfileEditStore(this);

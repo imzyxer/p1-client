@@ -3,17 +3,17 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
+import LinkIcon from '@mui/icons-material/Link';
 import { TThingPayloadPassword } from 'types/thing';
 import PasswordField from 'components/formControls/basic/PasswordField';
 import CopyButton from 'components/common/CopyButton';
 
-const PieceForPassword: FC<{ payload: TThingPayloadPassword }> = ({ payload }) => (
+type TParams = {
+  payload: TThingPayloadPassword;
+};
+
+const PieceForPassword: FC<TParams> = ({ payload }) => (
   <>
-    <Grid item xs={12}>
-      <Link href={payload.link} rel="noreferrer">
-        {payload.link}
-      </Link>
-    </Grid>
     <Grid item xs={12} sm={6}>
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <TextField label="Login" variant="outlined" InputProps={{ readOnly: true }} defaultValue={payload.login} fullWidth />
@@ -26,6 +26,17 @@ const PieceForPassword: FC<{ payload: TThingPayloadPassword }> = ({ payload }) =
         <CopyButton copyText={payload.password} sx={{ ml: 1 }} />
       </Box>
     </Grid>
+    {payload.link && (
+      <Grid item xs={12}>
+        <Box sx={{ verticalAlign: 'middle', display: 'inline-flex' }}>
+          <LinkIcon color="action" />
+          &nbsp;
+          <Link href={payload.link} rel="noreferrer">
+            {payload.link}
+          </Link>
+        </Box>
+      </Grid>
+    )}
   </>
 );
 
