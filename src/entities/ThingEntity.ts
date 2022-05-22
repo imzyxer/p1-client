@@ -16,7 +16,7 @@ import moment from 'moment';
 import { TId } from 'types/app';
 import Cipher from 'utils/Cipher';
 import PrimaryClient from 'services/PrimaryClient';
-import passfather from 'passfather';
+import Generator from '@zyxer/yapg';
 import CCEntity from 'entities/CCEntity';
 
 class ThingEntity {
@@ -103,18 +103,18 @@ class ThingEntity {
   });
 
   getDefaultPayload = (thingType: EThingType): TThingPayload => {
-    const password = passfather({
+    const pg = new Generator({
       numbers: true,
       uppercase: true,
       lowercase: true,
       symbols: false,
       length: 12,
-    })
-      .replace(/(.{1,4})/g, '$1-')
-      .slice(0, -1);
+      group: 4,
+    });
+
     switch (thingType) {
       case EThingType.PASSWORD:
-        return { login: '', password, link: '' };
+        return { login: '', password: pg.generate(), link: '' };
       case EThingType.CARD:
         return { number: '', holder: '', cvc: '', pin: '' };
       default:
