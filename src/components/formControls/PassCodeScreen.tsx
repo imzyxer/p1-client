@@ -51,8 +51,8 @@ const PassCodeScreen: FC<TPassCodeScreenParams> = ({ title, isError, toAcceptPas
         <Grid item xs={12} sx={{ grow: 1 }}>
           <Stack spacing={3}>
             <Grid container spacing={3} justifyContent="center">
-              <Grid item xs={12}>
-                <Typography variant="h6" component="div" align="center" mb={3}>
+              <Grid item xs={12} sx={{ textAlign: 'center' }}>
+                <Typography variant="h6" component="span" align="center" mb={3} sx={{ maxWidth: '80vw', display: 'inline-block' }}>
                   {title}
                 </Typography>
               </Grid>

@@ -3,6 +3,8 @@ import useRootStore from 'stores/hooks/useRootStore';
 import PassCodeScreen from 'components/formControls/PassCodeScreen';
 import { useTranslation } from 'react-i18next';
 import Backdrop from '@mui/material/Backdrop';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 import { useNavigate } from 'react-router-dom';
 import { getProfileUrn } from 'utils/getUrn';
 
@@ -37,6 +39,9 @@ const PassCodeOverlay: FC = () => {
       }}
       open
     >
+      <IconButton sx={{ position: 'absolute', top: theme => theme.spacing(1), right: theme => theme.spacing(1) }} onClick={() => navigate(getProfileUrn())}>
+        <CloseIcon fontSize="large" />
+      </IconButton>
       {step === 1 && <PassCodeScreen title={t('passCodeOverlay.newPassCodeTitle')} isError={false} toAcceptPassCode={stageFirst} />}
       {step === 2 && <PassCodeScreen title={t('passCodeOverlay.repeatPassCodeTitle')} isError={isError} toAcceptPassCode={stageSecond} />}
     </Backdrop>
