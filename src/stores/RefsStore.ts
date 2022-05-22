@@ -51,7 +51,7 @@ class RefsStore {
 
   @computed
   get groupOptions() {
-    return this.groups.map(i => ({ label: i.name, value: i.id }));
+    return this.groups.map(i => ({ label: i.name, value: i.id, icon: i.icon }));
   }
 
   public getGroup(groupId: string): Nullable<IGroup> {
