@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from 'components/common/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
@@ -30,12 +30,12 @@ const MenuItemAddThing: FC = () => {
 
   return (
     <>
-      <ListItem button onClick={handleOpen}>
+      <ListItemButton onClick={handleOpen}>
         <ListItemIcon>
           <AddCircleIcon />
         </ListItemIcon>
         <ListItemText primary={t('menu.addThing')} />
-      </ListItem>
+      </ListItemButton>
       <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
         <MenuItem onClick={handleClick(EThingType.PASSWORD)}>
           <ListItemIcon>

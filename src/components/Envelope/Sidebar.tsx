@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from 'components/common/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import DashboardIcon from '@mui/icons-material/Dashboard';
@@ -24,19 +24,19 @@ const Sidebar: FC = () => {
   return (
     <>
       <List>
-        <ListItem button component={Link} to={urns.getDashboardUrn()} selected={appStore.element === EElement.DASHBOARD}>
+        <ListItemButton component={Link} to={urns.getDashboardUrn()} selected={appStore.element === EElement.DASHBOARD}>
           <ListItemIcon>
             <DashboardIcon />
           </ListItemIcon>
           <ListItemText primary={t('menu.dashboard')} />
-        </ListItem>
+        </ListItemButton>
         <MenuItemAddThing />
-        <ListItem button onClick={() => groupsManageStore.open()}>
+        <ListItemButton onClick={() => groupsManageStore.open()}>
           <ListItemIcon>
             <ManageGroupIcon />
           </ListItemIcon>
           <ListItemText primary={t('menu.manageGroups')} />
-        </ListItem>
+        </ListItemButton>
       </List>
       <Divider />
       <GroupList />

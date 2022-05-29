@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { IGroup } from 'types/group';
-import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
 import { Link } from 'react-router-dom';
 import * as urns from 'utils/getUrn';
 import ListItemIcon from 'components/common/ListItemIcon';
@@ -13,12 +13,12 @@ interface IGroupItem {
 }
 
 const GroupItem: FC<IGroupItem> = ({ group, selected = false }) => (
-  <ListItem button component={Link} to={urns.getGroupUrn(group.id)} selected={selected}>
+  <ListItemButton component={Link} to={urns.getGroupUrn(group.id)} selected={selected}>
     <ListItemIcon>
       <GroupIcon icon={group.icon} />
     </ListItemIcon>
     <ListItemText primary={group.name} />
-  </ListItem>
+  </ListItemButton>
 );
 
 export default GroupItem;
