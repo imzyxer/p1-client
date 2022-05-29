@@ -116,7 +116,7 @@ class ThingEntity {
       case EThingType.PASSWORD:
         return { login: '', password: pg.generate(), link: '' };
       case EThingType.CARD:
-        return { number: '', holder: '', cvc: '', pin: '' };
+        return { number: '', holder: '', cvc: '', pin: '', exp: '' };
       default:
         return { login: '', password: '', link: '' };
     }

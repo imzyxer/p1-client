@@ -63,7 +63,8 @@
       "labelCvc": "CVC",
       "labelLink": "Link",
       "labelLogin": "Login",
-      "labelPassword": "Password"
+      "labelPassword": "Password",
+      "labelExp": "Expiration"
     },
     "group": {
       "title": "Manage Groups",

@@ -17,31 +17,30 @@ const ThingBlank: FC<{ type: EThingType }> = ({ type }) => {
   const storeRefs = useRefsStore();
 
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={6}>
-        <TextField id="title" name="title" label={t('dialog.thing.labelTitle')} required />
-      </Grid>
-      <Grid item xs={6}>
-        <SelectParent name="groupId" label={t('dialog.thing.labelGroup')} labelId="groupId" required displayEmpty>
-          {storeRefs.groupOptions.map(item => (
-            <MenuItem value={item.value} key={item.value}>
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <GroupIcon icon={item.icon} fontSize="small" />
-                <div>
-                  &nbsp;&nbsp;
-                  {item.label}
-                </div>
-              </Box>
-            </MenuItem>
-          ))}
-        </SelectParent>
+    <>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={6}>
+          <TextField id="title" name="title" label={t('dialog.thing.labelTitle')} required />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <SelectParent name="groupId" label={t('dialog.thing.labelGroup')} labelId="groupId" required displayEmpty>
+            {storeRefs.groupOptions.map(item => (
+              <MenuItem value={item.value} key={item.value}>
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                  <GroupIcon icon={item.icon} fontSize="small" />
+                  <div>
+                    &nbsp;&nbsp;
+                    {item.label}
+                  </div>
+                </Box>
+              </MenuItem>
+            ))}
+          </SelectParent>
+        </Grid>
       </Grid>
       {type === EThingType.PASSWORD && <PieceForPassword />}
       {type === EThingType.CARD && <PieceForCard />}
-      <Grid item xs={12}>
-        <TextField id="comment" name="comment" label={t('dialog.thing.labelComment')} multiline maxRows={4} />
-      </Grid>
-    </Grid>
+    </>
   );
 };
 

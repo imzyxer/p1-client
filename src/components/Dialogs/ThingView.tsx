@@ -8,11 +8,10 @@ import Grid from '@mui/material/Grid';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import ThingTypeIcon from 'components/common/ThingTypeIcon';
 import { EProgress } from 'types/app';
-
 import Typography from '@mui/material/Typography';
 import GlobalLoader from 'components/common/GlobalLoader';
-
 import { useTheme } from '@mui/material/styles';
+import { useTranslation } from 'react-i18next';
 import DialogTitle from 'components/common/DialogTitle';
 import PieceForPassword from 'components/Dialogs/ThingView/PieceForPassword';
 import PieceForCard from 'components/Dialogs/ThingView/PieceForCard';
@@ -23,6 +22,7 @@ import GroupIcon from 'components/common/GroupIcon';
 import Box from '@mui/material/Box';
 
 const ThingView: FC = () => {
+  const { t } = useTranslation();
   const { thingViewStore: store } = useRootStore();
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
@@ -40,23 +40,21 @@ const ThingView: FC = () => {
       </DialogTitle>
       <DialogContent dividers>
         <Grid container spacing={2}>
-          {store.data.type === EThingType.PASSWORD && <PieceForPassword payload={store.passwordPayload} />}
-          {store.data.type === EThingType.CARD && (
-            <Grid item xs={12}>
-              <PieceForCard payload={store.cardPayload} />
-            </Grid>
-          )}
+          <Grid item xs={12}>
+            {store.data.type === EThingType.PASSWORD && <PieceForPassword payload={store.passwordPayload} />}
+            {store.data.type === EThingType.CARD && <PieceForCard payload={store.cardPayload} />}
+          </Grid>
           {!_isEmpty(store.data.comment) && (
             <Grid item xs={12}>
               <Typography variant="h6" gutterBottom>
-                Comment
+                {t('dialog.thing.labelComment')}
               </Typography>
               <Typography variant="body1">{store.data.comment}</Typography>
             </Grid>
           )}
         </Grid>
       </DialogContent>
-      <DialogActions sx={{ justifyContent: 'space-between', paddingLeft: t => t.spacing(3) }}>
+      <DialogActions sx={{ justifyContent: 'space-between', paddingLeft: th => th.spacing(3) }}>
         {store.group && (
           <Box sx={{ opacity: '.5', alignItems: 'center', display: 'inline-flex' }}>
             <GroupIcon icon={store.group.icon} />

@@ -63,7 +63,8 @@
       "labelCvc": "CVC",
       "labelLink": "Ссылка",
       "labelLogin": "Логин",
-      "labelPassword": "Пароль"
+      "labelPassword": "Пароль",
+      "labelExp": "Действует до"
     },
     "group": {
       "title": "Группы",
@@ -78,6 +79,6 @@
     "unStarred": "Вы хотите убрать запись из избранного?"
   },
   "passCode": {
-    "title": "Уажите ПИН-код"
+    "title": "Укажите ПИН-код"
   }
 }

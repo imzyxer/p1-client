@@ -16,6 +16,7 @@ export type TThingPayloadCard = {
   holder: string;
   cvc: string;
   pin: string;
+  exp: string;
 };
 
 export type TThingPayload = TThingPayloadPassword | TThingPayloadCard;
