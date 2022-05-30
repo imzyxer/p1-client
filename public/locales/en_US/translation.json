@@ -18,7 +18,8 @@
     "tooltipView": "View thing",
     "tooltipEdit": "Edit thing",
     "tooltipStarred": "Starred thing",
-    "tooltipUnStarred": "Unstarred thing"
+    "tooltipUnStarred": "Unstarred thing",
+    "tooltipRequested": "Requested"
   },
   "validations": {
     "length": "Must be exactly {{length}} characters",
@@ -64,7 +65,9 @@
       "labelLink": "Link",
       "labelLogin": "Login",
       "labelPassword": "Password",
-      "labelExp": "Expiration"
+      "labelExp": "Expiry",
+      "labelCreated": "Created",
+      "labelUpdated": "Updated"
     },
     "group": {
       "title": "Manage Groups",

@@ -18,7 +18,8 @@
     "tooltipView": "Просмотреть",
     "tooltipEdit": "Редактировать",
     "tooltipStarred": "В избранное",
-    "tooltipUnStarred": "Убрать из избранного"
+    "tooltipUnStarred": "Убрать из избранного",
+    "tooltipRequested": "Запрошено"
   },
   "validations": {
     "length": "Должно быть точно {{length}} символов",
@@ -64,7 +65,9 @@
       "labelLink": "Ссылка",
       "labelLogin": "Логин",
       "labelPassword": "Пароль",
-      "labelExp": "Действует до"
+      "labelExp": "Действует до",
+      "labelCreated": "Создано",
+      "labelUpdated": "Обновлено"
     },
     "group": {
       "title": "Группы",

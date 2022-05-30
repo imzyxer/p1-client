@@ -52,6 +52,16 @@ const ThingView: FC = () => {
               <Typography variant="body1">{store.data.comment}</Typography>
             </Grid>
           )}
+          <Grid item xs={6} sm={4}>
+            <Typography variant="caption" display="block" pt={2} sx={{ opacity: 0.7 }}>
+              {t('dialog.thing.labelCreated')}: {store.thingCreated}
+            </Typography>
+          </Grid>
+          <Grid item xs={6} sm={4}>
+            <Typography variant="caption" display="block" pt={2} sx={{ opacity: 0.7 }}>
+              {t('dialog.thing.labelUpdated')}: {store.thingUpdated}
+            </Typography>
+          </Grid>
         </Grid>
       </DialogContent>
       <DialogActions sx={{ justifyContent: 'space-between', paddingLeft: th => th.spacing(3) }}>

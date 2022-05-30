@@ -3,6 +3,7 @@ import { EProgress, Nullable, TId } from 'types/app';
 import { fetchById } from 'services/api/Thing';
 import { IThing, TThingPayloadCard, TThingPayloadPassword } from 'types/thing';
 import { TRootStore } from 'stores/RootStore';
+import ThingEntity from 'entities/ThingEntity';
 
 class ThingViewStore {
   @observable root: TRootStore;
@@ -55,19 +56,21 @@ class ThingViewStore {
 
   @computed
   get data(): IThing {
-    if (this.thing === null) {
-      throw new Error('Thing has not been loaded yet');
-    } else {
-      return this.thing;
-    }
+    return this.thing as IThing;
+  }
+
+  @computed
+  get thingCreated() {
+    return ThingEntity.extractDate((this.thing as IThing).created);
+  }
+
+  @computed
+  get thingUpdated() {
+    return ThingEntity.extractDate((this.thing as IThing).updated);
   }
 
   payload<T extends TThingPayloadPassword | TThingPayloadCard>(): T {
-    if (this.thing === null) {
-      throw new Error('Thing has not been loaded yet');
-    }
-
-    return <T>this.thing.payload;
+    return <T>(this.thing as IThing).payload;
   }
 
   @computed

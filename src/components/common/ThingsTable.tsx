@@ -105,7 +105,7 @@ const ThingsTable: FC<IThingTable> = ({ columns, things }) => {
                 <TableCell size="small">
                   {thing.title}
                   <br />
-                  <Box component="small" sx={{ color: theme => theme.palette.text.secondary }} whiteSpace="nowrap">
+                  <Box component="small" sx={{ color: theme => theme.palette.text.secondary }} whiteSpace="nowrap" title={t('thingsTable.tooltipRequested')}>
                     {thing.requested}
                   </Box>
                 </TableCell>
