@@ -5,6 +5,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import ThingTypeIcon from 'components/common/ThingTypeIcon';
 import { EProgress } from 'types/app';
@@ -52,15 +53,15 @@ const ThingView: FC = () => {
               <Typography variant="body1">{store.data.comment}</Typography>
             </Grid>
           )}
-          <Grid item xs={6} sm={4}>
-            <Typography variant="caption" display="block" pt={2} sx={{ opacity: 0.7 }}>
-              {t('dialog.thing.labelCreated')}: {store.thingCreated}
-            </Typography>
-          </Grid>
-          <Grid item xs={6} sm={4}>
-            <Typography variant="caption" display="block" pt={2} sx={{ opacity: 0.7 }}>
-              {t('dialog.thing.labelUpdated')}: {store.thingUpdated}
-            </Typography>
+          <Grid item xs={12}>
+            <Stack direction="row" spacing={2} mt={2}>
+              <Typography variant="caption" sx={{ opacity: 0.7 }}>
+                {t('dialog.thing.labelCreated')}: {store.thingCreated}
+              </Typography>
+              <Typography variant="caption" sx={{ opacity: 0.7 }}>
+                {t('dialog.thing.labelUpdated')}: {store.thingUpdated}
+              </Typography>
+            </Stack>
           </Grid>
         </Grid>
       </DialogContent>
