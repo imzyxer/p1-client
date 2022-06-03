@@ -31,7 +31,7 @@ const baseURL = process.env.REACT_APP_API_HOST ?? '';
 const authenticator = new PrimaryAuthenticator();
 PrimaryClient.createClientInstance(baseURL, authenticator);
 
-const container = document.getElementById('root') as Element;
+const container = document.getElementById('root') as HTMLElement;
 const root = createRoot(container);
 
 root.render(
