@@ -10,7 +10,7 @@ type TDialogTitleProps = {
 };
 
 const DialogTitle: FC<TDialogTitleProps> = ({ children, onClose, ...other }) => (
-  <MuiDialogTitle sx={{ m: 0, p: 2 }} {...other}>
+  <MuiDialogTitle sx={{ m: 0, px: 3, py: 2 }} {...other}>
     <Typography
       variant="h6"
       component="div"

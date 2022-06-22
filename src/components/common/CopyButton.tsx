@@ -1,12 +1,11 @@
 import React, { FC, useState } from 'react';
-import IconButton from '@mui/material/IconButton';
+import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import { SxProps, Theme } from '@mui/material/styles';
+// import { SxProps, Theme } from '@mui/material/styles';
 
-interface Props {
+type TProps = {
   copyText: string;
-  sx?: SxProps<Theme>;
-}
+} & IconButtonProps;
 
 function fallbackCopyTextToClipboard(text: string) {
   const textArea = document.createElement('textarea');
@@ -50,7 +49,7 @@ function copyTextToClipboard(text: string) {
   return fallbackCopyTextToClipboard(text);
 }
 
-const CopyButton: FC<Props> = ({ sx, copyText }) => {
+const CopyButton: FC<TProps> = ({ copyText, ...props }) => {
   const [isCopied, setIsCopied] = useState(false);
   const handleCopyClick = () => {
     copyTextToClipboard(copyText).then(() => {
@@ -61,8 +60,8 @@ const CopyButton: FC<Props> = ({ sx, copyText }) => {
     });
   };
   return (
-    <IconButton color={isCopied ? 'primary' : 'default'} aria-label="copy" sx={sx} onClick={handleCopyClick}>
-      <ContentCopyIcon />
+    <IconButton color={isCopied ? 'primary' : 'default'} aria-label="copy" onClick={handleCopyClick} {...props}>
+      <ContentCopyIcon fontSize="inherit" />
     </IconButton>
   );
 };

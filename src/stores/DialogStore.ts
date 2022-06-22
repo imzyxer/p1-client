@@ -35,6 +35,7 @@ class DialogStore {
   @action
   public close = () => {
     this.params = {};
+    window.location.hash = '';
   };
 
   @computed

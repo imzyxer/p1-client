@@ -2,8 +2,8 @@ import React, { FC, useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { observer } from 'mobx-react';
 import GlobalLoader from 'components/common/GlobalLoader';
-import Envelope from 'components/Envelope';
-import useAppStore from 'stores/hooks/useAppStore';
+import Wrapper from 'components/Wrapper';
+import useRootStore from 'stores/hooks/useRootStore';
 import DashboardElement from 'router/elements/DashboardElement';
 import HistoryElement from 'router/elements/HistoryElement';
 import GroupViewElement from 'router/elements/GroupViewElement';
@@ -16,7 +16,7 @@ import SignupElement from 'router/elements/SignupElement';
 import StandaloneElement from 'router/elements/StandaloneElement';
 
 const AppRouter: FC = () => {
-  const appStore = useAppStore();
+  const { appStore } = useRootStore();
 
   useEffect(() => {
     appStore.initiate();
@@ -31,7 +31,7 @@ const AppRouter: FC = () => {
       <Routes>
         <Route path="/">
           <Route index element={<HomeElement />} />
-          <Route element={<Envelope />}>
+          <Route element={<Wrapper />}>
             <Route path="dashboard" element={<DashboardElement />} />
             <Route path="group/:groupId" element={<GroupViewElement />} />
             <Route path="history" element={<HistoryElement />} />

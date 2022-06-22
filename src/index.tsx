@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
-import AppContainer from 'components/AppContainer';
+import Envelope from 'components/Envelope';
 import RootStore, { RootStoreContext } from 'stores/RootStore';
 import PrimaryAuthenticator from 'services/PrimaryAuthenticator';
 import PrimaryClient from 'services/PrimaryClient';
@@ -37,9 +37,9 @@ const root = createRoot(container);
 root.render(
   <RootStoreContext.Provider value={store}>
     <Suspense fallback={<LinearProgress />}>
-      <AppContainer>
+      <Envelope>
         <AppRouter />
-      </AppContainer>
+      </Envelope>
     </Suspense>
   </RootStoreContext.Provider>
 );

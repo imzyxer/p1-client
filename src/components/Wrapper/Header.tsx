@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import LogotypeIcon from '@mui/icons-material/Https';
 import Hidden from '@mui/material/Hidden';
 import Box from '@mui/material/Box';
-import Account from 'components/Envelope/Header/Account';
+import Account from 'components/Wrapper/Header/Account';
 
 type TProps = {
   drawerWidth: number;

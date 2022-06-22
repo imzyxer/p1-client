@@ -2,25 +2,25 @@ import React, { FC } from 'react';
 import { observer } from 'mobx-react';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 import ThingTypeIcon from 'components/common/ThingTypeIcon';
 import { EProgress } from 'types/app';
-import Typography from '@mui/material/Typography';
 import GlobalLoader from 'components/common/GlobalLoader';
-import { useTheme } from '@mui/material/styles';
 import { useTranslation } from 'react-i18next';
-import DialogTitle from 'components/common/DialogTitle';
+import DialogTitle from 'components/Dialog/DialogTitle';
+import DialogContent from 'components/Dialog/DialogContent';
 import PieceForPassword from 'components/Dialogs/ThingView/PieceForPassword';
 import PieceForCard from 'components/Dialogs/ThingView/PieceForCard';
 import { EThingType } from 'types/thing';
 import _isEmpty from 'lodash/isEmpty';
 import useRootStore from 'stores/hooks/useRootStore';
 import GroupIcon from 'components/common/GroupIcon';
-import Box from '@mui/material/Box';
 
 const ThingView: FC = () => {
   const { t } = useTranslation();
@@ -39,7 +39,7 @@ const ThingView: FC = () => {
         <ThingTypeIcon type={store.data.type} />
         <span>&nbsp;{store.data.title}</span>
       </DialogTitle>
-      <DialogContent dividers>
+      <DialogContent>
         <Grid container spacing={2}>
           <Grid item xs={12}>
             {store.data.type === EThingType.PASSWORD && <PieceForPassword payload={store.passwordPayload} />}

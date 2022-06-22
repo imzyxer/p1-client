@@ -5,14 +5,14 @@ import ThingTypeIcon from 'components/common/ThingTypeIcon';
 import { EProgress } from 'types/app';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
 import Button from '@mui/material/Button';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import IconButton from '@mui/material/IconButton';
 import { useTheme } from '@mui/material/styles';
 import DeleteIcon from '@mui/icons-material/Delete';
 import GlobalLoader from 'components/common/GlobalLoader';
-import DialogTitle from 'components/common/DialogTitle';
+import DialogTitle from 'components/Dialog/DialogTitle';
+import DialogContent from 'components/Dialog/DialogContent';
 import { Form, Formik, FormikHelpers } from 'formik';
 import { IThingForFormik } from 'types/thing';
 import { useSnackbar } from 'notistack';
@@ -72,7 +72,7 @@ const ThingEdit: FC = () => {
               <span>&nbsp;{values.title}</span>
             </DialogTitle>
             <FormLoader />
-            <DialogContent dividers>
+            <DialogContent>
               <ThingBlank type={store.data.type} />
             </DialogContent>
             <DialogActions>

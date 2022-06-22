@@ -3,17 +3,18 @@ import { observer } from 'mobx-react';
 import ThingTypeIcon from 'components/common/ThingTypeIcon';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
+
 import Button from '@mui/material/Button';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import DialogTitle from 'components/common/DialogTitle';
 import { Form, Formik, FormikHelpers } from 'formik';
 import { EThingType, IThingForFormik } from 'types/thing';
 import { useSnackbar } from 'notistack';
 import FormLoader from 'components/common/FormLoader';
 import useThingAddStore from 'stores/hooks/useThingAddStore';
 import ThingBlank from 'components/forms/ThingBlank';
+import DialogTitle from 'components/Dialog/DialogTitle';
+import DialogContent from 'components/Dialog/DialogContent';
 import { useTranslation } from 'react-i18next';
 import ThingEntity from 'entities/ThingEntity';
 import { useParams } from 'react-router-dom';
@@ -67,7 +68,7 @@ const ThingAdd: FC = () => {
               <span>&nbsp;{title}</span>
             </DialogTitle>
             <FormLoader />
-            <DialogContent dividers>
+            <DialogContent>
               <ThingBlank type={store.type} />
             </DialogContent>
             <DialogActions>

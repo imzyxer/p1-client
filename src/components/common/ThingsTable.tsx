@@ -103,8 +103,18 @@ const ThingsTable: FC<IThingTable> = ({ columns, things }) => {
               </Hidden>
               {columns.includes(EColumn.TITLE) && (
                 <TableCell size="small">
-                  {thing.title}
-                  <br />
+                  <Box
+                    component="div"
+                    sx={{
+                      maxWidth: { xs: '110px', sm: '100%' },
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                    }}
+                    whiteSpace="nowrap"
+                    title={thing.title}
+                  >
+                    {thing.title}
+                  </Box>
                   <Box component="small" sx={{ color: theme => theme.palette.text.secondary }} whiteSpace="nowrap" title={t('thingsTable.tooltipRequested')}>
                     {thing.requested}
                   </Box>

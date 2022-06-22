@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import LocalLoader from 'components/common/LocalLoader';
 import List from '@mui/material/List';
 import useRefsStore from 'stores/hooks/useRefsStore';
-import GroupItem from 'components/Envelope/Sidebar/GroupItem';
+import GroupItem from 'components/Wrapper/Sidebar/GroupItem';
 import { useParams } from 'react-router-dom';
 import { computed } from 'mobx';
 import { ERef } from 'types/app';

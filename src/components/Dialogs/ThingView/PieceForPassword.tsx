@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { TThingPayloadPassword } from 'types/thing';
 import PasswordField from 'components/formControls/basic/PasswordField';
 import CopyButton from 'components/common/CopyButton';
+import Stack from '@mui/material/Stack';
 
 type TParams = {
   payload: TThingPayloadPassword;
@@ -32,13 +33,13 @@ const PieceForPassword: FC<TParams> = ({ payload }) => {
       </Grid>
       {payload.link && (
         <Grid item xs={12}>
-          <Box sx={{ verticalAlign: 'middle', display: 'inline-flex' }}>
+          <Stack spacing={1} direction="row" sx={{ alignItems: 'center' }}>
             <LinkIcon color="action" />
-            &nbsp;
             <Link href={payload.link} rel="noreferrer">
               {payload.link}
             </Link>
-          </Box>
+            <CopyButton copyText={payload.link} size="small" />
+          </Stack>
         </Grid>
       )}
     </Grid>

@@ -3,10 +3,10 @@ import { observer } from 'mobx-react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import confirmStore from 'stores/ConfirmStore';
+import DialogContent from 'components/Dialog/DialogContent';
 
 const Confirm: FC = () => {
   const { title, description, confirmationText, cancellationText, dialogProps, confirmationButtonProps, cancellationButtonProps } = confirmStore.options;

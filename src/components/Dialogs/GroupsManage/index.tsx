@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import Dialog from '@mui/material/Dialog';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import DialogTitle from 'components/common/DialogTitle';
+import DialogTitle from 'components/Dialog/DialogTitle';
 import useRootStore from 'stores/hooks/useRootStore';
 import ManageGroupIcon from '@mui/icons-material/CreateNewFolder';
 import GroupList from 'components/Dialogs/GroupsManage/GroupList';

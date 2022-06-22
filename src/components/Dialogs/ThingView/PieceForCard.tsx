@@ -38,7 +38,10 @@ const PieceForCard: FC<{ payload: TThingPayloadCard }> = ({ payload }) => {
         </Box>
       </Grid>
       <Grid item xs={6} sm={4} order={{ xs: 3, sm: 4 }}>
-        <TextField label={t('dialog.thing.labelExp')} variant="outlined" InputProps={{ readOnly: true }} defaultValue={payload.exp || ''} fullWidth />
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <TextField label={t('dialog.thing.labelExp')} variant="outlined" InputProps={{ readOnly: true }} defaultValue={payload.exp || ''} fullWidth />
+          <CopyButton copyText={payload.exp || ''} sx={{ ml: 1 }} />
+        </Box>
       </Grid>
       <Grid item xs={6} sm={8} order={{ xs: 5, sm: 5 }} sx={{ display: { xs: 'none' } }}>
         &nbsp;
