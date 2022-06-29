@@ -21,7 +21,7 @@ export const fetchById = (thingId: TId) => api().get<IThingRaw>(`/things/${thing
 
 export const doUpdate = (data: IThingForUpdate) => api().put<TResult>(`/things/${data.id}`, ThingEntity.encrypt(data));
 
-export const doCreate = (data: IThingForCreate) => api().post<TResult>('/things', PrimaryClient.toFormData(ThingEntity.encrypt(data)));
+export const doCreate = (data: IThingForCreate) => api().post<TResult>('/things', ThingEntity.encrypt(data));
 
 export const doRemove = (thingId: TId) => api().delete<TResult>(`/things/${thingId}`);
 

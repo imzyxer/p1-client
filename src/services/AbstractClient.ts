@@ -8,12 +8,6 @@ abstract class AbstractClient<A extends IAbstractAuthenticator> {
   protected abstract getCommonHeaders(): Promise<AxiosRequestHeaders>;
   protected abstract getAuthHeaders(): Promise<AxiosRequestHeaders>;
 
-  static toFormData = (data: any) =>
-    Object.keys(data).reduce((formData, key) => {
-      formData.append(key, data[key]);
-      return formData;
-    }, new FormData());
-
   protected constructor(baseURL: string, authenticator: A) {
     this.authenticator = authenticator;
     this.httpClient = this.createHttpClient(baseURL);
