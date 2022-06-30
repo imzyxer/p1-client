@@ -30,7 +30,7 @@ const PieceForCard: FC = () => {
       </Paper>
       <Grid container spacing={2}>
         <Grid item xs={7} sm={8}>
-          <TextField id="comment" name="comment" label={t('dialog.thing.labelComment')} multiline maxRows={4} />
+          <TextField id="comment" name="payload.comment" label={t('dialog.thing.labelComment')} multiline maxRows={4} />
         </Grid>
         <Grid item xs={5} sm={4}>
           <PasswordField id="pin" name="payload.pin" label={t('dialog.thing.labelPin')} autoComplete="new-pin" />

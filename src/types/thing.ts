@@ -8,7 +8,9 @@ export enum EThingType {
 export type TThingPayloadPassword = {
   login: string;
   password: string;
+  email: string;
   link: string;
+  comment: string;
 };
 
 export type TThingPayloadCard = {
@@ -17,6 +19,7 @@ export type TThingPayloadCard = {
   cvc: string;
   pin: string;
   exp: string;
+  comment: string;
 };
 
 export type TThingPayload = TThingPayloadPassword | TThingPayloadCard;
@@ -29,7 +32,6 @@ export interface IThingRaw {
   groupId: TId;
   type: EThingType;
   payload: TEncoded;
-  comment: Nullable<TEncoded>;
   isStarred: boolean;
   created: string;
   updated: string;
@@ -42,14 +44,13 @@ export interface IThing {
   groupId: TId;
   type: EThingType;
   payload: TThingPayloadPassword | TThingPayloadCard;
-  comment: Nullable<string>;
   isStarred: boolean;
   created: string;
   updated: string;
   requested: string;
 }
 
-export type TThingForList = Omit<IThing, 'payload' | 'comment'> & {
+export type TThingForList = Omit<IThing, 'payload'> & {
   subject: string;
 };
 
@@ -59,14 +60,12 @@ export interface IThingForFormik {
   groupId: TId;
   type: EThingType;
   payload: TThingPayloadPassword | TThingPayloadCard;
-  comment: string;
 }
 
 export interface IThingForUpdate {
   id: TId;
   title: string;
   groupId: TId;
-  comment: Nullable<string>;
   payload: TThingPayloadPassword | TThingPayloadCard;
 }
 
@@ -74,6 +73,5 @@ export interface IThingForCreate {
   title: string;
   type: EThingType;
   groupId: TId;
-  comment: Nullable<string>;
   payload: TThingPayloadPassword | TThingPayloadCard;
 }

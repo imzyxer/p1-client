@@ -67,7 +67,8 @@
       "labelPassword": "Password",
       "labelExp": "Expiry",
       "labelCreated": "Created",
-      "labelUpdated": "Updated"
+      "labelUpdated": "Updated",
+      "labelEmail": "Email"
     },
     "group": {
       "title": "Manage Groups",

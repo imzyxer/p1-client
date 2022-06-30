@@ -32,7 +32,6 @@ class ThingEntity {
 
     return {
       ...thingRaw,
-      comment: _isEmpty(thingRaw.comment) ? null : crypt.decrypt(thingRaw.comment ?? ''),
       payload: <TThingPayload>(_isEmpty(payload) ? this.getDefaultPayload(thingRaw.type) : payload),
     };
   };
@@ -41,14 +40,13 @@ class ThingEntity {
     const crypt = this.getCrypt();
     return {
       ...thing,
-      comment: _isEmpty(thing.comment) ? null : crypt.encrypt(thing.comment ?? ''),
       payload: crypt.encrypt(thing.payload),
     };
   };
 
   prepareForList = (things: IThing[]): TThingForList[] =>
     things.map(thing => ({
-      ..._omit(thing, ['payload', 'comment']),
+      ..._omit(thing, ['payload']),
       subject: this.extractSubject(thing),
       created: this.extractDate(thing.created),
       updated: this.extractDate(thing.updated),
@@ -73,7 +71,6 @@ class ThingEntity {
     title: thing.title,
     groupId: thing.groupId,
     type: thing.type,
-    comment: thing.comment ?? '',
     payload: thing.payload,
   });
 
@@ -81,7 +78,6 @@ class ThingEntity {
     id: <TId>data.id,
     title: data.title,
     groupId: data.groupId,
-    comment: _isEmpty(data.comment) ? null : data.comment,
     payload: data.payload,
   });
 
@@ -89,7 +85,6 @@ class ThingEntity {
     title: data.title,
     type: data.type,
     groupId: data.groupId,
-    comment: _isEmpty(data.comment) ? null : data.comment,
     payload: data.payload,
   });
 
@@ -98,7 +93,6 @@ class ThingEntity {
     title: '',
     groupId: groupId || '',
     type,
-    comment: '',
     payload: this.getDefaultPayload(type),
   });
 
@@ -114,11 +108,11 @@ class ThingEntity {
 
     switch (thingType) {
       case EThingType.PASSWORD:
-        return { login: '', password: pg.generate(), link: '' };
+        return { login: '', password: pg.generate(), link: '', comment: '', email: '' };
       case EThingType.CARD:
-        return { number: '', holder: '', cvc: '', pin: '', exp: '' };
+        return { number: '', holder: '', cvc: '', pin: '', exp: '', comment: '' };
       default:
-        return { login: '', password: '', link: '' };
+        return { login: '', password: '', link: '', comment: '', email: '' };
     }
   };
 }

@@ -45,12 +45,12 @@ const ThingView: FC = () => {
             {store.data.type === EThingType.PASSWORD && <PieceForPassword payload={store.passwordPayload} />}
             {store.data.type === EThingType.CARD && <PieceForCard payload={store.cardPayload} />}
           </Grid>
-          {!_isEmpty(store.data.comment) && (
+          {!_isEmpty(store.thing.payload.comment) && (
             <Grid item xs={12}>
               <Typography variant="h6" gutterBottom>
                 {t('dialog.thing.labelComment')}
               </Typography>
-              <Typography variant="body1">{store.data.comment}</Typography>
+              <Typography variant="body1">{store.thing.payload.comment}</Typography>
             </Grid>
           )}
           <Grid item xs={12}>

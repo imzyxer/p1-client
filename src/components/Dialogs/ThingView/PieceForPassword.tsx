@@ -3,7 +3,6 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
-import LinkIcon from '@mui/icons-material/Link';
 import { useTranslation } from 'react-i18next';
 import { TThingPayloadPassword } from 'types/thing';
 import PasswordField from 'components/formControls/basic/PasswordField';
@@ -31,14 +30,21 @@ const PieceForPassword: FC<TParams> = ({ payload }) => {
           <CopyButton copyText={payload.password} sx={{ ml: 1 }} />
         </Box>
       </Grid>
+      {payload.email && (
+        <Grid item xs={12} sm={6}>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <TextField label={t('dialog.thing.labelEmail')} variant="outlined" InputProps={{ readOnly: true }} defaultValue={payload.email} fullWidth />
+            <CopyButton copyText={payload.email} sx={{ ml: 1 }} />
+          </Box>
+        </Grid>
+      )}
       {payload.link && (
-        <Grid item xs={12}>
-          <Stack spacing={1} direction="row" sx={{ alignItems: 'center' }}>
-            <LinkIcon color="action" />
+        <Grid item xs={12} sm={payload.email ? 6 : 12}>
+          <Stack spacing={1} direction="row" sx={{ alignItems: 'center', height: '100%' }}>
             <Link href={payload.link} rel="noreferrer">
               {payload.link}
             </Link>
-            <CopyButton copyText={payload.link} size="small" />
+            <CopyButton copyText={payload.link} />
           </Stack>
         </Grid>
       )}

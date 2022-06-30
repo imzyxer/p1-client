@@ -67,7 +67,8 @@
       "labelPassword": "Пароль",
       "labelExp": "Действует до",
       "labelCreated": "Создано",
-      "labelUpdated": "Обновлено"
+      "labelUpdated": "Обновлено",
+      "labelEmail": "Email"
     },
     "group": {
       "title": "Группы",
