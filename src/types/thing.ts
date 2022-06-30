@@ -45,6 +45,7 @@ export interface IThing {
   type: EThingType;
   payload: TThingPayloadPassword | TThingPayloadCard;
   isStarred: boolean;
+  isBroken?: boolean;
   created: string;
   updated: string;
   requested: string;

@@ -28,11 +28,23 @@ class ThingEntity {
 
   decrypt = (thingRaw: IThingRaw): IThing => {
     const crypt = this.getCrypt();
-    const payload = crypt.decryptJson(thingRaw.payload);
+    let payload = {};
+    let isBroken = false;
+    try {
+      payload = crypt.decryptJson(thingRaw.payload);
+      if (_isEmpty(payload)) {
+        isBroken = true;
+        payload = this.getDefaultPayload(thingRaw.type);
+      }
+    } catch (e) {
+      isBroken = true;
+      payload = this.getDefaultPayload(thingRaw.type);
+    }
 
     return {
       ...thingRaw,
-      payload: <TThingPayload>(_isEmpty(payload) ? this.getDefaultPayload(thingRaw.type) : payload),
+      payload: <TThingPayload>payload,
+      isBroken,
     };
   };
 
