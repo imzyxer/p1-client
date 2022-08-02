@@ -139,7 +139,7 @@ const ThingsTableRow: FC<TThingsTableRowProps> = ({ columns, thing }) => {
       {columns.includes(EColumn.TITLE) && <TableCellTitle thing={thing} />}
       {columns.includes(EColumn.SUBJECT) && <TableCell size="small">{thing.subject}</TableCell>}
       {columns.includes(EColumn.ACTIONS) && (
-        <TableCell align="center" size="small" padding="none">
+        <TableCell align="center" size="small" padding="none" sx={{ whiteSpace: 'nowrap' }}>
           <Tooltip title={t<string>(thing.isStarred ? 'thingsTable.tooltipUnStarred' : 'thingsTable.tooltipStarred')}>
             <IconButton
               size="medium"
