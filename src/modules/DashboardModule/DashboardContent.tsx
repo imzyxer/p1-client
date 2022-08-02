@@ -26,13 +26,13 @@ const DashboardContent: FC = () => {
           <LastVisitAlert />
           <Paper>
             <PageTitle icon={<StarIcon />}>{t('blockTitle')}</PageTitle>
-            <ThingsTable things={starred} columns={[EColumn.TYPE, EColumn.TITLE, EColumn.SUBJECT, EColumn.STARRED, EColumn.EDIT]} />
+            <ThingsTable things={starred} columns={[EColumn.TYPE, EColumn.TITLE, EColumn.SUBJECT, EColumn.ACTIONS]} />
           </Paper>
         </Grid>
         <Grid item xs={12} md={6}>
           <Paper>
             <PageTitle icon={<TimeIcon />}>{t('blockLatest')}</PageTitle>
-            <ThingsTable things={latest} columns={[EColumn.TYPE, EColumn.TITLE, EColumn.SUBJECT, EColumn.STARRED, EColumn.EDIT]} />
+            <ThingsTable things={latest} columns={[EColumn.TYPE, EColumn.TITLE, EColumn.SUBJECT, EColumn.ACTIONS]} />
           </Paper>
         </Grid>
       </Grid>

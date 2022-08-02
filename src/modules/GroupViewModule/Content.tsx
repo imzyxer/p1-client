@@ -21,7 +21,7 @@ const Content: FC<{ group: IGroup }> = ({ group }) => {
             <PageTitle icon={<GroupIcon icon={group.icon} />}>{group.name}</PageTitle>
             <ThingsTable
               things={groupStore.thingsForList}
-              columns={[EColumn.TYPE, EColumn.TITLE, EColumn.SUBJECT, EColumn.STARRED, EColumn.EDIT, EColumn.CREATED, EColumn.UPDATED]}
+              columns={[EColumn.TYPE, EColumn.TITLE, EColumn.SUBJECT, EColumn.ACTIONS, EColumn.CREATED, EColumn.UPDATED]}
             />
           </Paper>
         </Grid>

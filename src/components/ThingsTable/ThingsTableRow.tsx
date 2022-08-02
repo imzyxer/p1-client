@@ -21,11 +21,10 @@ export enum EColumn {
   TYPE,
   TITLE,
   SUBJECT,
-  STARRED,
-  EDIT,
   CREATED,
   UPDATED,
   REQUESTED,
+  ACTIONS,
 }
 
 type TThingsTableRowProps = {
@@ -39,7 +38,7 @@ const TableCellType: FC<{ thing: TThingForList }> = ({ thing }) => {
   return (
     <TableCell align="center" padding="none">
       <Tooltip title={t('thingsTable.tooltipView')}>
-        <IconButton size="medium" disabled={thing.isBroken}>
+        <IconButton size="medium" disabled={thing.isBroken} edge="end">
           <ThingTypeIcon type={thing.type} />
         </IconButton>
       </Tooltip>
@@ -120,8 +119,7 @@ const ThingsTableRow: FC<TThingsTableRowProps> = ({ columns, thing }) => {
         <Hidden smDown>{columns.includes(EColumn.TYPE) && <TableCellType thing={thing} />}</Hidden>
         {columns.includes(EColumn.TITLE) && <TableCellTitle thing={thing} />}
         {columns.includes(EColumn.SUBJECT) && <TableCell size="small">BROKEN</TableCell>}
-        {columns.includes(EColumn.STARRED) && <TableCell size="small">&nbsp;</TableCell>}
-        {columns.includes(EColumn.EDIT) && <TableCell size="small">&nbsp;</TableCell>}
+        {columns.includes(EColumn.ACTIONS) && <TableCell size="small">&nbsp;</TableCell>}
         {columns.includes(EColumn.CREATED) && <TableCellCreated thing={thing} />}
         {columns.includes(EColumn.UPDATED) && <TableCellUpdated thing={thing} />}
         {columns.includes(EColumn.REQUESTED) && <TableCellRequested thing={thing} />}
@@ -140,8 +138,8 @@ const ThingsTableRow: FC<TThingsTableRowProps> = ({ columns, thing }) => {
       <Hidden smDown>{columns.includes(EColumn.TYPE) && <TableCellType thing={thing} />}</Hidden>
       {columns.includes(EColumn.TITLE) && <TableCellTitle thing={thing} />}
       {columns.includes(EColumn.SUBJECT) && <TableCell size="small">{thing.subject}</TableCell>}
-      {columns.includes(EColumn.STARRED) && (
-        <TableCell size="small" padding="none">
+      {columns.includes(EColumn.ACTIONS) && (
+        <TableCell align="center" size="small" padding="none">
           <Tooltip title={t<string>(thing.isStarred ? 'thingsTable.tooltipUnStarred' : 'thingsTable.tooltipStarred')}>
             <IconButton
               size="medium"
@@ -153,10 +151,6 @@ const ThingsTableRow: FC<TThingsTableRowProps> = ({ columns, thing }) => {
               {thing.isStarred ? <StarredTrue /> : <StarredFalse />}
             </IconButton>
           </Tooltip>
-        </TableCell>
-      )}
-      {columns.includes(EColumn.EDIT) && (
-        <TableCell align="center" size="small" padding="none">
           <Tooltip title={t<string>('thingsTable.tooltipEdit')}>
             <IconButton
               size="medium"

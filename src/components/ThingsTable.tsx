@@ -29,8 +29,7 @@ const ThingsTable: FC<TThingTableProps> = ({ columns, things }) => {
             <Hidden smDown>{columns.includes(EColumn.TYPE) && <TableCell>&nbsp;</TableCell>}</Hidden>
             {columns.includes(EColumn.TITLE) && <TableCell>{t('thingsTable.thTitle')}</TableCell>}
             {columns.includes(EColumn.SUBJECT) && <TableCell>{t('thingsTable.thSubject')}</TableCell>}
-            {columns.includes(EColumn.STARRED) && <TableCell>&nbsp;</TableCell>}
-            {columns.includes(EColumn.EDIT) && <TableCell>&nbsp;</TableCell>}
+            {columns.includes(EColumn.ACTIONS) && <TableCell>&nbsp;</TableCell>}
             {columns.includes(EColumn.CREATED) && <TableCell align="right">{t('thingsTable.thCreated')}</TableCell>}
             {columns.includes(EColumn.UPDATED) && <TableCell align="right">{t('thingsTable.thUpdated')}</TableCell>}
             {columns.includes(EColumn.REQUESTED) && <TableCell align="right">{t('thingsTable.thRequested')}</TableCell>}
